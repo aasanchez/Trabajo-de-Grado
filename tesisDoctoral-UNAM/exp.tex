@@ -1,0 +1,690 @@
+\chapter{Experimentos y resultados}\label{Cap:Exp}
+%This change labels of subfig
+\renewcommand{\thesubfigure}{\alph{subfigure}}
+\captionsetup[subfigure]{labelformat=simple,labelsep=colon,
+                         listofformat=subsimple}
+%FIN de configuración
+
+Este capítulo final se dedica a los experimentos realizados con los
+clasificadores LIRA y PCNC sobre las bases de datos descritas en la Sección \ref{ssec:BDI}. La
+primera sección de este capítulo se dedica a los experimentos con el clasificador neuronal LIRA y la segunda a los experimentos con el PCNC. La tercer sección compara los resultados de ambos clasificadores y discute sobre de éstos. La cuarta y última sección se dedica a la tarea de búsqueda y localización de piezas.
+
+En este trabajo un experimento significa una serie de pruebas con el clasificador LIRA o PCNC encaminadas a probar o concluir una propiedad u  objetivo particular del mismo.
+
+Para ambos clasificadores neuronales se realizaron múltiples
+experimentos con las bases de datos descritas. Los
+experimentos llevados a cabo han sido objetivos, sistemáticos y
+estadísticamente convincentes. Los experimentos son objetivos por que
+parten de un plan predeterminado y bien definido para su realización
+el cuál se explica en breve. Son sistemáticos por que se han hecho de
+forma ordenada y organizados en etapas, utilizando cuando es necesario
+los resultados obtenidos en los experimentos previos en los
+subsecuentes. Y por último los experimentos son estadísticamente
+convincentes por que se ha tenido cuidado de ejecutar múltiples
+pruebas agrupadas en experimentos con metodología idéntica.
+
+Todos los experimentos descritos en este trabajo se ejecutaron en un computador con procesador Intel$^{\copyright}$ Pentium$^{\copyright}$ 4 a 2.80 GHz con 512 KB de memoria caché y 512 MB de memoria RAM con sistema operativo GNU/Linux kernel 2.6.17-11-generic.
+
+\section{LIRA}
+Primero que nada es importante señalar que dada la estructura del clasificador LIRA
+(Sec. \ref{sec:LIRAestructura}), el orden de magnitud en los valores prácticos de
+algunos de sus parámetros ($W\times H$, $w\times h$ y $N$), y por el
+carácter aleatorio de su construcción es sumamente improbable que dos
+estructuras idénticas LIRA sean creadas, esto considerando idénticos
+parámetros de creación. Por lo anterior es importante mencionar cuando
+un experimento utilizó un mismo clasificador LIRA (misma creación) y
+cuando se utilizaron distintos clasificadores con idénticos
+parámetros. Adicionalmente debido al proceso de entrenamiento del
+clasificador LIRA (Sec. \ref{sec:LIRAentrenamiento}), se tiene que un mismo clasificador
+puede estar entrenado con diversos conjuntos de entrenamiento y
+diversos ciclos de entrenamiento, por lo cuál aún copias idénticas de
+un mismo clasificador pueden presentar respuestas distintas. Tener
+presente lo anterior ha sido importante para la planeación de los
+experimentos realizados y comprende varios resultados que se mostrarán más adelante.
+
+Cada una de las bases de datos con imágenes empleadas
+consiste en dos conjuntos fijos de imágenes, uno para entrenamiento y otro para
+prueba. Estos conjuntos se seleccionaron aleatoriamente de la base de datos respectiva. Adicionalmente, las bases de datos descritas pueden
+tener imágenes para propósitos especiales, las cuales se explican en
+los experimentos que las ocupan. Para ciertos experimentos realizados
+se utilizaron los conjuntos fijos de entrenamiento, mientras que para otros ambos conjuntos se seleccionaron aleatoriamente de entre
+toda la base de datos respectiva. Todos los experimentos realizados con el
+clasificador LIRA utilizaron las bases de datos A, B y D con excepción de los experimento sobre distorsiones y sobre conjunto ampliado de entrenamiento.
+
+Los experimentos realizados, su justificación, metodología y resultados se abordan en las secciones siguientes.
+
+\subsection{Experimentos preliminares}\label{ssec:LIRAexpPreliminares}
+Las primeras pruebas con el clasificador LIRA han sido reportadas en \cite{Gengis2004}. Estas pruebas utilizaron la base de datos $\alpha$ descrita en la Sección \ref{ssec:BDI}. Se probaron varias combinaciones de parámetros para el clasificador considerando los mejores parámetros reportados en \cite{Kussul2004IVC}. En este grupo de pruebas no se utilizaron distorsiones para el conjunto de imágenes de entrenamiento. En la Tabla \ref{t:LIRAexpPreliminares} se muestran los resultados de este experimento. El mejor resultado obtenido en el experimento fue con una ventana LIRA de $15\times 15$ píxeles, 175 000 neuronas en la capa $A$, cuatro neuronas ON y tres neuronas OFF en cada grupo, el parámetro $\eta $ del clasificador igual a 1.0 y el parámetro de entrenamiento $T_{E}$ igual a 0.15. Para estos parámetros el porcentaje de neuronas activas en la capa $A$ fue 0.164\%. Para esta prueba el porcentaje de reconocimiento correcto fue de 94\%. El mejor desempeño obtenido para múltiples combinaciones de parámetros fue alcanzado con 40 ciclos de entrenamiento por lo que los mismos se utilizaron para todas las pruebas del experimento descrito.
+
+\begin{table*}[!ht]
+\caption[Experimento preliminar para la sintonización de parámetros LIRA.]{Experimento preliminar con nueve pruebas para la sintonización de parámetros LIRA con la base de datos $\alpha $.}
+\label{t:LIRAexpPreliminares}\centering
+\par
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|c||c|c|c|c|c|c|c|c|}
+\hline
+No. de experimentos & 1 & 2 & \textbf{3} & 4 & 5 & 6 & 8 & 9 \\
+\hline
+\hline
+Tamaño de la ventana ($w\cdot h)$ & $12\cdot 12$ & $15\cdot 15$ & $%
+\mathbf{15\cdot 15}$ & $10\cdot 10$ & $13\cdot 13$ & $17\cdot 17$ & $15\cdot 15$ & $10\cdot 10$ \\ \hline
+Constante LIRA ($\eta $) & 0.8 & 1.0 & \textbf{1.0} & 1.0 & 1.0
+& 1.0 & 1.0 & 1.0 \\ \hline
+Neuronas capa A ($N$) (miles) & $175$ & $175$ & $\mathbf{175}$ & $175$ & $%
+175 $ & $175$ & $200$ & $200$ \\ \hline
+Neuronas ON por grupo ($p$) & 3 & 3 & \textbf{4} & 4 & 4 & 5 & 4 & 4 \\ 
+\hline
+Neuronas OFF por grupo ($n$) & 4 & 4 & \textbf{3} & 3 & 3 & 3 & 3 & 3 \\ 
+\hline
+Neuronas activas (\%) & 0.06 & 0.09 & \textbf{0.16} & 0.12 & 0.13 & 0.08 & 0.17 & 0.15 \\ \hline
+Porcentaje de reconocimiento (\%) & 68 & 89 & \textbf{94} & 93 & 85 & 88 & 89 & 89 \\ \hline
+\end{tabular}
+}
+\end{table*}
+
+
+Luego de múltiples pruebas preliminares y otras adicionales se determinó que el parámetro de entrenamiento $T_{E}$ igual a 0.15 es el que mejor rendimiento ofreció para todos los casos y bases de datos por lo que se fijo al valor dado.
+
+Los experimentos de las secciones siguientes se realizaron teniendo como base el mejor conjunto de parámetros obtenido en este experimento preliminar, es por ello que en lo sucesivo se les hará referencia a este conjunto de parámetros como parámetros base.
+
+\subsection{Unicidad}\label{sec:LIRAexpUnicidad} 
+Al inicio de esta sección se ha hecho mención de la característica única de cada construcción de un determinado clasificador LIRA, aún con los mismos parámetros. Para estudiar cuál es el comportamiento de tales clasificadores construidos así se realizó el experimento descrito a continuación. Este experimento consistió en una serie de pruebas con distintas construcciones LIRA utilizando los mismos parámetros y utilizando los mismos conjuntos fijos de entrenamiento y prueba, siendo entrenadas con el mismo número de ciclos de entrenamiento. Estas consideraciones llevan a que la única variable del experimento es la estructura única de cada construcción LIRA. Este experimento se describe en primer lugar ya que para experimentos posteriores donde se utilizan distintas construcciones del clasificador LIRA además de la variable que se pretenda estudiar se tendrá inevitablemente la variabilidad de la estructura particular de cada construcción LIRA. Por esta razón a este experimento se le llama de unicidad, derivado del hecho de que cada clasificador LIRA es único.
+
+En la Tabla \ref{t:LIRAexpUnicidad} se muestran los resultados obtenidos para
+10 pruebas realizadas con los parámetros base\footnote{Tanto por el clasificador LIRA como para el PCNC la ventana respectiva es cuadrada, por lo que el valor del parámetro $h$ es igual al de $w$. Por esta razón de aquí en adelante se da sólo el valor para $w$.}: $w=15$, $\eta=1.0$,
+$N=175 000$, $p=4$ y $n=3$ y 40 ciclos de
+entrenamiento. Adicionalmente se presenta el promedio de
+reconocimiento obtenido y la desviación estándar para mejor
+comprensión de estos datos.
+
+\begin{table*}[!ht]
+\caption[Experimento de unicidad con LIRA.]{Resultados del experimento con 10 construcciones LIRA para cada una de las tres bases de datos. Cada una de las 10 corridas se hizo con idénticos parámetros, mismos conjuntos fijos de entrenamiento y prueba, y mismo número de ciclos de entrenamiento. Todos los resultados se dan en unidades porcentuales que indican el reconocimiento logrado.}
+\label{t:LIRAexpUnicidad}
+\centering
+\par
+\begin{tabular}{|r||c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+LIRA: & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & $\bar{x}$ & $\sigma$\\
+\hline
+\hline
+BD-A & 87 & 86 & 91 & 89 & 86 & 90 & 81 & 90 & 93 & 84 &87.7 & 3.14 \\
+\hline
+BD-B  & 93 & 90 & 90 & 92 & 91 & 91 & 92 & 91 & 93 & 91 &91.4 & 1.02 \\
+\hline
+BD-D  & 87 & 89 & 88 & 89 & 84 & 88 & 89 & 88 & 89 & 89 &88.0 & 1.48  \\
+\hline
+\end{tabular}
+\end{table*}
+
+...
+
+%p
+\begin{table*}[!ht]
+\caption[Experimento con el parámetro $p$.]{Resultados de pruebas del clasificador LIRA con variación del parámetro $p$ sobre las bases de datos A, B y D.}
+\label{t:LIRAexpParamp}\centering
+\par
+\begin{tabular}{|r|c||c|c|c|c|c|}
+\hline
+Parámetro      & $p$&  2 & 3  & 4  & 5 & 6 \\
+\hline
+\hline
+BD-A & \% & 85 & 88 & \textbf{89} & 83 & 86 \\
+\hline
+BD-B & \% & 79 & 69 & \textbf{94} & 82 & 85 \\
+\hline
+BD-D & \% & 86 & 85 & 85          & \textbf{89} & 86 \\
+\hline
+\end{tabular}
+\end{table*}
+
+%n
+\begin{table*}[!ht]
+\caption[Experimento con el parámetro $n$.]{Resultados de pruebas del clasificador LIRA con variación del parámetro $n$ sobre las bases de datos A, B y D.}
+\label{t:LIRAexpParamq}\centering
+\par
+\begin{tabular}{|r|c||c|c|c|c|c|c|}
+\hline
+Parámetro& $n$& 1  & 2 &    3 & 4 & 5 & 6\\
+\hline
+\hline
+BD-A & \% & 35 & 78& \textbf{89} & 86& 83& 64\\
+\hline
+BD-B & \% & 73 & 82&  \textbf{94}& 83& 88& 80 \\
+\hline
+BD-D & \% & 85 & \textbf{86}&    85       & 80& 83& 78 \\  
+\hline
+\end{tabular}
+\end{table*}
+
+%pyq
+\begin{table*}[!ht]
+\caption[Experimento con los parámetro $p$ y $n$.]{Resultados de
+  pruebas del clasificador LIRA con variación de los parámetros $p$ y
+  $n$ sobre las bases de datos A, B y D para distintos valores de $p+n$.}
+\label{t:LIRAexpParampYn}\centering
+\par
+\begin{tabular}{|r||c|c|c|c|c|c|c|}
+\hline
+Parámetros $p$/$n, \; p+n=6$ & $1$/$5$& $2$/$4$& $3$/$3$& $4$/$2$& $5$/$1$& - & - \\
+\hline
+\hline
+BD-A (\%): &  63         &  83             &   82        &   78        &    33       & - & -\\
+\hline
+BD-B (\%): &  82         &  88             &   91        &   92     &    84       & - & -\\
+\hline
+BD-D (\%): &  77         &  85             &   85        &   \textbf{87}&   80        & - & - \\
+\hline
+\hline
+Parámetros $p$/$n, \; p+n=7$ & $1$/$6$& $2$/$5$& $3$/$4$& $4$/$3$& $5$/$2$& $6$/$1$ & -\\
+\hline
+\hline
+BD-A (\%): &   33        &   73      &   \textbf{90} &     89      &    66     &    43  & -     \\
+\hline
+BD-B (\%): &  80         &   89      &   88        &\textbf{94}    &
+91        &    87  & -\\
+\hline
+BD-D (\%): &  74         &   81      &   84        &       85      &
+83        &    81  & -\\
+\hline
+\hline
+Parámetros $p$/$n, \; p+n=8$ & $1$/$7$& $2$/$6$& $3$/$5$& $4$/$4$& $5$/$3$& $6$/$2$ & $7$/$1$\\
+\hline
+\hline
+BD-A (\%): &   43        &   58        &   80        &   83        &   86        &   72 & 55   \\
+\hline
+BD-B (\%): &  78         &   80        &   87        &   83        &    86       & 85 & 82 \\
+\hline
+BD-D (\%): &  72         &   82        &   81        &   85        &\textbf{87} & 78 & 80 \\    
+\hline
+\end{tabular}
+\end{table*}
+
+El análisis de los datos obtenidos da muestra de la relación de cada
+uno de los parámetros del clasificador LIRA sobre su resultado. Se ha visto que los parámetros $w$ y $N$ influyen en el resultado para cada base de datos en forma mas o menos uniforme mientras que $p$, $n$ y $\eta$ no lo hacen.
+
+Ahora bien, debido a la interdependencia que los parámetros juegan en
+el desempeño del clasificador LIRA, debe dudarse que los mejores parámetros obtenidos de forma individual garanticen que un conjunto formado por los mismos sea
+el que mejor resultados proporcione. Para esto es necesario realizar otro
+experimento en donde se prueben diversos conjuntos de parámetros que
+tengan como base los resultados obtenidos tanto previamente como en esta
+sección. Por lo tanto se han probado tres conjuntos de parámetros
+sobre la base de datos A, el
+primer conjunto es el de los parámetros obtenidos en la Sección \ref{ssec:LIRAexpPreliminares}, el segundo es el de los parámetros que dieron el mejor resultado en el experimento de parámetros independientes y el
+tercer conjunto es el construido con los parámetros que fueron mejores
+en los experimentos individuales. Para este experimento se han hecho
+cinco distintas construcciones LIRA para cada conjunto de parámetros, para obtener el promedio de reconocimiento correcto para cada
+uno en lugar de conformarse con un sólo resultado, pues como se
+explicó en la Sección \ref{sec:LIRAexpUnicidad} diversas construcciones
+LIRA con idénticos parámetros dan resultados con cierta variación. Nótese que en la Tabla \ref{t:LIRAexpParamEta} se reporta el mejor resultado
+obtenido en estos experimentos de sintonización. Este resultado es de 92\% de reconocimiento correcto. En la Tabla \ref{t:LIRAexpMejor} se resumen las pruebas realizadas para este experimento con las cinco corridas para cada uno de los 3 conjuntos de parámetros descritos, los resultados obtenidos y el promedio obtenido para cada caso.
+
+\begin{table*}[!ht]
+\caption[Mejor conjunto de parámetros LIRA.]{Resumen de resultados de pruebas para obtener el mejor conjunto de parámetros LIRA para la base de datos A. $\bar{x}$ es el promedio y $\sigma$ es la desviación estándar.}
+\label{t:LIRAexpMejor}\centering
+\par
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|l||c|c|c|c|c||c|c|c|c|c||c|c|}
+\hline
+Parámetros & \multicolumn{5}{|c|}{Valores} & \multicolumn{5}{|c|}{Construcciones/(\%)} & $\bar{x}$ & $\sigma$ \\
+\hline
+                  & $w$ &$\eta$&$N$   &$p$&$n$ & 1 & 2 &  3 &  4 &  5 & (\%) & (\%) \\
+\hline
+\hline
+Base             & 15 & 1.0 & 175 000 & 4 & 3 & 81 & 89 & 91 & 92 & 90 & 88.6 & 3.93 \\
+\hline
+Mejor en pruebas & 15 & 0.9 & 175 000 & 4 & 3 & 85 & 91 & 87 & 88 & 91 & 88.4 & 2.33 \\
+\hline
+Mejores aislados & 15 & 0.9 & 200 000 & 3 & 4 & 78 & 85 & 89 & 85 & 90 & 85.4 & 4.22 \\
+\hline
+\end{tabular}
+}
+\end{table*}
+
+...
+
+Para el parámetro $D_{c}$ que es la distancia de correlación del codificador del PCNC los resultados obtenidos se muestran en la Tabla \ref{t:PCNCexpParamDc}. Se tiene que para la base de datos A hubo un empate con $D_{c}$ igual a 2 y 5, mientras que para la base de datos B el mejor resultado fue con $D_{c}=6$ y para la base de datos D existió también un empate para $D_{c}$ igual a 4 y 8. Estos resultados nos dicen, para la tarea particular que se trata, que la distancia de correlación debe tener un valor pequeño menor que 10 pero mayor que uno.
+
+%Dc
+\begin{table*}[!ht]
+\caption[Experimento con el parámetro $D_{c}$.]{Resultados de pruebas del PCNC con variación del parámetro $D_{c}$ sobre las bases de datos A, B y D.}
+\label{t:PCNCexpParamDc}\centering
+\par
+\begin{tabular}{|r|c||c|c|c|c|c|c|c|c|c|c|}
+\hline
+Parámetro & $D_{c}$ & 1  & 2 & 4 & 5 & 6 & 8 & 10 & 15 & 20 & 25 \\
+\hline
+\hline
+BD-A      & \% & 70 & \textbf{93} & 91 & \textbf{93} & 92 & 90 & 90 & 88 & 87 & 74 \\ 
+\hline
+BD-B      & \% & 84 & 91 & 93 & 94 & \textbf{95} & 92 & 89 & 91 & 82 & 82 \\ 
+\hline
+BD-D      & \% & 77 & 72 & \textbf{85} & 82 & 83 & \textbf{85} & 78 & 82 & 72 & 76 \\ 
+\hline
+\end{tabular}
+\end{table*}
+
+El parámetro q es un factor del CDT que combina las distintas propiedades encontradas para una imagen determinada (Sec. \ref{sssec:CDT}). El resultado de las pruebas con este parámetro se muestran en la Tabla \ref{t:PCNCexpParamq}. El resultado de variar este parámetro sobre el resultado del PCNC es bastante irregular por lo que sólo puede entenderse tomando en cuenta las posibles variaciones por el concepto de unicidad (Sec. \ref{sec:PCNCexpUnicidad}). Así se tiene que para la base de datos A el mejor resultado se tuvo para $q=5$, para la base de datos B para $q=10$ mientras que para la base de datos D el mejor resultado se obtuvo al no aplicar el CDT, esto es $q=0$.
+
+%q
+\begin{table*}[!ht]
+\caption[Experimento con el parámetro $q$.]{Resultados de pruebas del PCNC con variación del parámetro $q$ sobre las bases de datos A, B y D.}
+\label{t:PCNCexpParamq}\centering
+\par
+\begin{tabular}{|r|c||c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+Parámetro& $q$& 0  & 1 & 2  &  3 & 4 & 5 & 6 & 7  & 8  & 9  & 10 & 11 & 12 & 13 \\
+\hline
+\hline
+BD-A & \%     & 90 & 92& 93 & 93& 92&\textbf{96}&93 & 94 & 87 & 88 & 86 & 91 & 93 & 93 \\
+\hline
+BD-B & \%     & 94 & 93&  94& 90& 94& 94 &92 & 92 & 89 & 90 &\textbf{97}& 95 & 93 & 93 \\
+\hline
+BD-D & \%     &\textbf{85}& 80&  82& 83 &80& 84& 80 & 82 & 78 & 80 & 80 & 79 & 83 & 82 \\  
+\hline
+\end{tabular}
+\end{table*}
+
+Dados los anteriores resultados tenemos que el mejor conjunto de parámetros para la base de datos A se dio para los parámetros base pero con $q=5$ (Tabla \ref{t:PCNCexpParamq}). Considérese también el conjunto de parámetros construido tomando los mejores parámetros que aisladamente dieron mejores resultados en los experimentos considerando además su eficiencia. Así, tomando estos dos conjuntos de parámetros junto con los parámetros base se realizó el siguiente experimento con cinco creaciones distintas para cada conjunto de parámetros, para de esta forma obtener resultados estadísticamente confiables. En la Tabla \ref{t:PCNCexpMejor} se muestran estos resultados donde se ve que los mejores parámetros obtenidos aisladamente también constituyeron el mejor conjunto de parámetros. Adicionalmente es de notar que este conjunto de parámetros logró la menor desviación estándar en sus respuestas.
+
+\begin{table*}[!ht]
+\caption[Mejor conjunto de parámetros PCNC.]{Resumen de resultados de pruebas para obtener el mejor conjunto de parámetros PCNC para base de datos A. $\bar{x}$ es el promedio y $\sigma$ es la desviación estándar.}
+\label{t:PCNCexpMejor}
+\centering
+\par
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|l||c|c|c|c|c|c|c|c||c|c|c|c|c||c|c|}
+\hline
+Parámetros: & \multicolumn{8}{|c|}{Parámetros} & \multicolumn{5}{|c|}{Construcciones/(\%)} & $\bar{x}$ & $\sigma$ \\
+\hline
+                 & $w$ &$p$ &$n$&$S$   &$N$    &$K$ &$D_{c}$ &$q$ & 1 & 2 &  3 &  4 &  5 & (\%) & (\%) \\
+\hline
+\hline
+Base             & 10 & 5   & 4 &1000&300000& 20 &5 & 2 & 93 & 85 & 93 & 93 & 92 & 91.2 & 3.12 \\
+\hline
+Mejor en pruebas & 10 & 5   & 4 &1000&300000 &20 &5 & 5 & 95 & 90 & 86 & 90 & 88 & 89.8 & 2.99 \\
+\hline
+Mejores aislados & 12 & 4   & 3 &2500&200000& 20 &5 & 5 & 93 & 93 & 94 & 88 & 94 & 92.5 & 2.24 \\
+\hline
+\end{tabular}
+}
+\end{table*}
+
+El mismo procedimiento descrito se utilizó para obtener los mejores parámetros para el clasificador PCNC aplicado a las bases de datos B y D obteniendo un porcentaje de reconocimiento de 97\% para la base de datos B con los parámetros $w=10$, $p=4$, $n=3$, $S=1500$, $N=300 000$, $K=20$, $D_{c}=6$ y $q=10$. Para la base de datos D el mejor resultado obtenido fue de 91\% de reconocimiento con los parámetros $w=11$, $p=4$, $n=3$, $S=2000$, $N=400 000$, $K=15$, $D_{c}=4$ y $q=0$. Este último resultado con $q=0$ implica que este PCNC no utilizó el CDT para lograr el mejor desempeño.
+
+\subsection{Distorsiones}\label{ssec:PCNCdistor}
+Con el objetivo de mejorar la capacidad de reconocimiento del clasificador PCNC se realizó un par de pruebas empleando distorsiones de las imágenes originales del conjunto de entrenamiento para ampliarlo. La prueba se hizo de la misma forma que para el clasificador LIRA (Sec. \ref{ssec:LIRAdistor}). En la Tabla \ref{t:PCNCexpDistorsiones} se resumen estas pruebas.
+
+\begin{table*}[!ht]
+\caption[Experimento con distorsiones con el PCNC.]{Experimento usando distorsiones para aumentar el conjunto de entrenamiento del PCNC aplicado sobre la base de datos A.}
+\label{t:PCNCexpDistorsiones}\centering
+\par
+\begin{tabular}{|l||c|c|}
+\hline
+                       & \multicolumn{2}{|c|}{Número de prueba} \\
+\hline
+                       & 1 & 2 \\
+\hline
+\hline
+Número de distorsiones & 6 & 12 \\
+\hline
+distorsiones horizontales & +1, -1 & +2, +1, -1, -2 \\
+\hline
+distorsiones verticales & +1, -1 & +2, +1, -1, -2 \\
+\hline
+distorsiones angulares & +1$^{\circ}$, -1$^{\circ}$ & +2$^{\circ}$, +1$^{\circ}$, -1$^{\circ}$, -2$^{\circ}$ \\
+\hline
+Ciclos de entrenamiento & 30 & 30 \\
+\hline
+Porcentaje de reconocimiento (\%)& 93 & 91 \\
+\hline
+\end{tabular}
+\end{table*}
+
+Los resultados obtenidos con las distorsiones son similares a los obtenidos para el clasificador LIRA, sin embargo considerando el mejor porcentaje de reconocimiento del PCNC las distorsiones no contribuyeron a mejorar el comportamiento del PCNC y si se considera además el tiempo adicional requerido para crear las distorsiones y para el entrenamiento de éstas la conclusión es que su aplicación no es conveniente para la tarea que nos ocupa. La explicación a esto se da por el hecho que los clasificadores son entrenados para el reconocimiento de imágenes normalizadas y el agregar distorsiones sólo distrae la memoria del clasificador hacia casos que se apartan de tal normalización. A medida que los clasificadores reconozcan una pieza ligeramente desviada de su estado normalizado (Sec. \ref{ssec:ImN}) con respuesta similar a su estado normalizado entonces no podrá aplicarse tal clasificador para la correcta identificación del ángulo de orientación o posición cartesiana de tal imagen como se verá más adelante en la Sec. \ref{sec:Localizacion}.
+
+\subsection{Ciclos de entrenamiento}
+Se realizó la misma prueba que para LIRA con los ciclos de entrenamiento. Se crearon dos PCNCs con idénticos parámetros para cada una de las base de datos utilizadas. En este experimento se tuvo una respuesta más rápida para alcanzar el reconocimiento máximo respecto a LIRA. Por esta razón las pruebas se hicieron con pasos de 5 en lugar de 10 ciclos de entrenamiento. En la Tabla \ref{t:PCNCexpCiclosEnt} se muestran los resultados obtenidos. Para la base de datos A el reconocimiento máximo se alcanzó desde los 15 ciclos de entrenamiento, sin embargo se dio un resultado notable a solo 10 ciclos para la segunda prueba, pues se alcanzó un resultado de 93\% pero luego con ciclos adicionales cayó esta respuesta y no volvió a repetirse. Para la base de datos B la respuesta fue uniforme y se tuvo a los 15 ciclos para la prueba 3 y a los 25 ciclos para la prueba 4. Para la base de datos D sucedió algo similar pero con 25 y 30 ciclos para la primera y segunda de sus pruebas (pruebas 5 y 6 respectivamente). Se deduce que con 30 ciclos de entrenamiento se obtienen resultados correctos.
+
+%t
+\begin{table*}[!ht]
+\caption[Experimento con diversos ciclos de entrenamiento.]{Experimento con diversos ciclos de entrenamiento sobre seis clasificadores PCNC. Para cada base de datos los parámetros son los mismos. Las pruebas se realizaron en las bases de datos A, B y D.}
+\label{t:PCNCexpCiclosEnt}\centering
+\par
+\begin{tabular}{|r||c|c|c|c|c|c|}
+\hline
+                               & \multicolumn{6}{|c|}{No. de ciclos de entrenamiento} \\
+\hline
+Número de prueba:              &  5 & 10  & 15 & 20 & 25 & 30 \\
+\hline
+\hline
+BD-A 1:                        & 66 & 88  &\textbf{94}& 94 & 94  & 94 \\
+\hline
+BD-A 2:                        & 76 & 93  &\textbf{90}& 90 & 90  & 90  \\
+\hline
+\hline
+BD-B 3:                        & 69 & 90  &\textbf{96}& 96 & 96  & 96  \\
+\hline
+BD-B 4:                        & 67 & 89  & 94 &\textbf{97}& 97  & 97 \\
+\hline
+\hline
+BD-D 5:                        & 39 & 59  & 69 & 81 &\textbf{88}& 88 \\
+\hline
+BD-D 6:                        & 51 & 61  & 64 & 79 &  84 &\textbf{86}\\
+\hline
+\end{tabular}
+\end{table*}
+
+\subsection{Aleatoriedad de los conjuntos para entrenamiento y prueba}
+Una prueba muy importante es la de poder entrenar y probar el clasificador sobre conjuntos de entrenamiento y prueba variables. Por ello se realizó un experimento con estos conjuntos tomados aleatoriamente de toda la base de datos en la misma proporción que se hizo originalmente, esto es, 50\% para las base de datos A y B y 72\% para la base de datos D para los conjuntos respectivos de entrenamiento y el resto para los conjuntos de prueba respectivamente. Para cada base de datos distinta se utilizó un PCNC distinto, pero para cada una de las diez pruebas de cada base de datos se utilizó el mismo PCNC. Los resultados obtenidos mostrados en la Tabla \ref{t:PCNCexpEyPaleatorios} dan cuenta de la estabilidad del PCNC en cuanto a una misma estructura particular. Los porcentajes para cada base de datos variaron poco, lo que se ve en la desviación estándar obtenida para cada caso.
+
+%aleatoreidad
+\begin{table*}[!ht]
+\caption[Experimento con conjuntos aleatorios PCNC.]{Resultados de pruebas con el PCNC con conjuntos de entrenamiento y prueba seleccionados aleatoriamente para las bases de datos A, B y D. Para cada base de datos se utilizó un mismo clasificador.}
+\label{t:PCNCexpEyPaleatorios}\centering
+\par
+\begin{tabular}{|r||c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+Prueba No.: & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & $\bar{x}$&$\sigma$\\
+\hline
+\hline
+BD-A: & 94 & 92 & 93 & 93 & 90 & 90 & 91 & 93 & 91 & 94&92.1&1.45\\
+\hline
+BD-B: & 96 & 96 & 97 & 94 & 95 & 96 & 95 & 97 & 95 & 95&95.6&0.92\\
+\hline
+BD-D: & 90 & 90 & 89 & 91 & 95 & 88 & 87 & 92 & 89 & 90&90.1&2.12 \\
+\hline
+\hline
+\end{tabular}
+\end{table*}
+
+\subsection{Mejores clasificadores PCNC}
+En esta sección se describen a detalle los resultados obtenidos con los mejores PCNC obtenidos para las bases de datos utilizadas. Primero que nada se muestra en la Tabla \ref{t:PCNCexpMejores} un resumen de los parámetros utilizados para estos clasificadores así como la respuesta obtenida por ellos a detalle. Para todos ellos se utilizaron 30 ciclos de entrenamiento. En la Tabla se muestra además de los parámetros empleados en cada base de datos y el resultado porcentual exacto obtenido en el reconocimiento, un desglose del número de errores en cada caso por cada una de las clases utilizadas así como la contribución porcentual de cada clase en el error total de reconocimiento. Consúltense las Tablas \ref{t:caracteristicasBDs} y \ref{t:clasesEnBDs} para interpretar las clases para cada base de datos. Tómese en cuenta que los percentiles totales no suman 100\% debido a la aproximación a dos dígitos decimales.
+
+\begin{table*}[!ht]
+\caption[Resultado con los mejores clasificadores PCNC.]{Resumen de
+  resultados de los mejores clasificadores PCNC para las bases de
+  datos utilizadas. T, ciclos de entrenamiento. R, porcentaje de reconocimiento.}
+\label{t:PCNCexpMejores}\centering
+\par
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|p{1.2cm}||c|c|c|c|c|c|c|c||c|c||c|c|c|c|c|c|c|c|}
+\hline
+Base de datos: & \multicolumn{8}{|c|}{Parámetros} & T & R & \multicolumn{8}{|c|}{Errores por clase/(\%)} \\
+\hline
+                 & $w$ &$p$ &$n$&$S$   &$N$  &$K$ &$D_{c}$ &$q$ & & & 1 & 2 & 3 &  4 & 5 & 6 & 7 & 8 \\
+\hline
+\hline
+A                & 10 & 5   & 4 &1000&300000& 20 &5 & 5 & 30 & 96.87  &4/2.50 & 0 & 0 & 0 & 0 & 0 & 1/0.63 & 0 \\
+\hline
+B                & 10 & 4   & 3 &1500&300000 &20 &6 & 10& 30 & 97.80  &1/0.37 &1/0.37& 0 &3/1.10& 0 &1/0.37 & 0 & - \\ 
+\hline
+C                & 11 & 4   & 3 &2000&400000& 15 &4 & 0 & 30 & 91.43  &6/5.71 & 0 & 1/0.95 & 1/0.95&1/0.95& 0 & 0 & - \\
+\hline
+\end{tabular}
+}
+\end{table*}
+
+\subsubsection{Base de datos A}
+El PCNC logró obtener un porcentaje de error para la base de datos A mayor a 96\%. Solo 5 imágenes de un total de 160 no fueron reconocidas correctamente. Estas imágenes se repartieron en sólo dos clases (base de tubito y tornillo cabeza cónica) mientras que para las otras seis clases el reconocimiento fue del 100\% (cono, eje de rotor, no pieza central, terminal de cable, tornillo allen y tornillo cabeza redonda). En la Fig. \ref{fig:PCNCreconocidas-BD-A} se presentan dos ejemplos de cada clase de entre las imágenes reconocidas y en la Fig. \ref{fig:PCNCmalReconocidas-BD-A} se presentan todas las imágenes que no se reconocieron correctamente.
+
+%BD-A buenas
+\begin{figure}
+[!ht]
+\centering
+ %  \setcounter{subfiggroup}{1}
+\subfloat[]{\label{fig:PCNC-BD-Abiena}\includegraphics[width=0.14\textwidth]{figuras/BDIA/PCNC/bien_selec/base_de_tubito_0035.png}}
+\subfloat[]{\label{fig:PCNC-BD-Abienb}\includegraphics[width=0.14\textwidth]{figuras/BDIA/PCNC/bien_selec/base_de_tubito_0026.png}}
+\subfloat[]{\label{fig:PCNC-BD-Abienc}\includegraphics[width=0.14\textwidth]{figuras/BDIA/PCNC/bien_selec/eje_de_rotor_0022.png}}
+\subfloat[]{\label{fig:PCNC-BD-Abiend}\includegraphics[width=0.14\textwidth]{figuras/BDIA/PCNC/bien_selec/eje_de_rotor_0037.png}}
+\subfloat[]{\label{fig:PCNC-BD-Abiene}\includegraphics[width=0.14\textwidth]{figuras/BDIA/PCNC/bien_selec/cono_0021.png}}
+\subfloat[]{\label{fig:PCNC-BD-Abienf}\includegraphics[width=0.14\textwidth]{figuras/BDIA/PCNC/bien_selec/cono_0038.png}}
+\subfloat[]{\label{fig:PCNC-BD-Abieng}\includegraphics[width=0.14\textwidth]{figuras/BDIA/PCNC/bien_selec/no_pieza_central_0037.png}}
+\\
+\subfloat[]{\label{fig:PCNC-BD-Abienh}\includegraphics[width=0.14\textwidth]{figuras/BDIA/PCNC/bien_selec/no_pieza_central_0023.png}}
+\subfloat[]{\label{fig:PCNC-BD-Abieni}\includegraphics[width=0.14\textwidth]{figuras/BDIA/PCNC/bien_selec/terminal_de_cable_0033.png}}
+\subfloat[]{\label{fig:PCNC-BD-Abienj}\includegraphics[width=0.14\textwidth]{figuras/BDIA/PCNC/bien_selec/terminal_de_cable_0034.png}}
+\subfloat[]{\label{fig:PCNC-BD-Abienk}\includegraphics[width=0.14\textwidth]{figuras/BDIA/PCNC/bien_selec/tornillo_allen_0022.png}}
+\subfloat[]{\label{fig:PCNC-BD-Abienl}\includegraphics[width=0.14\textwidth]{figuras/BDIA/PCNC/bien_selec/tornillo_allen_0036.png}}
+\subfloat[]{\label{fig:PCNC-BD-Abienm}\includegraphics[width=0.14\textwidth]{figuras/BDIA/PCNC/bien_selec/tornillo_cabeza_conica_0027.png}}
+\subfloat[]{\label{fig:PCNC-BD-Abienn}\includegraphics[width=0.14\textwidth]{figuras/BDIA/PCNC/bien_selec/tornillo_cabeza_conica_0035.png}}
+\\
+\subfloat[]{\label{fig:PCNC-BD-Abieno}\includegraphics[width=0.14\textwidth]{figuras/BDIA/PCNC/bien_selec/tornillo_cabeza_redonda_0030.png}}
+\subfloat[]{\label{fig:PCNC-BD-Abienp}\includegraphics[width=0.14\textwidth]{figuras/BDIA/PCNC/bien_selec/tornillo_cabeza_redonda_0032.png}}
+\caption[Imágenes reconocidas en la BD-A por el PCNC.]{Ejemplos de imágenes correctamente reconocidas con el mejor PCNC para la base de datos A. Se muestran dos ejemplos por cada clase.}%
+\label{fig:PCNCreconocidas-BD-A}%
+\end{figure}
+
+...
+
+\subsubsection{Base de datos B}
+En la base de datos B existió el mejor resultado obtenido en el presente trabajo. Este resultado fue de 97.80\% de reconocimiento correcto. Dos ejemplos de cada una de las clases tomadas del grupo de 267 imágenes bien reconocidas se muestran en la Fig. \ref{fig:PCNCreconocidas-BD-B}. Las imágenes mal reconocidas se distribuyeron en cuatro de las siete clases de la base de datos B de la siguiente forma: un tornillo plano, tres tornillos allen grandes, una no pieza central y una arandela. Las clases tornillo allen chico, tornillo gota y tuerca se reconocieron sin errores. En la Fig. \ref{fig:PCNCmalReconocidas-BD-B} se muestran las seis imágenes mal reconocidas.
+
+...
+
+
+\subsection{Prueba con conjunto de entrenamiento ampliado}\label{ssec:PCNCentrenarAmpliado}
+La misma prueba que se aplicó para LIRA con un conjunto de entrenamiento ampliado de la base de datos D, se aplicó para el PCNC. Esta ampliación consiste en añadir las imágenes extras descritas en la Sección \ref{ssec:LIRAentrenarAmpliado}. El resultado de entrenar al PCNC con 537 imágenes agregadas al conjunto de entrenamiento resultó en un porcentaje de reconocimiento sobre el conjunto de prueba de 93\%. Los errores fueron cinco, distribuidos en una no pieza central, dos tornillos allen grandes, un tornillo gota y un tornillo plano.
+
+\section{Comparación de clasificadores}
+El propósito de esta sección es comparar los resultados obtenidos de ambos clasificadores en las distintas pruebas realizadas con el objetivo de facilitar la elección de uno u otro atendiendo a la aplicación que se requiera.
+
+\subsection{Tiempos}
+El porcentaje de reconocimiento máximo que sobre una base de
+datos de imágenes logre un clasificador es el parámetro principal para
+medir su eficiencia. Sin embargo el consumo de recursos que se tenga
+es un factor muy importante también y en especial el tiempo. Es por
+ello que se muestran y comparan los tiempos empleados por ambos
+clasificadores utilizados para una misma base de datos y en un mismo
+equipo de cómputo. Con esto se tiene una clara y objetiva comparación
+entre los clasificadores, considerando además el resultado obtenido en
+cuanto al porcentaje de reconocimiento. Estos datos son
+presentados en la Tabla \ref{t:tiempos}.
+
+\begin{table*}[!ht]
+\caption[Tiempos empleados por los clasificadores.]{Tiempos empleados por los clasificadores LIRA y PCNC sobre la base de datos A.}
+\label{t:tiempos}
+\centering
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|l|c||c|c|c|c|c|c|}
+\hline
+        &                        & \multicolumn{6}{|c|}{Tiempos por tarea}           \\
+\hline
+        &                        & Creación &\multicolumn{2}{|c|}{Entrenamiento (160 imágenes)} & Prueba & Guardar & Reconocer \\
+\hline
+Clasificador &Reconocimiento (\%) & o carga  & codificación  & entrenamiento & (160 imágenes) & en disco & una imagen\\
+\hline
+\hline
+LIRA         &   93\%             &  3.08s   & 70s         & 154s          & 110s    &  0.65s  & 0.687s\\
+\hline
+PCNC         &   97\%             &  1.25s   & 198s          & 148s          & 222s  &  0.67s & 1.387s \\   
+\hline
+\end{tabular}
+}
+\end{table*}
+
+Todos estos tiempos dependen de los parámetros de los clasificadores, como se explicó el parámetro $N$ para el clasificador LIRA y los parámetros $S$ y $N$ para el PCNC son los que más impactan en los tiempos de ejecución de las diversas tareas de estos clasificadores. Los resultados presentados en la tabla son para el mejor clasificador para cada uno de ellos para la base de datos A. Tenemos que los tiempos de creación, carga y salvado de estos clasificadores es pequeño y considerando que en un trabajo continuo de reconocimiento sólo serán cargados una vez entonces este tiempo es mínimo y no impacta el desempeño de ninguno de los clasificadores. Lo mismo aplica para el tiempo de guardado. Para el caso del entrenamiento dividido en el tiempo de codificación y de entrenamiento de los códigos, se tiene que para el PCNC el tiempo de codificación es casi de tres veces el respectivo para LIRA, mientras que los tiempos de entrenamiento de códigos es muy similar. Si se considera que el entrenamiento de una determinada base de datos a utilizar se hace una sola vez, entonces, al menos para este caso, la ventaja de cuatro puntos porcentuales más de reconocimiento que tiene el PCNC pagará el costo en el tiempo del entrenamiento. Respecto al tiempo de prueba, el PCNC requiere un tiempo doble que LIRA. El mismo argumento que para el tiempo de entrenamiento puede esgrimirse para los tiempos de prueba. Sin embargo, los tiempos de reconocimiento de una imagen particular tienen la misma proporción entre los clasificadores. Es este tiempo el factor clave que dependiendo de la aplicación y uso particular que se requiera debe ser tomado en cuenta junto con el porcentaje de reconocimiento de cada clasificador para escoger uno de ellos. En general si la tarea no es crítica en tiempo debiera emplearse el PCNC debido a su poder superior de reconocimiento, mientras que si la tarea particular exige tiempo críticos y a su vez puede tolerar más errores entonces el clasificador LIRA debe ser utilizado.
+
+\subsection{Estabilidad en la creación de estructuras}
+En los experimentos de unicidad de LIRA y del PCNC se crearon y probaron diez clasificadores para cada uno con idénticos parámetros, ciclos de entrenamiento y conjuntos de entrenamiento y prueba. De estos experimentos la variable resultante de importancia es la desviación estándar. Téngase en cuenta que la desviación estándar es una medida de la variación de los resultados respecto a su promedio, por lo que a menor valor mejor confiabilidad se tiene en los resultados para un conjunto de parámetros dada a la hora de construir un clasificador con ellos. Los resultados presentados en las Tablas \ref{t:LIRAexpUnicidad} y \ref{t:PCNCexpUnicidad} se resumen y comparan en la Tabla \ref{t:comparaUnicidad}. Se tiene que LIRA fue superior en estabilidad para las bases de datos B y D, mientras que para la base de datos A tuvo una estabilidad menor que el PCNC. En base a estos resultados no puede declararse ningún ganador entre los dos tipos de clasificadores probados en cuanto a esta característica.
+
+\begin{table*}[!ht]
+\caption[Comparación de unicidad entre los clasificadores.]{Comparación en la desviación estándar obtenida entre los clasificadores LIRA y PCNC sobre las tres bases de datos utilizadas.}
+\label{t:comparaUnicidad}
+\centering
+\begin{tabular}{|c||c|c|}
+\hline
+              & \multicolumn{2}{|c|}{Clasificador}\\
+\hline
+Base de datos:& LIRA   &  PCNC \\
+\hline
+\hline
+A             & 3.14\%&2.24\%\\
+\hline
+B             & 1.02\%&1.58\%\\
+\hline
+D             & 1.48\%&3.75\%\\
+\hline
+\end{tabular}
+\end{table*}
+
+\subsection{Parámetros}
+Para ambos clasificadores se hicieron una serie de experimentos variando un sólo parámetro a la vez para estudiar la forma en que varían los resultados obtenidos y para encontrar el mejor clasificador para cada base de datos. Sin embargo para cada una de estas pruebas es necesario construir un nuevo clasificador por lo que siempre se tiene añadido al resultado obtenido la incertidumbre dada por la unicidad. Dado el argumento anterior y el estudio de las estructuras LIRA y PCNC se concluye que la búsqueda de parámetros para ambos clasificadores utilizados requiere de múltiples pruebas con cada base de datos a utilizar.
+
+\subsection{Ciclos de entrenamiento}
+De los experimentos hechos con los clasificadores para encontrar el mejor número de ciclos de entrenamiento se tiene que el clasificador LIRA requirió entre 30 y 70 ciclos de entrenamiento para alcanzar un valor estable mientras que el PCNC sólo requirió entre 15 y 30 ciclos. Esta diferencia no influye significativamente en el rendimiento total de los clasificadores pues ambos utilizan codificación del conjunto de entrenamiento para evitar codificar cada nuevo ciclo de entrenamiento. Siendo el tiempo de entrenar cada ciclo adicional para ambos clasificadores muy similar como puede verse en la tabla \ref{t:tiempos}
+
+\subsection{Confiabilidad}
+Una vez construido un clasificador debe conocerse que tan confiable y estable es éste para reconocer objetos. Para analizar esta propiedad sobre las bases de datos y conocer en qué medida varia una construcción única de un determinado clasificador se realizaron los experimentos con conjuntos aleatorios de entrenamiento y prueba. El resumen y la comparación de estos experimentos se tiene en la Tabla \ref{t:comparaConfiabilidad}
+
+Se tiene que el PCNC fue en todos los casos más confiable que el clasificador LIRA. Para las base de datos A y B superó por más del doble a LIRA. Este resultado es de lo más importante por que da cuenta de la capacidad de los clasificadores de ser entrenados y probados con imágenes aleatoriamente seleccionadas.
+
+\begin{table*}[!ht]
+\caption[Confiabilidad de los clasificadores.]{Resumen de los experimentos de confiabilidad para los clasificadores LIRA y PCNC sobre las tres bases de datos utilizadas. Los resultados se expresan como la desviación estándar obtenida sobre las diez pruebas realizadas para cada base de datos y cada clasificador.}
+\label{t:comparaConfiabilidad}
+\centering
+\begin{tabular}{|c||c|c|}
+\hline
+              & \multicolumn{2}{|c|}{Clasificador}\\
+\hline
+Base de datos:& LIRA   &  PCNC \\
+\hline
+\hline
+A             & 3.40\%&1.45\%\\
+\hline
+B             & 2.15\%&0.92\%\\
+\hline
+D             & 3.37\%&2.12\%\\
+\hline
+\end{tabular}
+\end{table*}
+
+\subsection{Resultados}
+Luego de diversos experimentos se encontraron los mejores parámetros para cada clasificador y para cada base de datos. El desempeño del PCNC fue superior al clasificador LIRA para todas las base de datos utilizadas. Sólo en la base de datos D este resultado fue casi igual. Un resumen de estos resultados se presenta en la Tabla \ref{t:comparaMejores}.
+
+\begin{table*}[!ht]
+\caption[Resultados de los clasificadores sobre las bases de datos.]{Resultados obtenidos por los clasificadores LIRA y PCNC sobre las bases de datos A, B y D. Los resultados expresan el porcentaje de reconocimiento sobre la base de datos respectiva.}
+\label{t:comparaMejores}
+\centering
+\begin{tabular}{|c||c|c|}
+\hline
+              & \multicolumn{2}{|c|}{Clasificador}\\
+\hline
+Base de datos:& LIRA   &  PCNC \\
+\hline
+\hline
+A             & 93.75\%&96.87\%\\
+\hline
+B             & 94.14\%&97.80\%\\
+\hline
+D             & 90.47\%&91.43\%\\
+\hline
+\end{tabular}
+\end{table*}
+
+Del análisis y comparación de los resultados obtenidos por los mejores clasificadores para las bases de datos tenemos que para la base de datos A ambos clasificadores reconocieron el 100\% de las clases 2 a 6 (Tabla \ref{t:LIRAexpMejores}), es decir, las clases cono, eje de rotor, no pieza central, terminal de cable y tornillo allen. Para la base de datos D las clases 3 y 7 (tornillo allen chico y tuerca) fueron también reconocidas sin errores por ambos clasificadores. En cuanto a las base de datos B y D que están construidas con el mismo tipo de piezas y el mismo número de clases pero de complejidad distinta, el clasificador LIRA no tuvo errores para la clase 4 (tornillo allen grande) mientras que el PCNC no tuvo errores para ninguna de estas dos bases de datos para la clase 3 (tornillo allen chico).
+
+
+Comparando los errores obtenidos por cada clasificador para cada una de las base de datos utilizadas tenemos que las cinco imágenes mal reconocidas con el PCNC para la base de datos A se encuentran dentro de las diez mal reconocidas por LIRA para esta misma base de datos. Es decir, estas cinco imágenes no pudieron ser reconocidas por ninguno de los clasificadores (Fig. \ref{fig:PCNCmalReconocidas-BD-A}).
+
+Para la base de datos B la comparación da resultados distintos ya que sólo una imagen no pudo ser reconocida por ambos clasificadores Fig. \ref{fig:LIRAmalReconocidas-BD-B} \ref{fig:PCNC-BD-Bmalb}. 
+
+Por último, para la base de datos D cuatro imágenes no pudieron ser reconocidas por ninguno de las clasificadores. Estas imágenes son las mostradas en las Figs.:\ref{fig:LIRAmalReconocidas-BD-D} \ref{fig:LIRA-BD-Dmalc}, \ref{fig:LIRA-BD-Dmalh}, \ref{fig:LIRA-BD-Dmali}, \ref{fig:LIRA-BD-Dmalj} que corresponden a las Figs: \ref{fig:PCNCmalReconocidas-BD-D} \ref{fig:PCNC-BD-Dmalb}, \ref{fig:PCNC-BD-Dmala}, \ref{fig:PCNC-BD-Dmalf} y \ref{fig:PCNC-BD-Dmale} respectivamente.
+
+
+Por otra parte ambos clasificadores no tuvieron problema en reconocer las piezas que ubicándose cerca del extremo de la escena\footnote{Se entiende por escena la imagen original de la cuál se recortaron las imágenes para formar las bases de datos o sobre la cuál se pretende localizar una pieza determinada.} poseen una parte blanca que rellena la falta de imagen original. Ejemplos de estas imágenes bien reconocidas se tienen en la Fig. \ref{fig:LIRAreconocidas-BD-A} \ref{fig:PCNC-BD-Abienb}, Fig. \ref{fig:LIRAreconocidas-BD-B} \ref{fig:PCNC-BD-Bbienn}, Fig. \ref{fig:PCNCreconocidas-BD-A} \ref{fig:PCNC-BD-Abienn} y Fig. \ref{fig:PCNCreconocidas-BD-B} \ref{fig:PCNC-BD-Bbieni}.
+
+Otra cualidad muy importante de ambos clasificadores ha sido poder reconocer piezas parcialmente obstruidas como puede verse en las Figs. \ref{fig:LIRAreconocidas-BD-D} \ref{fig:PCNC-BD-Dbiena}, \ref{fig:PCNC-BD-Dbienb} y Fig: \ref{fig:PCNCreconocidas-BD-D} \ref{fig:PCNC-BD-Dbienb}.
+
+\section{Búsqueda y reconocimiento de posición}\label{sec:Localizacion}
+Uno de los objetivos del presente trabajo es la creación de un sistema automático de localización de piezas o SVT (Sec. \ref{sec:SVT}). En este punto del trabajo ya se han expuesto dos métodos de identificación de piezas constituidos por los clasificadores LIRA y PCNC. Cualquiera de estos clasificadores ha demostrado, en los experimentos expuestos en las secciones anteriores, resultados suficientemente buenos por lo que cualquiera de ellos puede ser usado como base en el método de localización de piezas. Una vez que el clasificador seleccionado es entrenado con una base de datos particular que contiene imágenes de las piezas con la que se desea trabajar, puede aplicarse el método de localización de piezas sobre una imagen o escena particular. Dicho método se ha expuesto en la Sección \ref{sec:localizacion}.
+
+Como ejemplo se tomó el mejor clasificador LIRA para la base de datos A entrenado con las siete clases de esta base de datos y se realizaron distintas búsquedas para localizar una determinada pieza en alguna imagen dada.
+
+En la Fig. \ref{fig:goodfoundworkpieces} mostramos dos ejemplos de imágenes reconocidas. Una de las imágenes contiene dos conos reconocidos (conos 1, 2 en la Fig. \ref{fig:goodfoundworkpieces}(a). En la Fig. \ref{fig:goodfoundworkpieces} (b) la imagen contiene tres terminales de cable reconocidas (1, 2, 3).
+
+\begin{figure}
+[!h]
+\begin{center}
+\includegraphics[
+natheight=1.030900in,
+natwidth=4.614600in,
+height=3.6832in,
+width=1.8in
+]%
+{figuras/goodFoundWorkPieces.jpg}%
+\caption{Localización y reconocimiento de piezas.}%
+\label{fig:goodfoundworkpieces}%
+\end{center}
+\end{figure}
+
+El pequeño cuadro blanco en la figura representa el lugar donde la pieza
+solicitada ha sido reconocida y el cuadro grande representa la ventana correspondiente de
+búsqueda asociada a esta posición.
+
+Al pie de las imágenes puede leerse las coordenadas de la posición y la
+orientación encontradas por el sistema para cada una de las piezas
+reconocidas. 
+
+El clasificador neuronal es un método flexible, esto significa que el
+sistema reconoce una pieza fuera de su centro, pero suficientemente cerca
+del cuerpo de la pieza.
+
+Algunas veces el sistema puede reconocer una misma pieza varias veces. En la
+Fig. \ref{fig:redundantfoundworkpieces}(a) se muestra un reconocimiento múltiple de una pieza (casos 1 y 3). 
+
+%\twocolumn
+
+\begin{figure}
+[!h]
+\begin{center}
+\includegraphics[
+natheight=1.030900in,
+natwidth=4.614600in,
+height=3.6832in,
+width=1.8in
+]%
+{figuras/redundantFoundWorkPieces.jpg}%
+\caption{Localización y reconocimiento de piezas con redundancia.}%
+\label{fig:redundantfoundworkpieces}%
+\end{center}
+\end{figure}
+
+Esto sucede por que el sistema puede encontrar una pieza lejos de su centro, por ejemplo las marcas 2 y 3 en la Fig \ref{fig:redundantfoundworkpieces}(a) y
+1, 7 en la Figura \ref{fig:redundantfoundworkpieces}(b). 
+
+En otros casos, esto pasa porque los parámetros de búsqueda ($\Delta x$, $\Delta y$, $\Delta \theta $) tienen valores muy grandes, por ejemplo la marca 1 en la Fig \ref{fig:redundantfoundworkpieces}(a) y las marcas 2, 4, 8 y 9 en la Figura \ref{fig:redundantfoundworkpieces}(b).
+
+La marca 4 de la Fig. \ref{fig:redundantfoundworkpieces}(a) y la marca 6 de la Fig. \ref{fig:redundantfoundworkpieces}(b) tienen suficiente precisión para el trabajo de manipulación.
+
+Dos ejemplos de imágenes con piezas que se tocan una a otra se presentan en la Fig. \ref{touchFoundWorkPieces}. En la Fig. \ref{touchFoundWorkPieces}(a) el sistema encontró tres piezas (obsérvese que el punto de localización está lejos del centro de estas piezas). En la Fig. \ref{touchFoundWorkPieces}(b) el sistema presenta redundancia. En este caso el sistema puede filtrar los resultados considerando la mejor respuesta obtenida en la salida del clasificador LIRA, lo cual significa que la pieza con las marcas 2 y 3 se considerará reconocida en la marca número 2 que está mucho mejor posicionada con respecto al centro de la pieza.
+
+\begin{figure}
+[!ht]
+\begin{center}
+\includegraphics[width=2.3298in]
+{figuras/touchFoundWorkPieces.jpg}
+\caption{Localización y reconocimiento de piezas que se tocan.}
+\label{touchFoundWorkPieces}%
+\end{center}
+\end{figure}
+
+Los resultados obtenidos son buenos para permitir la manipulación, sin embargo el método de búsqueda debe ser mejorado para incrementar la precisión de la localización y del ángulo de la pieza a ser reconocida.
+
+De los resultados presentados se tiene que en el sistema desarrollado existen dos problemas específicos de reconocimiento que son: 
+
+\begin{enumerate}
+\item La redundancia en el reconocimiento y 
+\item La precisión del localizador de piezas.
+\end{enumerate}
+
+Respecto a la redundancia en el reconocimiento se tiene que esto sucede debido a que los clasificadores utilizados tienen suficiente flexibilidad como para reconocer una pieza aún lejos de su centro. Esto en primera instancia al momento de la localización representa una ventaja, sin embargo cuando se quiere obtener la localización exacta de la pieza entonces la misma característica representa un problema. Una forma de resolver este problema es comparando las respuestas neuronales de los clasificadores de la salida ganadora y seleccionando la que mayor valor tenga, la cuál será a su vez el punto más cercano al centro de la pieza. Sin embargo esta situación resta eficiencia al método de localización por lo que más estudios deben hacerse al respecto para reducir este problema.
+
+Con respecto a la precisión del localizador, ésta depende tanto de la estructura particular del clasificador que se utilice, como de su entrenamiento así como de los parámetros propios del localizador. Si los parámetros que definen el avance de la ventana de búsqueda se reducen la precisión de búsqueda aumentará sin embargo mayor tiempo de cómputo será necesario; por el contrario, si estos parámetros se aumentan la precisión baja y el tiempo aumenta. Dado lo anterior es importante encontrar los valores óptimos para los parámetros del localizador. Además de lo anterior pueden introducirse mejoras al método de localización como la realización de una búsqueda fina una vez que se ha localizada una región donde exista una pieza de interés.
+
+Considerando los resultados de los experimentos presentados con el localizador así como los dos problemas que en ocasiones se presentan tenemos que el sistema es un excelente paso inicial para la localización e identificación de piezas; sin embargo más investigación y desarrollo debe de hacerse en esta área particular para mejorar las prestaciones del sistema de localización.
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "tesis"
+%%% End: 
+

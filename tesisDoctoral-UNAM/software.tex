@@ -1,0 +1,599 @@
+\chapter{Software}
+Con el objetivo de contar con una herramienta para la investigación y
+los experimentos sobre los clasificadores neuronales LIRA y PCNC, así como para el localizador y la creación de las bases de datos, se crearon varios paquetes de software. El software se desarrolló mediante un lenguaje de Programación Orientado a Objetos (POO). Los lenguajes orientados a
+objetos permiten contar con módulos de software reutilizables,
+flexibles y de fácil mantenimiento. Esto
+hace posible que la investigación y desarrollo sean más eficientes en lo que a software se refieren
+y pone a disposición inmediata aquellos módulos de software que han
+sido probados con buenos resultados ya sea para un sistema completo,
+un sistema alternativo o para realizar otro tipo de experimentos.
+
+El software desarrollado en primera instancia se compone de cuatro módulos: Optik, RNA,
+Localizador e Interfaz. El módulo Optik se encarga de la creación de
+bases de datos de imágenes, el módulo RNA es la implementación del
+clasificador neuronal LIRA, el módulo Localizador busca una pieza
+determinada en una imagen y la Interfaz es el módulo encargado de la
+intercomunicación entre los demás módulos así como con el usuario. En
+la Fig. \ref{OptikRNADiagramaABloques} se muestra un diagrama a bloques de estos módulos así como
+las interconexiones entre éstos y los archivos que se manejan, también
+se listan las funciones disponibles para el usuario. Se describen a
+continuación con más detalle cada uno de los módulos en los se hará
+referencia continua a la figura mencionada.
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[
+%natheight=1.760800in,
+%natwidth=2.603900in,
+%height=1.2756in,
+width=\textwidth
+]{figuras/OptikRNADiagramaABloquesV2_1.png}
+\caption[Diagrama a bloques del software OptikRNA.]{Diagrama a bloques del software OptikRNA. Se muestran los cuatro módulos que lo componen, los archivos utilizados y sus
+   principales funciones así como las intercomunicaciones entre todos
+   estos elementos.}\label{OptikRNADiagramaABloques}
+\end{center}
+\end{figure}
+
+El software desarrollado posee muchas ventajas de la programación orientada a objetos (POO). Se utilizó el lenguaje de programación C++. En un inicio se usó el Ambiente integral de desarrollo Borland$^{MR}$ y con ello algunos objetos predefinidos por Borland$^{MR}$ fueron utilizados para la manipulación de imágenes y la creación de las interfaces gráficas.
+
+Más tarde se decidió trasladar el código existente a C++ estándar por lo que se abandonó el uso de dicho ambiente de desarrollo. El uso del C++ estándar posibilita que el código pueda ser trasladado fácilmente a cualquier plataforma y a sistemas embebidos, lo anterior es especialmente importante para nuestro proyecto. Además, los costos de desarrollo se reducen al no depender de software comercial haciendo que el sistema sea más económico, característica que es una de las pautas más importantes en todo el trabajo desarrollado. Bajo esta nueva pauta de trabajo se desarrolló también el software PCNC.
+
+La aplicación Optik está siendo desarrollado para GNU/Linux [REF] y las demás aplicaciones para el clasificador LIRA y el PCNC se desarrollaron en C++ estándar en este mismo sistema operativo. También el localizador de piezas. Si bien no se les desarrolló interfaz gráfica, esto se hizo premeditadamente debido a las siguientes razones: 
+
+\begin{enumerate} 
+\item Las buenas prácticas de programación moderna enseñan que la interfaz gráfica debe separarse totalmente de la implementación del software particular. 
+\item El poder que ofrece el hecho de poder correr el software desde la línea de comandos cuyo ejemplo más práctico se da en los archivos de procesamiento por lotes que posibilitaron la ejecución de decenas de experimentos en una sola orden y 
+\item La visión de que en algún momento del desarrollo futuro el sistema pueda ser embebido a un microcontrolador o algún otro hardware especializado.
+\end{enumerate} 
+
+\section{Módulo Optik}\label{sec:optik}
+Optik es un software que genera bases de datos de imágenes de objetos
+destinadas para entrenamiento y pruebas del clasificador neuronal
+LIRA. Se parte de imágenes generales de múltiples objetos ordenados
+aleatoriamente, con ayuda de marcas colocadas por el usuario, genera
+una base de datos de imágenes normalizadas mediante un proceso de
+extracción. imágenes normalizadas se refiere a que éstas tienen
+iguales características: contienen una pieza centrada y con
+orientación fija de 0° respecto a su eje mayor, son de dimensión
+constante y tienen una ventana circular que facilita la rotación
+(Fig. \ref{optikpantallaconmuestrasetiquetasymarcas}). Las imágenes extraídas son nombradas de acuerdo al tipo de
+pieza correspondiente y a un número consecutivo. También el sistema
+crea un archivo MRK que contiene los datos de todas las marcas
+realizadas.
+
+\begin{figure}[h]
+\begin{center} \includegraphics[width=10cm]
+{figuras/optikPantallaConMuestrasEtiquetasYMarcas.jpg}\end{center}
+\caption[Interfaz gráfica de usuario (IGU) de Optik.]{IGU Optik, la cual permite marcar y extraer las muestras de imágenes a partir de las imágenes escena.}
+\label{optikpantallaconmuestrasetiquetasymarcas}
+\end{figure}
+
+Antes de el proceso de colocación de muestras, deben definirse los
+nombres y otras propiedades de los distintos tipos de piezas con que
+se va a trabajar (i. e. dimensiones, peso y material), éstos datos son
+de utilidad al sistema para calcular automáticamente el centro de la
+pieza además de futuras operaciones. Esta información se almacena en
+el sistema en un archivo PZA y puede ser cargada cuando se
+requiera. Optik además realiza algunas tareas de preprocesamiento de
+imágenes, como extracción de contornos y conversión de imágenes de
+color a escala de grises.
+
+Debido al hecho de que las marcas en las escenas son puestas por el usuario mediante el ratón, las imágenes muestras para las bases de datos no están centradas ni orientadas exactamente. Este no es un problema ya que los clasificadores utilizados son capaces de llevar a cabo la tarea de reconocimiento con muestras imperfectamente centradas o giradas, sobre todo en conjuntos grandes de entrenamiento.
+
+Este software en primera instancia se elaboró con Borland$^{MR}$ C++, luego se decidió en colaboración con otros colegas pasarlo a sistema operativo GNU/Linux \cite{Josue2006}.
+
+\section{Módulo RNA}
+El módulo RNA implementa al clasificador neuronal LIRA, es decir, es
+la realización de la red neuronal completa, neurona a neurona, sus
+interconexiones y toda su funcionalidad. Este es el módulo más
+elaborado, su eficiencia es crítica, por lo que fue necesario cuidar
+dos aspectos fundamentales, memoria y velocidad. Un clasificador
+neuronal puede necesitar cientos de miles de neuronas y una magnitud
+mayor de interconexiones además de ser indispensable tiempos de
+ejecución total aceptables, tanto en las fases de entrenamiento como
+en las de prueba, siendo crítico en una aplicación real de
+reconocimiento (módulo Localizador). Para cuidar la velocidad se
+decidió programar este módulo y por extensión todo OptikRNA con
+lenguaje C++, es decir, se utilizó la velocidad y el poder de C
+combinado con las ventajas de la POO. Se utilizaron punteros, estos
+permiten operar a bajo nivel mejorando la velocidad y realizar las
+interconexiones entre las distintas clases utilizadas más
+eficientemente. Para cuidar la eficiencia evitando operaciones de
+punto flotante se utilizaron únicamente números enteros. Este módulo
+se constituye de diversas clases, las principales, junto con su
+relación de herencia se muestran en la Fig. \ref{RNAclasesYHerencia}.
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[
+%natheight=1.760800in,
+%natwidth=2.603900in,
+%height=1.2756in,
+width=4in]
+{figuras/RNAclasesYHerencia.png}
+\caption[Clases principales del módulo RNA y su relación de herencia.]{Clases principales del módulo RNA y su relación de herencia. a) Clases a nivel neurona. b) Clases a nivel capa.}\label{RNAclasesYHerencia}
+\end{center}
+\end{figure}
+
+Existe una súper clase llamada RNA la cual construye con las clases
+descritas antes y otras menores no mencionadas el clasificador
+neuronal LIRA. Esta clase ofrece las mismas funciones que tiene el
+clasificador Lira descritas en la Sección 2 además de otras necesarias
+para su implementación y funcionamiento, entre las principales están:
+creación, codificación, entrenamiento, reconocimiento y borrado de
+memoria (pesos a cero). La clase RNA controla completamente a todo el
+módulo y es con la cuál se comunica realmente el módulo Interfaz. 
+
+\section{Módulo Localizador}
+El módulo Localizador se encarga de buscar una pieza requerida en una
+imagen fuente y definir la posición de ésta. La pieza que será capaz
+de localizar este módulo debe estar en el conjunto de piezas con que
+el clasificador se haya entrenado previamente. La imagen fuente no
+tiene por que ser una imagen ocupada para la extracción de imágenes
+normalizadas, puede ser cualquier imagen siempre que contenga el
+objeto a buscar en la misma escala en que existe en las imágenes
+ocupadas.
+
+Sobre una imagen dada, este módulo aplica un algoritmo de búsqueda que
+consiste en ir tomando subimágenes empezando por el centro y
+desplazándose en forma espiral (Fig. 5b). Para cada posición se pide
+al módulo RNA identificar la pieza requerida y si no se encuentra se
+rota un cierto ángulo y se repite el proceso hasta encontrar la pieza
+o cuando una rotación es completada, si no se encuentra, se continua
+el desplazamiento espiral hasta encontrar la pieza buscada o alcanzar
+los límites de la imagen. Los desplazamientos lineales y angulares
+pueden ser definidos por el usuario.
+
+El módulo Localizador constituye una aplicación práctica concreta en
+microensamble y puede funcionar independientemente de los módulos
+Optik e Interfaz con el fin de ser acoplado a sistemas automáticos de
+manipulación de piezas. En la Fig. 5c se muestra un resultado de la
+búsqueda de una pieza ("tornillo de cabeza redonda") sobre una imagen
+que contiene diversas piezas. El sistema despliega las coordenadas de
+la pieza así como la orientación. Cuando la pieza se localiza lejos de
+su centro, la orientación es errónea, por esta razón este módulo debe ser mejorado.
+
+\section{Interfaz}
+El módulo Interfaz es el único módulo que se comunica con el usuario,
+además intercomunica los demás módulos para administrarlos. Este
+módulo en si es una Interfaz Gráfica de Usuario (IGU), cuenta con
+todas las funciones disponibles de OptikRNA y con áreas para desplegar
+imágenes y resultados. En la Fig. \ref{redneuartpantallapruebaeinfo}
+se muestra ésta interfaz. El área llamada "parámetros del clasificador" es a donde el
+usuario ingresa los parámetros para la creación de un clasificador
+neuronal LIRA en particular. Abajo está el panel de funciones básicas
+de la RNA, desde aquí se envían los comandos para el módulo RNA, como
+crear, guardar, cargar y reconocer. En el área de mensajes se
+despliega información general del clasificador cargado. En el panel de
+funciones avanzadas existen funciones para el módulo RNA como
+entrenar, probar, asignar bases de datos y entrenar-probar
+automáticamente. En el área de resultados se muestran los resultados
+de las pruebas o el reconocimiento de piezas. Por último, desde el
+panel del módulo Localizador accesamos a las funciones y parámetros de
+este módulo. En la figura referida se muestra un clasificador cargado
+junto con su información general y los resultados de una prueba
+aplicada. En el área vacía es donde se despliega la imagen utilizada
+por el Localizador. Las funciones del módulo Optik están en otra IGU que no se muestra.
+
+\begin{figure}[h]
+\begin{center} \includegraphics[width=15cm]{figuras/redneuartPantallaPruebaEInfoV2.jpg}\end{center}
+\caption{Interfaz gráfica de usuario del software RNA.}
+\label{redneuartpantallapruebaeinfo}
+\end{figure}
+
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[natheight=1.760800in,natwidth=2.603900in,height=1.2756in,width=1.8784in]{figuras/blockDiagramRedneuartOptikV2.jpg}
+\caption{Diagrama a bloques del software OptikRNA.}\label{blockdiagramredneuartoptik}
+\end{center}
+\end{figure}
+
+El usuario trabaja con el módulo de software de redes neuronales que implementa el clasificador LIRA, esto lo hace a través de la IGU Rna (Fig. \ref{redneuartpantallapruebaeinfo}). Con la ayuda de esta interfaz el usuario puede crear el clasificador neuronal LIRA, entrenar, probar y usar el clasificador así como utilizar el localizador de piezas. La IGU Rna con un clasificador entrenado ya cargado es mostrada en la Fig. \ref{redneuartpantallapruebaeinfo}. En el cuadro de texto de la izquierda se muestra información sobre el clasificador. Los resultados se dan en el cuadro de texto de la derecha: el porcentaje de reconocimiento obtenido y los nombres de los archivos de las muestras que el sistema no pudo reconocer.
+
+En el centro de la Fig. \ref{redneuartpantallabusquedaehistograma} se muestra una escena en la cuál se ha llevado a cabo el procesamiento con el localizador de piezas. Un clasificador previamente entrenado y probado ha sido ya cargado. En esta misma imagen se muestra también en el cuadro de texto de la derecha, una marca sobre la pieza localizada así como las coordenadas y orientación asociada a la misma.
+
+\begin{figure}[h]
+\begin{center} \includegraphics[width=15cm
+]{figuras/redneuartPantallaBusquedaEHistograma.jpg}\end{center}
+\caption{IGU Rna. Localizador de piezas.}
+\label{redneuartpantallabusquedaehistograma}
+\end{figure}
+
+\section{Implementación de LIRA}
+Our neural classifier software is based on integer numbers operations in order
+to avoid large time effort that is necessary for floating point operations.
+The most general classes were made, that means that the same software modules
+can be used to create different neural network topologies. The user
+interface was made specially for LIRA neural classifier. It
+is not hard to use this software modules to construct other types
+of neural networks or make changes to the current topology, e. g.
+add more layers. 
+
+The most important classes created for artificial neural network realization
+were: Dentrita, Neuron, NeuralSet and Rna.
+
+The Dentrita class is a basic one. It has only two attributes, stimulus
+and weight. Dentrita instances are used widely by neuron objects in
+order to create fully functional neurons. In Fig. \ref{classneuron}
+the Neuron class and its derived classes are shown. The neuron types used in LIRA classifier
+are ON, OFF, AND and adding neurons. The ON and OFF neurons are one
+input (OI) neurons and the rest are several input (SI) neurons. The
+Neuron class is the fundamental part of the neural network software.
+
+\begin{figure}[h]
+\begin{center} \includegraphics[
+natheight=2.000300in,
+natwidth=4.125200in,
+height=2.0384in,
+width=4.1753in
+]{figuras/classNeuron.jpg}\end{center}
+\caption{Clase neurona y sus clases derivadas.}
+\label{classneuron}
+\end{figure}
+
+In order to construct neuron sets a general NeuralSet class was
+created. Rna is the class that combines all mentioned classes. This class we use to
+construct a LIRA neural network. Examples of the parameters
+are the number of neurons or groups in each layer, the number of ON
+and OFF neurons in each group, the input vector and the output classes.
+The Rna object contains information about itself. It is possible to store
+the complete neural network including all its internal parameters,
+to load a previously stored neural network and to perform training
+and recognition processes. 
+
+The neural classifier is controlled by an object called
+Rna-Interface. That interrelates the user by means the GUI with the databases used for training and testing of the classifier. 
+
+\section{Software de línea de comandos}
+\subsection{lira2007}
+A continuación se presenta la ayuda propia del software \emph{lira2007} que ha sido usado para implementar y experimentar con el clasificador LIRA así como su interacción con las bases de datos.
+
+\begin{verbatim}
+Example to use follow()-functions:
+
+USAGE:
+--help, -h
+       display this help.
+
+*** Setup ***
+--create adn='<RNA name (string)> <tamVectEnt> <ImageWidth> <windowWidth> <windo
+wHeight> <numGroup> <elemXGroup> <numNeuON> <numNeuOFF> <eta (double)> <numClass
+es>', you can use -c instead of --create. Non especified are (int).
+For example use: 
+	 lira -c adn='liraSUN 22500 150 15 15 170000 7 4 3 1.0 8'  
+       Create a Lira Neural Classifier from scrath.
+--load <filename.rna>, -l <filename.rna>
+       load a neural classifier from specified file.
+--info, -i
+       displays info about the loaded classifier.
+--classes-file <filename.ent>, -cf <filename.ent>
+       assign the classes file to LIRA classifier.
+
+*** Preparing ***
+--train-dir <dir>, -td <dir>
+       assign the training directory, default is "./train".
+--code-dir <dir>, -cd <dir>
+       assign the code directory, default is "./code".
+--code, -k
+       code all the images in the train directory, they will put in the code di
+rectory
+--reset, -kill
+       reset the internal connections of the loaded ANN, Erase its memory
+--train num, -t num
+       train using the coded images from the given code dir using "num" cycles.
+ Default is 40
+--prove-dir <dir>, -pd <dir>
+       assign the prove directory, default is "./prove".
+--images-dir <dir>, -id <dir>
+       assign the images directory, default is "./images".
+--train-percentage num, -tp num
+       Percentaje of images in images-dir to be selected for the training set. 
+Default is 50%
+
+*** Using ***
+--prove, -p
+       proves the classifier with the images files stored in the "proving direc
+tory".
+--recognize <filename.png>, -r <filename.png>
+       recognize a class in the given normalized image file.
+pos='<x (int)> <y (int)> <O (double)>', Parameters especification for recogniz
+ed a big (not normalized) image in certain point and orientation. All values s
+hould be (int).
+You might specified a "filename.png" by -r to look for.
+Example use: 
+	 lira -l lira.rna -r imagen.png pos='10 20 -45.0' 
+An image file called "cut.png" will be created with the used subimage.
+
+*** Ending***
+--save, -s
+       Save the current classifier to a .rna file.
+--close, -q
+       (NOW FAIL!) Save the current classifier to a .rna file.
+       close the current classifier loaded in memory.
+--output, -o
+       Print values from the output layer.
+
+*** Search ***
+--searchImage <filename.png>, -si <filename.png>
+       Search for some recognized clase.
+--searchClass <className>, -sc <className>
+       Class to be search by the Search command. Use "prueba" to make a prove
+ and "cualquiera" to search anyone. Default is anyone
+--searchQuantity num, -sq num
+       Number of objects to search for. Default is 1.
+--searchStep num, -ss num
+       Step in pixels for the searcher to jump (/\x & /\y). Default is 20.
+--searchStepAngle num, -sa num
+       Angle in degrees for the searcher to jump. Default is 45.
+
+*** Tools ***
+--distortion dis='<dx> <nx> <dy> <ny> <dO> <nO>', you can use -d instead of -
+-distortion. All parameters should be (int).
+You might specified the "training dir".
+For example use: 
+	 lira -td ./trainimages -d dis='5 2 5 2 5 2' 
+\end{verbatim}
+
+\subsection{pcnc2007}
+A continuación se presenta la ayuda propia del software \emph{pcnc2007} que ha sido usado para implementar y experimentar con el PCNC así como su interacción con las bases de datos.
+
+\begin{verbatim}
+Example to use follow()-functions:
+
+USAGE:
+--help, -h
+       display this help.
+
+*** Setup ***
+--create adn='<PCNC name (string)> <method> <Tmin> <Tmax> <w> <h> <p> <n> <S>
+ <N> <K> <Dc> <q> <numClasses>', you can use -c instead of --create. Non espe
+cified are (int).
+For example use: 
+	 peco -c adn='PCNCprueba 0 1 32000 5 5 3 2 500 1000 12 8 5 8'  
+       Create a Permutative Code Neural Classifier (PCNC) from scrath.
+--load <filename.pcnc>, -l <filename.pcnc>
+       load a PCNC from specified file.
+--info, -i
+       displays info about the loaded PCNC.
+--classes-file <filename.ent>, -cf <filename.ent>
+       assign the classes file to PCNC.
+
+*** Preparing ***
+--train-dir <dir>, -td <dir>
+       assign the training directory, default is "./train".
+--code-dir <dir>, -cd <dir>
+       assign the code directory, default is "./code".
+--code, -k
+       code all the images in the train directory, they will put in the code 
+directory
+--reset
+       reset the internal connections of the loaded PCNC, Erase its memory
+--train num, -t num
+       train using the coded images from the given code dir using "num" cycles
+. Default is 40
+--prove-dir <dir>, -pd <dir>
+       assign the prove directory, default is "./prove".
+--images-dir <dir>, -id <dir>
+       assign the images directory, default is "./images".
+--train-percentage num, -tp num
+       Percentaje of images in images-dir to be selected for the training set.
+ Default is 50%
+
+*** Using ***
+--prove, -p
+       proves the PCNC with the images files stored in the "proving directory".
+--recognize <filename.png>, -r <filename.png>
+       recognize a class in the given normalized image file.
+
+*** Ending***
+--save, -s
+       Save the current PCNC to a .pcnc file.
+--close, -q
+       (NOW FAIL!) Save the current PCNC to a .pcnc file.
+       close the current PCNC loaded in memory.
+\end{verbatim}
+
+\subsection{Potencial para la experimentación}
+Como un ejemplo del uso ventajoso del software de línea de comandos se presenta uno de los múltiples archivos de procesamiento por lotes\footnote{Más conocidos por su denominación en inglés: \emph{scripts}} empleado para realizar decenas de experimentos con cambió de parámetros de forma automática, es decir, en una sola corrida.
+
+\begin{verbatim}
+#!/bin/bash
+
+#Decenas de pruebas para estudiar comportamiento de parámetros
+#La base es el Mejor:
+#../../bin/pcnc2007 -c adn='PCNCmejorBD-A 1 0 65535 10 10 5 4 1000 300000 20 5
+ 2 8' -cf BD-A.ent -td ../../muestras/entrenamiento -cd ../../muestras/codigo 
+-pd ../../muestras/prueba -k -t 40 -p -s
+
+
+#*************PARAMETRO W
+#Inicializacion
+PARAM=W
+PARw=10
+PARp=5
+PARn=4
+PARS=1000
+PARN=300000
+PARK=20
+PARDc=5
+PARq=2
+#Usando "for" para probar distintos parámetros 
+for PARw in 05 08 09 11 12 15 20;
+  do
+  echo "**************************"
+  echo "***** CORIDA: "$PARAM:$PARw" *******"
+  echo "**************************"
+  #Hace todo de una vez, también salva
+  ../../bin/pcnc2007 -c adn='PCNCparam'$PARAM''$PARw' 1 0 65535 '$PARw' '$PARw
+' '$PARp' '$PARn' '$PARS' '$PARN' '$PARK' '$PARDc' '$PARq' 7' -cf BD-D.ent -td
+ ../../muestrasBD-D/entrenamiento -cd ../../muestrasBD-D/codigo -pd ../../mues
+trasBD-D/prueba -k -t 30 -p -s
+
+# ../../bin/pcnc2007 -c adn='PCNCparam'$PARAM' 1 0 65535 '$PARw' '$PARw' '$PAR
+p' '$PARn' '$PARS' '$PARN' '$PARK' '$PARDc' '$PARq' 7' -cf BD-D.ent -i
+done  
+
+#*************PARAMETRO K
+#Inicializacion
+PARAM=K
+PARw=10
+PARp=5
+PARn=4
+PARS=1000
+PARN=300000
+PARK=20
+PARDc=5
+PARq=2
+#Usando "for" para probar distintos parámetros 
+for PARK in 05 10 15 25 30;
+  do
+  echo "**************************"
+  echo "***** CORIDA: "$PARAM:$PARK" *******"
+  echo "**************************"
+  #Hace todo de una vez, también salva
+  ../../bin/pcnc2007 -c adn='PCNCparam'$PARAM''$PARK' 1 0 65535 '$PARw' '$PARw
+' '$PARp' '$PARn' '$PARS' '$PARN' '$PARK' '$PARDc' '$PARq' 7' -cf BD-D.ent -td
+ ../../muestrasBD-D/entrenamiento -cd ../../muestrasBD-D/codigo -pd ../../mues
+trasBD-D/prueba -k -t 30 -p -s
+done  
+
+#*************PARAMETRO Dc
+#Inicializacion
+PARAM=Dc
+PARw=10
+PARp=5
+PARn=4
+PARS=1000
+PARN=300000
+PARK=20
+PARDc=5
+PARq=2
+#Usando "for" para probar distintos parámetros 
+for PARDc in 02 04 06 08 10 15 20 25;
+  do
+  echo "**************************"
+  echo "***** CORIDA: "$PARAM:$PARDc" *******"
+  echo "**************************"
+  #Hace todo de una vez, también salva
+  ../../bin/pcnc2007 -c adn='PCNCparam'$PARAM''$PARDc' 1 0 65535 '$PARw' '$PARw
+' '$PARp' '$PARn' '$PARS' '$PARN' '$PARK' '$PARDc' '$PARq' 7' -cf BD-D.ent -td
+ ../../muestrasBD-D/entrenamiento -cd ../../muestrasBD-D/codigo -pd ../../mues
+trasBD-D/prueba -k -t 30 -p -s
+done  
+
+#*************PARAMETRO q
+#Inicializacion
+PARAM=q
+PARw=10
+PARp=5
+PARn=4
+PARS=1000
+PARN=300000
+PARK=20
+PARDc=5
+PARq=2
+#Usando "for" para probar distintos parámetros 
+for PARq in 00 01 03 04 05 10;
+  do
+  echo "**************************"
+  echo "***** CORIDA: "$PARAM:$PARq" *******"
+  echo "**************************"
+  #Hace todo de una vez, también salva
+  ../../bin/pcnc2007 -c adn='PCNCparam'$PARAM''$PARq' 1 0 65535 '$PARw' '$PARw
+' '$PARp' '$PARn' '$PARS' '$PARN' '$PARK' '$PARDc' '$PARq' 7' -cf BD-D.ent -td
+ ../../muestrasBD-D/entrenamiento -cd ../../muestrasBD-D/codigo -pd ../../mues
+trasBD-D/prueba -k -t 30 -p -s
+done  
+
+#*************PARAMETROS p y q
+#Inicializacion
+PARAM=PyN
+PARw=10
+PARp=5
+PARn=4
+PARS=1000
+PARN=300000
+PARK=20
+PARDc=5
+PARq=2
+#Usando "for" para probar distintos parámetros 
+for PARpn in "3 6" "4 5" "6 3" "7 2" "2 5" "3 4" "4 3" "5 2" "6 1" "4 7" "5 6"
+ "6 5" "7 4" "8 3" "9 2";
+  do
+  echo "**************************"
+  echo "***** CORIDA: "$PARAM:$PARpn" *******"
+  echo "**************************"
+  #Variable auxiliar para nombrar sin espacios
+  PARpnNom=${PARpn/ /y}
+  #Hace todo de una vez, también salva
+  ../../bin/pcnc2007 -c adn='PCNCparam'$PARAM''$PARpnNom' 1 0 65535 '$PARw' '$P
+ARw' '"$PARpn"' '$PARS' '$PARN' '$PARK' '$PARDc' '$PARq' 7' -cf BD-D.ent -i -td
+ ../../muestrasBD-D/entrenamiento -cd ../../muestrasBD-D/codigo -pd ../../mues
+trasBD-D/prueba -k -t 30 -p -s
+done  
+
+
+
+#*************PARAMETRO N
+#Inicializacion
+PARAM=N
+PARw=10
+PARp=5
+PARn=4
+PARS=1000
+PARN=300000
+PARK=20
+PARDc=5
+PARq=2
+#Usando "for" para probar distintos parámetros 
+for PARN in 100000 200000 250000 400000 500000;
+  do
+  echo "**************************"
+  echo "***** CORIDA: "$PARAM:$PARN" *******"
+  echo "**************************"
+  #Hace todo de una vez, también salva
+  ../../bin/pcnc2007 -c adn='PCNCparam'$PARAM''$PARN' 1 0 65535 '$PARw' '$PARw
+' '$PARp' '$PARn' '$PARS' '$PARN' '$PARK' '$PARDc' '$PARq' 7' -cf BD-D.ent -td
+ ../../muestrasBD-D/entrenamiento -cd ../../muestrasBD-D/codigo -pd ../../mues
+trasBD-D/prueba -k -t 30 -p -s
+done  
+
+
+#*************PARAMETRO S
+#Inicializacion
+PARAM=S
+PARw=10
+PARp=5
+PARn=4
+PARS=1000
+PARN=300000
+PARK=20
+PARDc=5
+PARq=2
+#Usando "for" para probar distintos parámetros 
+for PARS in 0400 0600 0800 1200 1500 2000 2500 3000 4000 5000 6000 10000;
+  do
+  echo "**************************"
+  echo "***** CORIDA: "$PARAM:$PARS" *******"
+  echo "**************************"
+  #Hace todo de una vez, también salva
+  ../../bin/pcnc2007 -c adn='PCNCparam'$PARAM''$PARS' 1 0 65535 '$PARw' '$PARw
+' '$PARp' '$PARn' '$PARS' '$PARN' '$PARK' '$PARDc' '$PARq' 7' -cf BD-D.ent -td
+ ../../muestrasBD-D/entrenamiento -cd ../../muestrasBD-D/codigo -pd ../../mues
+trasBD-D/prueba -k -t 30 -p -s
+done  
+
+#Crea el resumen de resultados
+grep "El porcentaje" PCNCparam*.proveresults >> resumen.proveresults
+
+#FIN
+
+#  LocalWords:  PARw
+ 
+\end{verbatim}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "tesis"
+%%% End: 

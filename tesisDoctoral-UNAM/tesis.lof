@@ -1,0 +1,56 @@
+\select@language {spanish}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces M\'aquinas de la primera generaci\'on MET.}}{3}
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Sistema autom\'atico de manejo de piezas.\relax }}{5}
+\contentsline {figure}{\numberline {1.3}{\ignorespaces Sistema de Visi\'on T\'ecnica.\relax }}{6}
+\contentsline {figure}{\numberline {1.4}{\ignorespaces Esquema de localizaci\'on de una pieza reconocida.}}{7}
+\contentsline {figure}{\numberline {1.5}{\ignorespaces Diversas piezas utilizadas en el desarrollo del SVT.}}{7}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Estructura del PCNC.}}{17}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Procesos del extractor de propiedades.}}{18}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Selecci\'on de puntos espec\IeC {\'\i }ficos.}}{19}
+\contentsline {subfigure}{\numberline {a1}{\ignorespaces {}}}{19}
+\contentsline {subfigure}{\numberline {b1}{\ignorespaces {}}}{19}
+\contentsline {subfigure}{\numberline {c1}{\ignorespaces {}}}{19}
+\contentsline {subfigure}{\numberline {a2}{\ignorespaces {}}}{19}
+\contentsline {subfigure}{\numberline {b2}{\ignorespaces {}}}{19}
+\contentsline {subfigure}{\numberline {c2}{\ignorespaces {}}}{19}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Extracci\'on de propiedades.}}{20}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Procesos del codificador.}}{21}
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Permutaci\'on y su representaci\'on.}}{22}
+\contentsline {figure}{\numberline {2.7}{\ignorespaces Permutaciones X.}}{23}
+\contentsline {figure}{\numberline {2.8}{\ignorespaces Permutaciones Y.}}{24}
+\contentsline {figure}{\numberline {2.9}{\ignorespaces Permutaciones XY.}}{25}
+\contentsline {figure}{\numberline {2.10}{\ignorespaces Permutaciones Q.}}{26}
+\contentsline {figure}{\numberline {2.11}{\ignorespaces Clasificador neuronal LIRA dividido.}}{27}
+\contentsline {figure}{\numberline {2.12}{\ignorespaces Distorsiones para ampliar el conjunto de entrenamiento.}}{27}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Im\'agenes reconocidas en la BD-A por el PCNC.}}{36}
+\contentsline {subfigure}{\numberline {a}{\ignorespaces {}}}{36}
+\contentsline {subfigure}{\numberline {b}{\ignorespaces {}}}{36}
+\contentsline {subfigure}{\numberline {c}{\ignorespaces {}}}{36}
+\contentsline {subfigure}{\numberline {d}{\ignorespaces {}}}{36}
+\contentsline {subfigure}{\numberline {e}{\ignorespaces {}}}{36}
+\contentsline {subfigure}{\numberline {f}{\ignorespaces {}}}{36}
+\contentsline {subfigure}{\numberline {g}{\ignorespaces {}}}{36}
+\contentsline {subfigure}{\numberline {h}{\ignorespaces {}}}{36}
+\contentsline {subfigure}{\numberline {i}{\ignorespaces {}}}{36}
+\contentsline {subfigure}{\numberline {j}{\ignorespaces {}}}{36}
+\contentsline {subfigure}{\numberline {k}{\ignorespaces {}}}{36}
+\contentsline {subfigure}{\numberline {l}{\ignorespaces {}}}{36}
+\contentsline {subfigure}{\numberline {m}{\ignorespaces {}}}{36}
+\contentsline {subfigure}{\numberline {n}{\ignorespaces {}}}{36}
+\contentsline {subfigure}{\numberline {\~n}{\ignorespaces {}}}{36}
+\contentsline {subfigure}{\numberline {o}{\ignorespaces {}}}{36}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Localizaci\'on y reconocimiento de piezas.\relax }}{40}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Localizaci\'on y reconocimiento de piezas con redundancia.\relax }}{40}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Localizaci\'on y reconocimiento de piezas que se tocan.\relax }}{41}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {A.1}{\ignorespaces Diagrama a bloques del software OptikRNA.}}{57}
+\contentsline {figure}{\numberline {A.2}{\ignorespaces Interfaz gr\'afica de usuario (IGU) de Optik.}}{58}
+\contentsline {figure}{\numberline {A.3}{\ignorespaces Clases principales del m\'odulo RNA y su relaci\'on de herencia.}}{59}
+\contentsline {figure}{\numberline {A.4}{\ignorespaces Interfaz gr\'afica de usuario del software RNA.\relax }}{60}
+\contentsline {figure}{\numberline {A.5}{\ignorespaces Diagrama a bloques del software OptikRNA.\relax }}{60}
+\contentsline {figure}{\numberline {A.6}{\ignorespaces IGU Rna. Localizador de piezas.\relax }}{61}
+\contentsline {figure}{\numberline {A.7}{\ignorespaces Clase neurona y sus clases derivadas.\relax }}{62}
+\addvspace {10\p@ }

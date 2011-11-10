@@ -1,0 +1,158 @@
+\begin{thebibliography}{10}
+
+\bibitem{Rachkovskij2001}
+D.~Rachkovskij and E.~Kussul.
+\newblock Binding and normalization of binary sparse distributed
+  representations by context-depending thinning.
+\newblock {\em Neural Computation}, 13:411--452, 2001.
+
+\bibitem{Baidyk2002}
+T.~Baidyk and E.~Kussul.
+\newblock Application of neural classifier for flat image recognition in the
+  process of microdevice assembly.
+\newblock In {\em Procceding of IEEE International Join Conference on Neural
+  Networks}, volume~1, pages 160--164, Honolulu, Hawaii, USA, May 12-17 2002.
+\newblock doi:10.1109/IJCNN.2002.1005462.
+
+\bibitem{Kussul2002JMM}
+E.~Kussul, T.~Baidyk, L.~Ruiz-Huerta, A.~Caballero, G.~Velasco, and
+  L.~Kasatkina.
+\newblock Development of micromachine tool prototypes for microfactories.
+\newblock {\em Journal of Micromechanical and Microengineer}, 12(6):795--812,
+  October 2002.
+
+\bibitem{Kussul2002SMHS}
+E.~Kussul, T.~Baidyk, L.~Ruiz, A.~Caballero, and G.~Velasco.
+\newblock Development of low cost microequipment.
+\newblock In {\em International Symposium on Micromechatronics and Human
+  Science}, pages 125--134, Nagoya, Japan, October 2002.
+
+\bibitem{Gengis2006}
+G.K. Toledo, E.~Kussul, and T.~Baidyk.
+\newblock Neural classifier for micro work piece recognition.
+\newblock {\em Image and Vision Computing, Elsevier.}, 24(8):827--836, 2006.
+
+\bibitem{Lara-Rosano}
+F.~Lara-Rosano, E.~Kussul, T.~Baidyk, L.~Ruiz, A.~Caballero, and G.~Velazco.
+\newblock Artificial intelligence systems in micromechanics.
+\newblock In {\em The first IFIP International Conference on Artificial
+  Intelligence Applications and Innovations.}, pages 1--10, Toulouse, France,
+  August 2004.
+\newblock Ed. By Max Bramer, Boston/Dordrecht/London, Kluwer Academic
+  Publishers.
+
+\bibitem{Kussul1996JMM}
+Ernst Kussul, Dmitri Rachkovskij, Tatyana Baidyk, and Semion Talayev.
+\newblock Micromechanical engineering: a basis for the low cost manufacturing
+  of mechanical microdevices using microequipment.
+\newblock {\em Journal of Micromechanics and Microengineering}, 6(4):410--425,
+  August 1996.
+\newblock doi:10.1088/0960-1317/6/4/008.
+
+\bibitem{Kussul1993}
+Ernst Kussul.
+\newblock Micromechanics and perspectives of neurocomputing. neuron-like
+  networks and neurocomputers.
+\newblock Technical report, Institute of Cybernetics, Kiev, Ukraine, 1993.
+
+\bibitem{Okazaki2004}
+Yuichi Okazaki, Nozomu Mishima, and Kiwamu Ashida.
+\newblock Microfactory - concept, history, and developments.
+\newblock {\em Journal of Manufacturing Science and Engineering}, 126:837--844,
+  2004.
+
+\bibitem{Baidyk2004}
+T.~Baidyk, E.~Kussul, O.~Makeley, A.~Caballero, L.~Ruiz, G.~Carrera, and
+  G.~Velasco.
+\newblock Flat image recognition in the process of microdevice assembly.
+\newblock {\em Pattern Recognition Letters, Elsevier}, 25(1):107--118, January
+  2004.
+
+\bibitem{Kussul1991ANNIE}
+E.~M. Kussul, D.~A. Rachkovskij, and T.~N. Baidyk.
+\newblock On image texture recognition by associative-projective neurocomputer.
+\newblock In {\em Proc. of the ANNIE'91 conference ``Intelligent engineering
+  systems through artificial neural networks''}, pages 453--458. ASME Press,
+  C.H. Dagli and S. Kumara and Y.C. Shin, 1991.
+
+\bibitem{Kussul1991NNA}
+E.~M. Kussul, D.~A. Rachkovskij, and T.~N. Baidyk.
+\newblock Associative-projective neural networks: architecture, implementation,
+  applications.
+\newblock pages 463--476, Nimes, France, Nov. 4-8 1991.
+
+\bibitem{Kussul1994AUIC}
+E.~Kussul and T.~Baidyk.
+\newblock Neural random threshold classifier in {OCR} application.
+\newblock pages 154--157, Kiev, Ukraine, 1994.
+
+\bibitem{Kussul1994CS}
+E.Kussul., T.~Baidyk, V.~Lukaviteh, and D.~Rachkovskij.
+\newblock Adaptive high performance classifier based on random threshold
+  neurons.
+\newblock {\em Cybernerics and Systems'94}, pages 1687--1695, 1994.
+\newblock in R. Trappl (Ed.) Singapore: World Scientific Publishing Co. Pte.
+  Ltd.
+
+\bibitem{Kussul2001}
+E.~Kussul, T.~Baidyk, L.~Kasatkina, and V.~Lukovich.
+\newblock Rosenblatt perceptrons for handwritten digit recognition.
+\newblock pages 1516--1520, Washington. USA, July 15-19 2001.
+
+\bibitem{Kussul2002ICVI}
+E.~Kussul and T.~Baidyk.
+\newblock Improved method of handwritten digit recognition tested on {MNIST}
+  database.
+\newblock In {\em 15-th International Conference on Vision Interface}, pages
+  192--197, Calgary, Canada, May 27-29 2002.
+
+\bibitem{Kussul2003IJCNN}
+Ernst~M. Kussul and Tatiana Baidyk.
+\newblock Permutative coding technique for handwritten digit recognition.
+\newblock In {\em International Joint Conference on Neural Networks}, volume~3,
+  pages 2163--2168, Portland, Oregon, USA, July 20-24 2003.
+
+\bibitem{sobel1968}
+I.~Sobel and G.~Feldman.
+\newblock A 3x3 isotropic gradient operator for image processing.
+\newblock presented at a talk at the Stanford Artificial Project in 1968,
+  unpublished but often cited, orig. in Pattern Classification and Scene
+  Analysis, Duda, R. and Hart, P., John Wiley and Sons, 1973, pp 271-2, 1968.
+
+\bibitem{Kussul2006IEEE}
+Ernst~M. Kussul, Tatiana Baidyk, Donald C.~Wunsch II, Oleksandr Makeyev, and
+  Anabel Martín.
+\newblock Permutative coding technique for image recognition systems.
+\newblock {\em IEEE Transactions on neural networks}, 17(6):1566--79, november
+  2006.
+
+\bibitem{Artikutsa1991}
+S~Artikutsa, T.~Baidyk, E~Kussul, and D~Rachkovskij.
+\newblock Texture recognition with the neurocomputer.
+\newblock Preprint 91-8~20, Institute of Cybernetics, Ukraine, 1991.
+\newblock (in Russian).
+
+\bibitem{Gengis2004}
+G.K. Toledo, E.~Kussul, and T.~Baidyk.
+\newblock Neural classifier {LIRA} for recognition of micro work pieces and
+  their positions in the processes of microassembly and micromanufacturing.
+\newblock In {\em The Seventh All-Ukrainian International Conference on
+  Signal/Image Processing and Pattern Recognition, UkrObraz2004}, pages 17--20,
+  Kiev, Ukraine, October 2004.
+
+\bibitem{Kussul2004IVC}
+E.~Kussul and T.~Baidyk.
+\newblock Improved method of handwritten digit recognition tested on {MNIST}
+  database.
+\newblock {\em Image and Vision Computing, ELSEVIER}, 22(12):971--981, October
+  2004.
+\newblock doi:10.1016/j.imavis.2004.03.008.
+
+\bibitem{Josue2006}
+Josué Enríquez-Zárate, Zaizar Betanzos-Cortés, and Gengis~Kanhg Toledo-Ramíre.
+\newblock Sistema generador de bases de datos para imágenes: una aplicación con
+  gambas.
+\newblock Ixtepec, Oaxaca. México., Marzo 2-4 2006. I Simposium de Linux de la
+  Mixteca.
+
+\end{thebibliography}

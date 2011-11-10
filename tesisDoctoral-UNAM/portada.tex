@@ -1,0 +1,100 @@
+% portada.tex-- Portada para tesis de posgrado de la Facultad de Ingeniería. UNAM.
+% Realizada por Gengis Kanhg Toledo Ramírez (gengiskanhg.geo@yahoo.com)
+%Basada en la portada escrita por: Tim Rohrer, LT, USN--31 July 1996 del NPS, Monterey, California. USA.
+%y en el manual The Not So Short Introduction to LaTeX de Tobiaz Oetiker
+%Eres libe de modificar este archivo de acuerdo a tus necesidades.
+%13 de Junio de 2007
+
+%Compile with:
+%pdflatex portada.tex
+
+\documentclass{book}
+\usepackage[latin1]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+
+\setlength{\voffset}{-0.5cm}
+\setlength{\hoffset}{0.7cm}
+\setlength{\headsep}{0pt}
+\setlength{\headheight}{0pt}
+\setlength{\oddsidemargin}{-0.8in}
+\setlength{\marginparwidth}{-0.5cm}
+\setlength{\textwidth}{19.5cm}
+\setlength{\footskip}{2pt}
+\setlength{\topmargin}{0in}
+\setlength{\textheight}{25cm}
+\setlength{\fboxrule}{3pt}
+
+\begin{document}
+\thispagestyle{empty}
+
+\begin{tabular}{p{3cm}p{15.0cm}}
+\includegraphics[width=3cm]{figuras/escudoUNAMbn.png}
+\begin{center}
+\rule[2cm]{1.5mm}{13.5cm}%vertical
+\hspace{2pt}
+\rule[0cm]{0.7mm}{15.5cm}%vertical
+\hspace{2pt}
+\rule[2cm]{1.5mm}{13.5cm}%vertical
+\end{center}
+\includegraphics[width=2.8cm]{figuras/escudoFI-UNAM.png}
+&
+\vspace{-3.4cm}
+\begin{center}
+\Large{ \bf{UNIVERSIDAD NACIONAL AUTONOMA DE MÉXICO}}
+\\
+\rule[0mm]{15.0cm}{0.2mm}%horizontal
+\\
+\rule[3mm]{15.0cm}{1.2mm}%horizontal
+\\
+\textbf{PROGRAMA DE MAESTRÍA Y DOCTORADO EN
+\\
+INGENIERÍA}
+
+\vspace{2.8\baselineskip}
+
+FACULTAD DE INGENIERÍA
+
+\vspace{2.8\baselineskip}
+
+{\Large \bf{INVESTIGACIÓN Y DESARROLLO DE SISTEMAS\\DE CONTROL MEDIANTE VISIÓN TÉCNICA\\PARA MICROMÁQUINAS HERRAMIENTAS Y MICROMANIPULADORES}}
+
+%\vfill
+\vspace*{1.7cm}
+
+\huge{\bf TESIS}
+
+%\vspace*{0.1cm}
+{\large QUE PARA OPTAR POR EL GRADO DE:}
+
+%\vspace*{0.2cm}
+
+\LARGE{\bf DOCTOR EN INGENIERÍA}
+
+%\vspace*{0.2cm}
+\large{MECÁNICA - DISEÑO MECÁNICO}
+
+\vspace*{0.1cm}
+P R E S E N T A:
+
+\vspace*{1cm} {\Large \bf{GENGIS KANHG\\TOLEDO RAMÍREZ$^{*}$}}
+
+\vspace*{1.0cm}
+TUTORES:
+
+\large{\bf ERNST KUSSUL\\TATIANA BAIDYK}
+
+\vspace*{2.0cm}
+\Large{Ciudad Universitaria}\hspace*{5cm}\Large{Agosto 2007}
+
+\end{center}
+
+\end{tabular}
+
+\flushright{$^{*}$Exbecario CONACYT\hspace*{0.8cm}}
+
+%\end{center}
+\newpage
+\thispagestyle{empty}
+$ $
+\end{document}

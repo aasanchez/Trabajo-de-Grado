@@ -1,0 +1,52 @@
+\select@language {spanish}
+\contentsline {chapter}{Abstract}{\es@scroman {xv}}
+\contentsline {chapter}{\numberline {1}Sistema de visi\'on por computadora para microensamble}{1}
+\contentsline {section}{\numberline {1.1}Investigaci\'on en el Laboratorio de Micromec\'anica y Mecatr\'onica}{1}
+\contentsline {section}{\numberline {1.2}Sistema autom\'atico de manejo de piezas}{3}
+\contentsline {section}{\numberline {1.3}Subsistema de visi\'on t\'ecnica (SVT)}{5}
+\contentsline {chapter}{\numberline {2}Clasificador Neuronal de Permutaci\'on de C\'odigos (PCNC)}{9}
+\contentsline {section}{\numberline {2.1}Estructura}{9}
+\contentsline {subsection}{\numberline {2.1.1}Extractor de propiedades}{9}
+\contentsline {subsection}{\numberline {2.1.2}Codificador}{10}
+\contentsline {subsubsection}{\numberline {2.1.2.1}Codificaci\'on de las propiedades}{11}
+\contentsline {subsubsection}{\numberline {2.1.2.2}Ejemplo de permutaciones}{12}
+\contentsline {subsubsection}{\numberline {2.1.2.3}Propiedades de las permutaciones}{13}
+\contentsline {subsubsection}{\numberline {2.1.2.4}Vector c\'odigo $\mathbf {V}$ }{13}
+\contentsline {subsubsection}{\numberline {2.1.2.5}Adelgazador dependiente de contexto (CDT)}{13}
+\contentsline {subsection}{\numberline {2.1.3}Clasificador neuronal}{14}
+\contentsline {section}{\numberline {2.2}Proceso de entrenamiento}{14}
+\contentsline {section}{\numberline {2.3}Distorsiones}{15}
+\contentsline {section}{\numberline {2.4}Discusi\'on}{15}
+\contentsline {chapter}{\numberline {3}Experimentos y resultados}{29}
+\contentsline {section}{\numberline {3.1}LIRA}{29}
+\contentsline {subsection}{\numberline {3.1.1}Experimentos preliminares}{30}
+\contentsline {subsection}{\numberline {3.1.2}Unicidad}{30}
+\contentsline {subsection}{\numberline {3.1.3}Distorsiones}{33}
+\contentsline {subsection}{\numberline {3.1.4}Ciclos de entrenamiento}{34}
+\contentsline {subsection}{\numberline {3.1.5}Aleatoriedad de los conjuntos para entrenamiento y prueba}{34}
+\contentsline {subsection}{\numberline {3.1.6}Mejores clasificadores PCNC}{35}
+\contentsline {subsubsection}{\numberline {3.1.6.1}Base de datos A}{35}
+\contentsline {subsubsection}{\numberline {3.1.6.2}Base de datos B}{35}
+\contentsline {subsection}{\numberline {3.1.7}Prueba con conjunto de entrenamiento ampliado}{36}
+\contentsline {section}{\numberline {3.2}Comparaci\'on de clasificadores}{36}
+\contentsline {subsection}{\numberline {3.2.1}Tiempos}{36}
+\contentsline {subsection}{\numberline {3.2.2}Estabilidad en la creaci\'on de estructuras}{37}
+\contentsline {subsection}{\numberline {3.2.3}Par\'ametros}{37}
+\contentsline {subsection}{\numberline {3.2.4}Ciclos de entrenamiento}{38}
+\contentsline {subsection}{\numberline {3.2.5}Confiabilidad}{38}
+\contentsline {subsection}{\numberline {3.2.6}Resultados}{38}
+\contentsline {section}{\numberline {3.3}B\'usqueda y reconocimiento de posici\'on}{39}
+\contentsline {chapter}{Conclusiones}{43}
+\contentsline {part}{Ap\'endices}{45}
+\contentsline {chapter}{\numberline {A}Software}{47}
+\contentsline {section}{\numberline {A.1}M\'odulo Optik}{48}
+\contentsline {section}{\numberline {A.2}M\'odulo RNA}{48}
+\contentsline {section}{\numberline {A.3}M\'odulo Localizador}{48}
+\contentsline {section}{\numberline {A.4}Interfaz}{49}
+\contentsline {section}{\numberline {A.5}Implementaci\'on de LIRA}{49}
+\contentsline {section}{\numberline {A.6}Software de l\IeC {\'\i }nea de comandos}{50}
+\contentsline {subsection}{\numberline {A.6.1}lira2007}{50}
+\contentsline {subsection}{\numberline {A.6.2}pcnc2007}{52}
+\contentsline {subsection}{\numberline {A.6.3}Potencial para la experimentaci\'on}{53}
+\contentsline {chapter}{\numberline {B}Publicaciones}{63}
+\contentsline {chapter}{Bibliograf\IeC {\'\i }a}{65}

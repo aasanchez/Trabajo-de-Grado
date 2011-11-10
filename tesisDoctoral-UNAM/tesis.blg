@@ -1,0 +1,92 @@
+This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+The top-level auxiliary file: tesis.aux
+A level-1 auxiliary file: jurado.aux
+A level-1 auxiliary file: apoyo.aux
+A level-1 auxiliary file: edicion.aux
+A level-1 auxiliary file: reconocimientos.aux
+A level-1 auxiliary file: resumen.aux
+A level-1 auxiliary file: resumenen.aux
+A level-1 auxiliary file: introduction.aux
+A level-1 auxiliary file: antecedentes.aux
+A level-1 auxiliary file: tvs.aux
+A level-1 auxiliary file: designsvt.aux
+A level-1 auxiliary file: lira.aux
+A level-1 auxiliary file: pcnc.aux
+A level-1 auxiliary file: exp.aux
+A level-1 auxiliary file: conclusion.aux
+A level-1 auxiliary file: futuro.aux
+A level-1 auxiliary file: software.aux
+A level-1 auxiliary file: publicaciones.aux
+The style file: unsrt.bst
+Database file #1: lmm.bib
+Database file #2: gengisNOlmm.bib
+You're missing a field part---line 103 of file gengisNOlmm.bib
+ :   OPTMONTH =
+ :             ,
+I'm skipping whatever remains of this entry
+You're missing a field part---line 113 of file gengisNOlmm.bib
+ :   OPTMONTH  = 
+ :               ,
+I'm skipping whatever remains of this entry
+You're missing a field part---line 122 of file gengisNOlmm.bib
+ :   OPTMONTH  = 
+ :               ,
+I'm skipping whatever remains of this entry
+You're missing a field part---line 171 of file gengisNOlmm.bib
+ :   OPTMONTH  = 
+ :               ,
+I'm skipping whatever remains of this entry
+You're missing a field part---line 200 of file gengisNOlmm.bib
+ :   OPTINSTITUTION = 
+ :                    ,
+I'm skipping whatever remains of this entry
+You're missing a field part---line 212 of file gengisNOlmm.bib
+ :   OPTMONTH  = 
+ :               ,
+I'm skipping whatever remains of this entry
+Warning--empty booktitle in Kussul1991NNA
+Warning--empty booktitle in Kussul1994AUIC
+Warning--empty booktitle in Kussul2001
+Warning--empty booktitle in Josue2006
+You've used 23 entries,
+            1791 wiz_defined-function locations,
+            643 strings with 9057 characters,
+and the built_in function-call counts, 6791 in all, are:
+= -- 631
+> -- 279
+< -- 14
++ -- 101
+- -- 78
+* -- 459
+:= -- 1004
+add.period$ -- 77
+call.type$ -- 23
+change.case$ -- 24
+chr.to.int$ -- 0
+cite$ -- 27
+duplicate$ -- 325
+empty$ -- 630
+format.name$ -- 78
+if$ -- 1613
+int.to.chr$ -- 0
+int.to.str$ -- 23
+missing$ -- 20
+newline$ -- 124
+num.names$ -- 23
+pop$ -- 74
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 191
+stack$ -- 0
+substring$ -- 479
+swap$ -- 119
+text.length$ -- 14
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 4
+while$ -- 53
+width$ -- 25
+write$ -- 278
+(There were 6 error messages)
