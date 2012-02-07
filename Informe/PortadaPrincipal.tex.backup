@@ -1,0 +1,27 @@
+\noindent{
+\begin{tabular*}{0.8\textwidth}{@{\extracolsep{\fill}} |c|c| }
+  \multirow{6}{*}{\includegraphics[width=0.125\textwidth]{img/UNY.png}} 
+  & \\
+  & \large{\textbf{UNIVERSIDAD YACAMBÚ}} 	\\
+  & \large{\textbf{VICERECTORADO ACADEMICO}} 	\\
+  & \large{\textbf{FACULTAD DE INGIENERIA}} 	\\
+  & \\
+\end{tabular*}}
+\\Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Integer arcu nisl, consectetuer ut, vehicula nec, blandit id, nulla. Vestibulum in odio a odio volutpat sollicitudin. Donec congue porta tellus. Ut quis est sed velit blandit fringilla. Nunc lobortis dui vitae sapien. In tincidunt magna eget purus. Nam lorem quam, vehicula in, dictum et, congue eget, odio. Curabitur gravida mi id dui. Aliquam erat volutpat. Fusce velit turpis, accumsan vel, tincidunt at, aliquet at, sem. Cras viverra eros ac orci. Aenean vestibulum, lorem sed luctus congue, arcu pede ultricies libero, at posuere felis nulla et leo.
+\vspace{2cm}
+% Imprimimos el Titulo
+\begin{center}
+\huge{\Titulo}\\
+\end{center}
+\vspace{4cm}
+%Mostramos el Autor
+\begin{tabular}{l}
+\textbf{Autor:}\\
+\Autor \\
+\textbf{Tutor:}\\
+\Tutor \\
+\end{tabular}
+\vspace{5cm}
+\begin{center}
+Cabudare, Junio 2011\\
+\end{center}

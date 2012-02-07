@@ -1,0 +1,40 @@
+\documentclass[a4paper,12pt]{report}
+\usepackage[utf8x]{inputenc}
+\usepackage[spanish] {babel}
+\usepackage{graphicx} 
+\usepackage{array,multirow,tabulary} 				%Usados para las tablas
+\usepackage[left=4cm,top=3cm,right=3cm,bottom=3cm]{geometry} 	%Definimos los Margenes
+\usepackage{pdfpages} 						%to import PDF pages
+\usepackage[explicit]{titlesec}
+\usepackage{lipsum}
+\renewcommand\familydefault{\sfdefault}
+\renewcommand{\baselinestretch}{1.5}
+\pagestyle{plain} 
+% Define datos del Trabajo
+\newcommand{\Titulo}{Vehículo para personas con compromisos motrices bajo el modelo de Péndulo Invertido}
+\newcommand{\Grado}{Ingeniero Electronico en Computación}
+\newcommand{\Autor}{Br. Sánchez O. Alexis A.}
+\newcommand{\Tutor}{Ing. Saul E. Moreno}
+\newcommand{\Fecha}{Cabudare, Abril 2012}
+\newcommand{\Cedula}{V-15.777.118}
+\title{\Titulo}
+\author{\Autor}
+
+\begin{document}
+\include{acta}
+\include{PortadaPrincipal}
+\include{PortadaSecundaria}
+\include{AprobacionTutor}
+\include{DeclaracionAutoria}
+\include{Dedicatoria}
+\include{Agradecimientos}
+\newpage
+\part{Resumen}
+\chapter{Prueba}
+\include{Introduccion}
+\include{ObjetivosdeEstudio}
+\include{prueba}
+\tableofcontents
+\listoffigures
+\listoftables
+\end{document}

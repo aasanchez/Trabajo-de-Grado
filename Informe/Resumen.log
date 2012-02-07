@@ -1,0 +1,230 @@
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2011.10.24)  23 JAN 2012 23:35
+entering extended mode
+ %&-line parsing enabled.
+**Resumen.tex
+(./Resumen.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, spanish, galician, catalan, loaded.
+! Undefined control sequence.
+l.1 {\Hide
+           \chapter*{Resumen}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.1 {\Hide \chapter
+                   *{Resumen}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 {\Hide \chapter*
+                    {Resumen}}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no * in font nullfont!
+Missing character: There is no R in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 1--2
+[] 
+ []
+
+! Undefined control sequence.
+l.3 \large
+          {\textbf{UNIVERSIDAD YACAMBÃš}} \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no Ã in font cmbx10!
+Missing character: There is no š in font cmbx10!
+
+Overfull \hbox (83.84676pt too wide) in paragraph at lines 3--3
+ \OT1/cmr/bx/n/10 UNIVERSIDAD 
+ []
+
+
+Overfull \hbox (20.26378pt too wide) in paragraph at lines 3--3
+ \OT1/cmr/bx/n/10 YA- 
+ []
+
+
+Overfull \hbox (36.09703pt too wide) in paragraph at lines 3--3
+ \OT1/cmr/bx/n/10 CAMB 
+ []
+
+! Undefined control sequence.
+<recently read> \large 
+                       
+l.4 \large
+          {\textbf{VICERECTORADO ACADEMICO}}\\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (104.81886pt too wide) in paragraph at lines 4--4
+ []\OT1/cmr/bx/n/10 VICERECTORADO 
+ []
+
+
+Overfull \hbox (29.20818pt too wide) in paragraph at lines 4--4
+ \OT1/cmr/bx/n/10 ACA- 
+ []
+
+
+Overfull \hbox (48.59695pt too wide) in paragraph at lines 4--4
+ \OT1/cmr/bx/n/10 DEMICO 
+ []
+
+! Undefined control sequence.
+<recently read> \large 
+                       
+l.5 \large
+          {\textbf{FACULTAD DE INGIENERIA}}\\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (61.99965pt too wide) in paragraph at lines 5--5
+ []\OT1/cmr/bx/n/10 FACULTAD 
+ []
+
+
+Overfull \hbox (16.37491pt too wide) in paragraph at lines 5--5
+ \OT1/cmr/bx/n/10 DE 
+ []
+
+
+Overfull \hbox (17.19435pt too wide) in paragraph at lines 5--5
+ \OT1/cmr/bx/n/10 IN- 
+ []
+
+
+Overfull \hbox (33.79147pt too wide) in paragraph at lines 5--5
+ \OT1/cmr/bx/n/10 GIEN- 
+ []
+
+
+Overfull \hbox (11.38882pt too wide) in paragraph at lines 5--5
+ \OT1/cmr/bx/n/10 E- 
+ []
+
+
+Overfull \hbox (21.68044pt too wide) in paragraph at lines 5--5
+ \OT1/cmr/bx/n/10 RIA 
+ []
+
+! Undefined control sequence.
+l.8 \Large
+          {\textbf{\Titulo}}\\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<recently read> \Titulo 
+                        
+l.8 \Large{\textbf{\Titulo}
+                           }\\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 12.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 12.
+! Undefined control sequence.
+l.14 			&	\Autor
+                		\\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.16 			&	\Tutor
+                		\\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (218.17888pt too wide) in paragraph at lines 12--19
+[] 
+ []
+
+! Undefined control sequence.
+l.20 \Large
+           {\textbf{Resumen}}\\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (46.06364pt too wide) in paragraph at lines 20--20
+ \OT1/cmr/bx/n/10 Resumen 
+ []
+
+! Undefined control sequence.
+l.22 \lipsum
+            
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+)
+! Emergency stop.
+<*> Resumen.tex
+               
+*** (job aborted, no legal \end found)
+
+ 
+Here is how much of TeX's memory you used:
+ 14 strings out of 494999
+ 207 string characters out of 1180815
+ 46184 words of memory out of 3000000
+ 3298 multiletter control sequences out of 15000+50000
+ 3948 words of font info for 15 fonts, out of 3000000 for 9000
+ 54 hyphenation exceptions out of 8191
+ 19i,7n,12p,72b,138s stack positions out of 5000i,500n,10000p,200000b,50000s
+!  ==> Fatal error occurred, no output PDF file produced!

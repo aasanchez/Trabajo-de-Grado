@@ -1,0 +1,40 @@
+\documentclass{book}
+\usepackage[explicit]{titlesec}
+\usepackage{lipsum}
+
+% Define \chaphead to be used in section headings
+\let\oldchapter\chapter
+\newcommand\temphead{}
+\newcommand\chaphead{}
+\renewcommand\chapter[2][\temphead]{%
+    \renewcommand\temphead{#2}%
+    \renewcommand\chaphead{#2}%
+    \oldchapter[#1]{#2}}
+
+\newcommand*\Hide{%
+
+\titleformat{\chapter}[display]
+  {}{}{0pt}{}
+%\titleclass{\chapter}{straight}
+
+\titleformat{\section}[display]
+  {\large} % format
+  {\chaphead, section \thesection} % label
+  {10pt} %sep
+  {} %before
+}
+
+\begin{document}
+
+{
+\Hide
+\chapter{A first chapter}
+\section{A first section}
+\lipsum
+}
+
+\chapter{A second chapter}
+\section{A second section}
+\lipsum
+
+\end{document}

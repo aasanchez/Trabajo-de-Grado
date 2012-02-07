@@ -1,0 +1,22 @@
+\chapter*{Resumen}
+\begin{center}
+\large{\textbf{UNIVERSIDAD YACAMBÚ}} \\
+\large{\textbf{VICERECTORADO ACADEMICO}}\\
+\large{\textbf{FACULTAD DE INGIENERIA}}\\
+\vspace{1cm}
+% Imprimimos el Titulo
+\Large{\textbf{\Titulo}}\\
+\end{center}
+\vspace{1cm}
+%Mostramos el Autor
+\begin{tabular}{l l}
+    \hspace{65mm}	&	\textbf{Autor:}	\\
+			&	\Autor		\\
+			&	\textbf{Tutor:}	\\
+			&	\Tutor		\\
+\end{tabular}
+\\
+\begin{center}
+\Large{\textbf{Resumen}}\\
+\end{center}
+Lorem ipsum dolor sit amet, laoreet erat elit nunc augue mi purus, imperdiet praesent nunc elit felis, mi ut sem odio penatibus lacus, nunc nisl sed tincidunt scelerisque, nunc sint justo varius suspendisse natoque. Non tellus at ut, suspendisse turpis vel et ut lectus et, dolor sit tempor orci excepturi, orci nec rerum quam nec tempor. Ante dictum montes habitasse vel habitasse, in id eum, elit nec gravida, eros erat fusce in ridiculus ut ut. Massa non nulla in lorem lacus, sit nec litora purus eu rhoncus lectus, nam eu etiam amet convallis ut id, vestibulum risus non lorem. Eget at nullam eget, lacus nulla integer posuere malesuada, duis imperdiet in vivamus, felis felis ullamcorper rutrum turpis quam, diam eget malesuada cum vel vitae. Suspendisse vestibulum porttitor aliquam nec lorem penatibus. Cum euismod neque sed at sed sed, mi nulla, suspendisse lorem fugiat. Mi libero egestas, turpis vel aliquam consequat cras phasellus a. Nonummy dictumst vulputate libero. \\
