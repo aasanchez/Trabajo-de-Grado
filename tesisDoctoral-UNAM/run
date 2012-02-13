@@ -1,9 +1,0 @@
-#!/bin/bash
-pdflatex tesis
-bibtex tesis
-pdflatex tesis
-pdflatex tesis
-#Merge the cover
-gs -dNOPAUSE -sDEVICE=pdfwrite -sOUTPUTFILE=tesiscompleta.pdf -dBATCH portada.pdf tesis.pdf 
-
-

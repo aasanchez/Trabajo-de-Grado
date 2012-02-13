@@ -1,4 +1,0 @@
-\select@language {spanish}
-\contentsline {chapter}{Agradecimientos}{2}{section*.1}
-\contentsline {chapter}{\numberline {1}Introducci'on}{4}{chapter.1}
-\contentsline {chapter}{Bibliograf\'{\i }a}{7}{section*.4}
