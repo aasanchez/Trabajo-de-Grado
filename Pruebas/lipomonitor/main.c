@@ -4,12 +4,11 @@
 #FUSES NOMCLR, NOBROWNOUT, CCPB3
 #use delay(clock=8000000) 
 #use fast_io(a) 
-#use fast_io(b) 
-#use rs232 (baud =9600,XMIT =PIN_b5,RCV =PIN_b2,BITS =8,PARITY =N) 
+#use fast_io(b)
 #byte porta=0x05 
-#define CELDA1_PIN PIN_B0
-#define CELDA2_PIN PIN_B1
-#define CELDA3_PIN PIN_B4
+#define CELDA1_LED PIN_B0
+#define CELDA2_LED PIN_B1
+#define CELDA3_LED PIN_B2
 
    INT celda1;
    INT celda2;
@@ -24,8 +23,9 @@ void main(){
    
    setup_ccp1(ccp_pwm); 
    setup_timer_2(t2_div_by_1,124,1); 
+   set_pwm1_duty(0);
    WHILE (1){
-      // inicio bucle infinito
+      // inicio bucle infinito   
       set_adc_channel (0);
       delay_ms (10) ;
       celda1 = read_adc ();
@@ -35,41 +35,28 @@ void main(){
       set_adc_channel (2);
       delay_ms (10) ;
       celda3 = read_adc ();
-      printf ("a --- > %03u %03u %03u\n\r", celda1, celda2, celda3);
       if (celda1 <= 168){
-          output_low(CELDA1_PIN);
+          output_low(CELDA1_LED);
       }else{
-          output_high(CELDA1_PIN);
+          output_high(CELDA1_LED);
       }
       if (celda2 <= 168){
-          output_low(CELDA2_PIN);
+          output_low(CELDA2_LED);
       }else{
-          output_high(CELDA2_PIN);
+          output_high(CELDA2_LED);
       }
       if (celda3 <= 168){
-          output_low(CELDA3_PIN);
-      }else{
-          output_high(CELDA3_PIN);
+          output_low(CELDA3_LED);
           set_pwm1_duty(512);
+      }else{
+          output_high(CELDA3_LED);
+          set_pwm1_duty(0);
       }
-      delay_ms (1000);
+      if ((celda1 <= 168)||(celda2 <= 168)||(celda3 <= 168)){
+          set_pwm1_duty(512);
+      }else{
+          set_pwm1_duty(0);
+      }      
+      delay_ms (10);
    }
 }
-/*
-Inserted into .h file:
-
-#define LED PIN_B0
-#define DELAY 1000
-
-
-Inserted into .c file in main():
-
-
-    //Example blinking LED program
-    while(true){
-      output_low(LED);
-      delay_ms(DELAY);
-      output_high(LED);
-      delay_ms(DELAY);
-    }
-*/
