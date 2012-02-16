@@ -1,0 +1,155 @@
+CCS PCM C Compiler, Version 4.114, 93502757               15-feb-12 17:25
+
+               Filename: C:\Users\Alexis Sánchez\Electronica\lipomonitor\main.lst
+
+               ROM used: 276 words (7%)
+                         Largest free fragment is 2048
+               RAM used: 6 (2%) at main() level
+                         11 (3%) worst case
+               Stack:    2 locations
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   0C0
+0003:  NOP
+.................... #include <16F88.H>  
+.................... //////// Standard Header file for the PIC16F88 device //////////////// 
+.................... #device PIC16F88 
+.................... #list 
+....................  
+.................... #device adc=8 
+.................... #FUSES INTRC, NOWDT, NOLVP, NOCPD, NOWRT, NODEBUG, NOPROTECT, NOFCMEN, NOIESO  
+.................... #FUSES NOMCLR, NOBROWNOUT, CCPB3 
+.................... #use delay(clock=8000000)  
+00AB:  MOVLW  21
+00AC:  MOVWF  04
+00AD:  BCF    03.7
+00AE:  MOVF   00,W
+00AF:  BTFSC  03.2
+00B0:  GOTO   0BE
+00B1:  MOVLW  02
+00B2:  MOVWF  78
+00B3:  CLRF   77
+00B4:  DECFSZ 77,F
+00B5:  GOTO   0B4
+00B6:  DECFSZ 78,F
+00B7:  GOTO   0B3
+00B8:  MOVLW  97
+00B9:  MOVWF  77
+00BA:  DECFSZ 77,F
+00BB:  GOTO   0BA
+00BC:  DECFSZ 00,F
+00BD:  GOTO   0B1
+00BE:  BCF    0A.3
+00BF:  GOTO   112 (RETURN)
+.................... #use fast_io(a)  
+.................... #use fast_io(b)  
+.................... #use rs232 (baud =9600,XMIT =PIN_b5,RCV =PIN_b2,BITS =8,PARITY =N)  
+.................... #byte porta=0x05  
+....................  
+.................... int canal0=0;  
+.................... void main(){ 
+00C0:  CLRF   04
+00C1:  BCF    03.7
+00C2:  MOVLW  1F
+00C3:  ANDWF  03,F
+00C4:  MOVLW  72
+00C5:  BSF    03.5
+00C6:  MOVWF  0F
+00C7:  MOVF   0F,W
+00C8:  MOVLW  0C
+00C9:  MOVWF  19
+00CA:  MOVLW  A2
+00CB:  MOVWF  18
+00CC:  MOVLW  90
+00CD:  BCF    03.5
+00CE:  MOVWF  18
+00CF:  CLRF   20
+00D0:  BSF    03.5
+00D1:  BCF    1F.4
+00D2:  BCF    1F.5
+00D3:  MOVF   1B,W
+00D4:  ANDLW  80
+00D5:  MOVWF  1B
+00D6:  MOVLW  07
+00D7:  MOVWF  1C
+....................    porta = 0; 
+00D8:  BCF    03.5
+00D9:  CLRF   05
+....................    set_tris_a (0xff) ; 
+00DA:  MOVLW  FF
+00DB:  BSF    03.5
+00DC:  MOVWF  05
+....................    set_tris_b (0x00); // 
+00DD:  MOVLW  00
+00DE:  MOVWF  06
+....................    setup_adc_ports (san0) ; 
+00DF:  BCF    1F.4
+00E0:  BCF    1F.5
+00E1:  MOVF   1B,W
+00E2:  ANDLW  80
+00E3:  IORLW  01
+00E4:  MOVWF  1B
+....................    setup_adc (adc_clock_div_8) ; 
+00E5:  BCF    1F.6
+00E6:  BCF    03.5
+00E7:  BSF    1F.6
+00E8:  BCF    1F.7
+00E9:  BSF    03.5
+00EA:  BCF    1F.7
+00EB:  BCF    03.5
+00EC:  BSF    1F.0
+....................    set_adc_channel (0) ; 
+00ED:  MOVLW  00
+00EE:  MOVWF  78
+00EF:  MOVF   1F,W
+00F0:  ANDLW  C7
+00F1:  IORWF  78,W
+00F2:  MOVWF  1F
+....................  
+....................    WHILE (1){ 
+....................       // inicio bucle infinito 
+....................       canal0 = read_adc () ; 
+00F3:  BSF    1F.2
+00F4:  BTFSC  1F.2
+00F5:  GOTO   0F4
+00F6:  MOVF   1E,W
+00F7:  MOVWF  20
+....................       printf("a --->%03u\n\r",canal0); 
+00F8:  MOVLW  04
+00F9:  BSF    03.6
+00FA:  MOVWF  0D
+00FB:  MOVLW  00
+00FC:  MOVWF  0F
+00FD:  BCF    03.0
+00FE:  MOVLW  06
+00FF:  BCF    03.6
+0100:  MOVWF  21
+0101:  GOTO   00B
+0102:  MOVF   20,W
+0103:  MOVWF  21
+0104:  MOVLW  03
+0105:  MOVWF  22
+0106:  GOTO   072
+0107:  MOVLW  0A
+0108:  BTFSS  0C.4
+0109:  GOTO   108
+010A:  MOVWF  19
+010B:  MOVLW  0D
+010C:  BTFSS  0C.4
+010D:  GOTO   10C
+010E:  MOVWF  19
+....................       delay_ms(100) ; 
+010F:  MOVLW  64
+0110:  MOVWF  21
+0111:  GOTO   0AB
+....................    } 
+0112:  GOTO   0F3
+.................... } 
+....................  
+0113:  SLEEP
+
+Configuration Fuses:
+   Word  1: 2F11   NOWDT PUT INTRC NOMCLR NOBROWNOUT NOLVP NOCPD NOWRT NODEBUG CCPB3 NOPROTECT
+   Word  2: 3FFC   NOFCMEN NOIESO

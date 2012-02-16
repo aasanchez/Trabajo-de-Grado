@@ -13,15 +13,15 @@ class Metodos(QtGui.QMainWindow):
         self.ventana=Ui_MainWindow()
         self.ventana.setupUi(self)
         
-        self.setWindowTitle("Nombre del frame")
+        self.setWindowTitle("BP")
         
         #color de fondo
         self.ventana.qwtPlot.setCanvasBackground(Qt.black)
         
         #leyendas
-        self.ventana.qwtPlot.setTitle("Titulo")
-        self.ventana.qwtPlot.setAxisTitle(Qwt.QwtPlot.yLeft, "leyenda y")
-        self.ventana.qwtPlot.setAxisTitle(Qwt.QwtPlot.xBottom, "leyenda x")
+        self.ventana.qwtPlot.setTitle("Grafica de Señales Giroscopo")
+        self.ventana.qwtPlot.setAxisTitle(Qwt.QwtPlot.yLeft, "Lectura")
+        self.ventana.qwtPlot.setAxisTitle(Qwt.QwtPlot.xBottom, "Tiempo")
         
         #aplicar leyendas
         self.ventana.qwtPlot.insertLegend(Qwt.QwtLegend(), Qwt.QwtPlot.BottomLegend)

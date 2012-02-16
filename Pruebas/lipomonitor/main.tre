@@ -1,0 +1,8 @@
+юдmain
+   юдmain  0/84  Ram=0
+      цд??0??
+      цд@PSTRINGCN7_9600_53_50  0/82  Ram=4
+      цд@PRINTF_U_9600_53_50  0/57  Ram=2
+      Ё  цд@DIV88  0/21  Ram=3
+      Ё  юд@DIV88  0/21  Ram=3
+      юд@delay_ms1  0/21  Ram=1

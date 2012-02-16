@@ -1,0 +1,69 @@
+004     @WRITE_PROGRAM_MEMORY8.P1
+004-005 @READ_PROGRAM_MEMORY8.P2
+005     porta
+015     CCP_1_LOW
+015     CCP_1
+016     CCP_1_HIGH
+020     canal0
+021     @PRINTF_U_9600_53_50.P1
+021     @delay_ms1.P2
+021     @PSTRINGCN7_9600_53_50.P3
+022     @PRINTF_U_9600_53_50.P1
+022     @PSTRINGCN7_9600_53_50.@SCRATCH1
+023     @DIV88.P1
+023     @PSTRINGCN7_9600_53_50.@SCRATCH2
+024     @DIV88.P1
+024     @PSTRINGCN7_9600_53_50.@SCRATCH3
+025     @DIV88.@SCRATCH1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+09C.6   C1OUT
+09C.7   C2OUT
+10D-10E @READ_PROGRAM_MEMORY8.P1
+10D-10E @WRITE_PROGRAM_MEMORY8.P2
+
+ROM Allocation:
+00AB  @delay_ms1
+00C0  main
+0004  @const69
+000B  @PSTRINGCN7_9600_53_50
+005D  @DIV88
+0072  @PRINTF_U_9600_53_50
+00C0  @cinit
+
+
+User Memory space: 
+
+User Memory space: 
+
+Project Directory:
+    C:\Users\Alexis Sánchez\Electronica\lipomonitor\
+
+Project Files:
+    main.c
+    ..\..\..\..\Program Files\PICC\devices\16F88.H
+
+Units:
+    C:\Users\Alexis Sánchez\Electronica\lipomonitor\main (main)
+
+Compiler Settings:
+    Processor:      PIC16F88
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    Errors:      main.err
+    Ext Symbols: main.esym
+    INHX8:       main.hex
+    Symbols:     main.sym
+    List:        main.lst
+    Debug/COFF:  main.cof
+    Project:     main.PJT
+    Call Tree:   main.tre
+    Statistics:  main.sta

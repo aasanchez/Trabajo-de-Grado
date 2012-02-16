@@ -1,0 +1,27 @@
+[PROJECT]
+Target=C:\Users\Alexis Sánchez\Electronica\lipomonitor\main.hex
+Development_Mode=
+Processor_Text=PIC16F88
+ToolSuite=CCS
+Processor=0x688F
+[C:\Users\Alexis Sánchez\Electronica\lipomonitor\main]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+[mru-list]
+1=C:\Users\Alexis Sánchez\Electronica\lipomonitor\main.c
+[Windows]
+0=0000 %S 0 0 796 451 3 0
+[Units]
+Link=0
+Count=1
+1=C:\Users\Alexis Sánchez\Electronica\lipomonitor\main
+[Opened Files]
+1=main.c
+2=
+[documentation]
+template=C:\Program Files\PICC\template_sdd.rtf
+output=main.rtf

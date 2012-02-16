@@ -1,0 +1,185 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1033\deflangfe1033\deftab709{\fonttbl{\f0\fswiss\fprq2\fcharset0 Arial;}{\f1\froman\fprq2\fcharset0 Times New Roman;}{\f2\fswiss\fprq2\fcharset0 Tahoma;}}{\*\generator Msftedit 5.41.15.1507;}\viewkind4\uc1
+\pard\nowidctlpar\f0\fs24
+\par\f1
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\pard\nowidctlpar\qc\b\f0\fs32 Software Development Document
+\par\b0\f1\fs24
+\par\b\f0\fs32 for
+\par\b0\f1\fs24
+\par\b\f0\fs32 %PROJECTTITLE%
+\par
+\pard\nowidctlpar\b0\f1\fs24
+\par\f0
+\par\f1
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\par
+\pard\nowidctlpar\qc\f0 Prepared by:  %DEVELOPER%
+\par
+\pard\nowidctlpar\f1
+\par\f0
+\par\f1
+\par
+\pard\nowidctlpar\qc\f0 %COMPANY%
+\par
+\pard\nowidctlpar\f1
+\par
+\par\page
+\pard\keepn\nowidctlpar\sb240\sa120\f0
+\par
+\pard\keepn\nowidctlpar\li720\sb240\sa120\b\fs32 Table of Contents
+\par
+\pard\nowidctlpar\b0\fs24
+\par\f1
+\par\page\f0
+\par
+\par
+\pard\nowidctlpar\li720\f2 1.\f0 Scope
+\par
+\pard\nowidctlpar\tab\tab 1.1 Identification
+\par         \tab\tab The formal name for this project is: %PROJECTTITLE%
+\par\tab\tab The electronic name is: main
+\par\tab\tab Date when project was created:%DATE_CREATED%
+\par
+\pard\nowidctlpar\li1440 Dates when changes were made: \f1 %CHANGES%
+\par
+\pard\nowidctlpar\li720\f0
+\par\tab 1.2 Purpose
+\par
+\pard\nowidctlpar\tab\tab %PURPOSE%
+\par
+\pard\nowidctlpar\li720\tab 1.3 Introduction
+\par
+\pard\nowidctlpar\tab\tab This document describes the detailed design for this project.  
+\par
+\par
+\pard\nowidctlpar\li720\f2 2.\tab\f0 Referenced Documents
+\par\tab 2.1 Related Documentation
+\par             %REFERENCES%
+\par
+\pard\nowidctlpar
+\par
+\pard\nowidctlpar\li720\tab 2.2 Project Source Files
+\par
+\pard\nowidctlpar
+\par\tab\tab main.c
+\par\tab\tab ..\\..\\..\\..\\Program Files\\PICC\\devices\\16F88.H
+\par
+\par\tab\tab 2.3 Project Output File
+\par\tab\tab main.err
+\par\tab\tab main.esym
+\par\tab\tab main.hex
+\par\tab\tab main.sym
+\par\tab\tab main.lst
+\par\tab\tab main.cof
+\par\tab\tab main.PJT
+\par\tab\tab main.tre
+\par\tab\tab main.sta
+\par
+\par
+\pard\nowidctlpar\li720\f2 3. \f0 Requirements
+\par
+\pard\nowidctlpar\li630\tab\tab 3.1 Program Overview
+\par
+\pard\nowidctlpar\li1080       %OVERVIEW%
+\par
+\pard\nowidctlpar
+\par\tab\tab 3.2  Global Data
+\par\tab\tab 3.2.1 Constants
+\par\tab\tab\tab
+\par
+\trowd\trgaph10\trleft2880\trqc\trpaddl10\trpaddr10\trpaddfl3\trpaddfr3\clbrdrl\brdrw15\brdrs\clbrdrt\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx5515\clbrdrl\brdrw15\brdrs\clbrdrt\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx8198\clbrdrl\brdrw15\brdrs\clbrdrt\brdrw15\brdrs\clbrdrr\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx12185\pard\intbl\nowidctlpar\b Identifier\cell Type\cell Description\cell\row
+\trowd\trgaph10\trleft2880\trqc\trpaddl10\trpaddr10\trpaddfl3\trpaddfr3\clbrdrl\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx5515\clbrdrl\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx8198\clbrdrl\brdrw15\brdrs\clbrdrr\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx12185\pard\intbl\nowidctlpar\b0\f1  __PCM__\cell  4.114\cell  \cell\row
+\trowd\trgaph10\trleft2880\trqc\trpaddl10\trpaddr10\trpaddfl3\trpaddfr3\clbrdrl\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx5515\clbrdrl\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx8198\clbrdrl\brdrw15\brdrs\clbrdrr\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx12185\pard\intbl\nowidctlpar\b0\f1  __DEVICE__\cell  88\cell  \cell\row
+\trowd\trgaph10\trleft2880\trqc\trpaddl10\trpaddr10\trpaddfl3\trpaddfr3\clbrdrl\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx5515\clbrdrl\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx8198\clbrdrl\brdrw15\brdrs\clbrdrr\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx12185\pard\intbl\nowidctlpar\b0\f1  __DATE__\cell  15-feb-12\cell  \cell\row
+\trowd\trgaph10\trleft2880\trqc\trpaddl10\trpaddr10\trpaddfl3\trpaddfr3\clbrdrl\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx5515\clbrdrl\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx8198\clbrdrl\brdrw15\brdrs\clbrdrr\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx12185\pard\intbl\nowidctlpar\b0\f1  __TIME__\cell  15:51:11\cell  Standard Header file for the PIC16F88 device ////////////////\cell\row
+\pard\nowidctlpar\f0
+\par\tab
+\par\tab\tab 3.2.2 Types
+\par
+\trowd\trgaph10\trleft2880\trqc\trpaddl10\trpaddr10\trpaddfl3\trpaddfr3\clbrdrl\brdrw15\brdrs\clbrdrt\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx5515\clbrdrl\brdrw15\brdrs\clbrdrt\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx8198\clbrdrl\brdrw15\brdrs\clbrdrt\brdrw15\brdrs\clbrdrr\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx12185\pard\intbl\nowidctlpar\b Identifier\cell Type\cell Description\cell\row
+\trowd\trgaph10\trleft2880\trqc\trpaddl10\trpaddr10\trpaddfl3\trpaddfr3\clbrdrl\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx5515\clbrdrl\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx8198\clbrdrl\brdrw15\brdrs\clbrdrr\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx12185\pard\intbl\nowidctlpar\b0\f1  \cell  \cell  \cell\row
+\pard\nowidctlpar\f0
+\par
+\par\tab\tab 3.2.3 Variables
+\par
+\par
+\trowd\trgaph10\trleft2880\trqc\trpaddl10\trpaddr10\trpaddfl3\trpaddfr3\clbrdrl\brdrw15\brdrs\clbrdrt\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx5515\clbrdrl\brdrw15\brdrs\clbrdrt\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx8198\clbrdrl\brdrw15\brdrs\clbrdrt\brdrw15\brdrs\clbrdrr\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx12185\pard\intbl\nowidctlpar\b Identifier\cell Type\cell Description\cell\row
+\trowd\trgaph10\trleft2880\trqc\trpaddl10\trpaddr10\trpaddfl3\trpaddfr3\clbrdrl\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx5515\clbrdrl\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx8198\clbrdrl\brdrw15\brdrs\clbrdrr\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx12185\pard\intbl\nowidctlpar\b0\f1  valor\cell  int8\cell  \cell\row
+\pard\nowidctlpar\f0
+\par
+\par
+\pard\nowidctlpar\fi-360\li1147\f2\tab 3.3\tab\f0 Detailed Design
+\par
+\pard\nowidctlpar\tab\tab\tab 
+\par
+\pard\nowidctlpar\fi-360\li1506\f2    3.3.1\tab\f0 main
+\par     \f2 3.3.1.1\tab\f0 Requirements
+\par
+\pard\nowidctlpar\fi709\li2127 
+\par
+\pard\nowidctlpar
+\par\tab\tab\tab\tab Author: %AUTHOR%
+\par\tab\tab\tab\tab Purpose: %PURPOSE%
+\par\tab\tab\tab\tab Date Created:%DATE_CREATED%
+\par\tab\tab\tab\tab Changes:%CHANGES%
+\par
+\pard\nowidctlpar\fi-360\li1866
+\par
+\pard\nowidctlpar\fi-360\li1440      \f2 3.3.1.2\tab\f0  Local Data
+\par
+\pard\nowidctlpar\li2880
+\par
+\trowd\trgaph10\trleft2880\trqc\trpaddl10\trpaddr10\trpaddfl3\trpaddfr3\clbrdrl\brdrw15\brdrs\clbrdrt\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx5515\clbrdrl\brdrw15\brdrs\clbrdrt\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx8198\clbrdrl\brdrw15\brdrs\clbrdrt\brdrw15\brdrs\clbrdrr\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx12185\pard\intbl\nowidctlpar\b Identifier\cell Type\cell Description\cell\row
+\trowd\trgaph10\trleft2880\trqc\trpaddl10\trpaddr10\trpaddfl3\trpaddfr3\clbrdrl\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx5515\clbrdrl\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx8198\clbrdrl\brdrw15\brdrs\clbrdrr\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx12185\pard\intbl\nowidctlpar\b0\f1  \cell  \cell  \cell\row
+\pard\nowidctlpar\li2880\f0
+\par
+\par
+\pard\nowidctlpar\li3510
+\par
+\pard\nowidctlpar\tab\tab 3.3.1.3\tab Local Constants
+\par
+\par
+\trowd\trgaph10\trleft2880\trqc\trpaddl10\trpaddr10\trpaddfl3\trpaddfr3\clbrdrl\brdrw15\brdrs\clbrdrt\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx5515\clbrdrl\brdrw15\brdrs\clbrdrt\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx8198\clbrdrl\brdrw15\brdrs\clbrdrt\brdrw15\brdrs\clbrdrr\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx12185\pard\intbl\nowidctlpar\b Identifier\cell Type\cell Description\cell\row
+\trowd\trgaph10\trleft2880\trqc\trpaddl10\trpaddr10\trpaddfl3\trpaddfr3\clbrdrl\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx5515\clbrdrl\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx8198\clbrdrl\brdrw15\brdrs\clbrdrr\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx12185\pard\intbl\nowidctlpar\b0\f1  \cell  \cell  \cell\row
+\pard\nowidctlpar\f0
+\par\tab\tab 3.3.1.4\tab Local Types
+\par
+\par
+\trowd\trgaph10\trleft2880\trqc\trpaddl10\trpaddr10\trpaddfl3\trpaddfr3\clbrdrl\brdrw15\brdrs\clbrdrt\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx5515\clbrdrl\brdrw15\brdrs\clbrdrt\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx8198\clbrdrl\brdrw15\brdrs\clbrdrt\brdrw15\brdrs\clbrdrr\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx12185\pard\intbl\nowidctlpar\b Identifier\cell Type\cell Description\cell\row
+\trowd\trgaph10\trleft2880\trqc\trpaddl10\trpaddr10\trpaddfl3\trpaddfr3\clbrdrl\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx5515\clbrdrl\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx8198\clbrdrl\brdrw15\brdrs\clbrdrr\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx12185\pard\intbl\nowidctlpar\b0\f1  \cell  \cell  \cell\row
+\pard\nowidctlpar\f0
+\par
+\par\tab\tab 
+\par
+\par\tab 4.0 Functions
+\par
+\par
+\trowd\trgaph10\trleft2880\trqc\trpaddl10\trpaddr10\trpaddfl3\trpaddfr3\clbrdrl\brdrw15\brdrs\clbrdrt\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx5515\clbrdrl\brdrw15\brdrs\clbrdrt\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx8198\clbrdrl\brdrw15\brdrs\clbrdrt\brdrw15\brdrs\clbrdrr\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx12185\pard\intbl\nowidctlpar\b Function Name\cell Description\cell\cell\row
+\trowd\trgaph10\trleft2880\trqc\trpaddl10\trpaddr10\trpaddfl3\trpaddfr3\clbrdrl\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx5515\clbrdrl\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx8198\clbrdrl\brdrw15\brdrs\clbrdrr\brdrw15\brdrs\clbrdrb\brdrw15\brdrs \cellx12185\pard\intbl\nowidctlpar\b0\f1  main\cell  \cell\cell\row
+\pard\nowidctlpar\f0
+\par
+\par
+\par}

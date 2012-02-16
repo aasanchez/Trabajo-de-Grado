@@ -1,0 +1,48 @@
+
+ROM used: 276 (7%)
+          276 (7%) including unused fragments
+
+          1 Average locations per line
+          25 Average locations per statement
+
+RAM used: 6 (2%) at main() level
+          11 (3%) worst case
+
+Stack used: 2 worst case (out of 8 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   28    11 100  main.c
+  322     0   0  ..\..\..\..\Program Files\PICC\devices\16F88.H
+----- -----
+  350    11 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     21   8   1             @delay_ms1
+0     84  30   0   219  2.6  main
+0      7   3   0             @const69
+0     82  30   4             @PSTRINGCN7_9600_53_50
+0     21   8   3             @DIV88
+0     57  21   2             @PRINTF_U_9600_53_50
+
+Program metrics:
+    Functions               1
+    Statements              11
+    Comments                84
+    Volume (V)              229
+    Difficilty (D)          2.1
+    Effort to implement (E) 491
+    Time to implement (T)   0 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    154
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF   272  1772  
+00800-00FFF     0  2048  
+
+
+
