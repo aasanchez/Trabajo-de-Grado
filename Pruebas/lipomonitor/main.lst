@@ -1,17 +1,17 @@
-CCS PCM C Compiler, Version 4.114, 93502757               15-feb-12 17:25
+CCS PCM C Compiler, Version 4.114, 93471994               15-feb-12 22:33
 
-               Filename: C:\Users\Alexis Sánchez\Electronica\lipomonitor\main.lst
+               Filename: Z:\Pruebas\lipomonitor\main.lst
 
-               ROM used: 276 words (7%)
+               ROM used: 332 words (8%)
                          Largest free fragment is 2048
-               RAM used: 6 (2%) at main() level
-                         11 (3%) worst case
+               RAM used: 9 (2%) at main() level
+                         13 (4%) worst case
                Stack:    2 locations
 
 *
 0000:  MOVLW  00
 0001:  MOVWF  0A
-0002:  GOTO   0C0
+0002:  GOTO   0C4
 0003:  NOP
 .................... #include <16F88.H>  
 .................... //////// Standard Header file for the PIC16F88 device //////////////// 
@@ -22,133 +22,196 @@ CCS PCM C Compiler, Version 4.114, 93502757               15-feb-12 17:25
 .................... #FUSES INTRC, NOWDT, NOLVP, NOCPD, NOWRT, NODEBUG, NOPROTECT, NOFCMEN, NOIESO  
 .................... #FUSES NOMCLR, NOBROWNOUT, CCPB3 
 .................... #use delay(clock=8000000)  
-00AB:  MOVLW  21
-00AC:  MOVWF  04
-00AD:  BCF    03.7
-00AE:  MOVF   00,W
-00AF:  BTFSC  03.2
-00B0:  GOTO   0BE
-00B1:  MOVLW  02
-00B2:  MOVWF  78
-00B3:  CLRF   77
-00B4:  DECFSZ 77,F
-00B5:  GOTO   0B4
-00B6:  DECFSZ 78,F
-00B7:  GOTO   0B3
-00B8:  MOVLW  97
-00B9:  MOVWF  77
-00BA:  DECFSZ 77,F
-00BB:  GOTO   0BA
-00BC:  DECFSZ 00,F
-00BD:  GOTO   0B1
-00BE:  BCF    0A.3
-00BF:  GOTO   112 (RETURN)
+*
+0011:  MOVLW  24
+0012:  MOVWF  04
+0013:  BCF    03.7
+0014:  MOVF   00,W
+0015:  BTFSC  03.2
+0016:  GOTO   024
+0017:  MOVLW  02
+0018:  MOVWF  78
+0019:  CLRF   77
+001A:  DECFSZ 77,F
+001B:  GOTO   01A
+001C:  DECFSZ 78,F
+001D:  GOTO   019
+001E:  MOVLW  97
+001F:  MOVWF  77
+0020:  DECFSZ 77,F
+0021:  GOTO   020
+0022:  DECFSZ 00,F
+0023:  GOTO   017
+0024:  RETURN
 .................... #use fast_io(a)  
 .................... #use fast_io(b)  
 .................... #use rs232 (baud =9600,XMIT =PIN_b5,RCV =PIN_b2,BITS =8,PARITY =N)  
 .................... #byte porta=0x05  
 ....................  
-.................... int canal0=0;  
-.................... void main(){ 
-00C0:  CLRF   04
-00C1:  BCF    03.7
-00C2:  MOVLW  1F
-00C3:  ANDWF  03,F
-00C4:  MOVLW  72
-00C5:  BSF    03.5
-00C6:  MOVWF  0F
-00C7:  MOVF   0F,W
-00C8:  MOVLW  0C
-00C9:  MOVWF  19
-00CA:  MOVLW  A2
-00CB:  MOVWF  18
-00CC:  MOVLW  90
-00CD:  BCF    03.5
-00CE:  MOVWF  18
-00CF:  CLRF   20
-00D0:  BSF    03.5
-00D1:  BCF    1F.4
-00D2:  BCF    1F.5
-00D3:  MOVF   1B,W
-00D4:  ANDLW  80
-00D5:  MOVWF  1B
-00D6:  MOVLW  07
-00D7:  MOVWF  1C
-....................    porta = 0; 
-00D8:  BCF    03.5
-00D9:  CLRF   05
-....................    set_tris_a (0xff) ; 
-00DA:  MOVLW  FF
-00DB:  BSF    03.5
-00DC:  MOVWF  05
-....................    set_tris_b (0x00); // 
-00DD:  MOVLW  00
-00DE:  MOVWF  06
-....................    setup_adc_ports (san0) ; 
-00DF:  BCF    1F.4
-00E0:  BCF    1F.5
-00E1:  MOVF   1B,W
-00E2:  ANDLW  80
-00E3:  IORLW  01
-00E4:  MOVWF  1B
-....................    setup_adc (adc_clock_div_8) ; 
-00E5:  BCF    1F.6
-00E6:  BCF    03.5
-00E7:  BSF    1F.6
-00E8:  BCF    1F.7
-00E9:  BSF    03.5
-00EA:  BCF    1F.7
-00EB:  BCF    03.5
-00EC:  BSF    1F.0
-....................    set_adc_channel (0) ; 
-00ED:  MOVLW  00
-00EE:  MOVWF  78
-00EF:  MOVF   1F,W
-00F0:  ANDLW  C7
-00F1:  IORWF  78,W
-00F2:  MOVWF  1F
+....................    INT celda1; 
+....................    INT celda2; 
+....................    INT celda3; 
 ....................  
+.................... void main(){ 
+*
+00C4:  CLRF   04
+00C5:  BCF    03.7
+00C6:  MOVLW  1F
+00C7:  ANDWF  03,F
+00C8:  MOVLW  72
+00C9:  BSF    03.5
+00CA:  MOVWF  0F
+00CB:  MOVF   0F,W
+00CC:  MOVLW  0C
+00CD:  MOVWF  19
+00CE:  MOVLW  A2
+00CF:  MOVWF  18
+00D0:  MOVLW  90
+00D1:  BCF    03.5
+00D2:  MOVWF  18
+00D3:  BSF    03.5
+00D4:  BCF    1F.4
+00D5:  BCF    1F.5
+00D6:  MOVF   1B,W
+00D7:  ANDLW  80
+00D8:  MOVWF  1B
+00D9:  MOVLW  07
+00DA:  MOVWF  1C
+....................    porta = 0; 
+00DB:  BCF    03.5
+00DC:  CLRF   05
+....................    set_tris_a (0xff); 
+00DD:  MOVLW  FF
+00DE:  BSF    03.5
+00DF:  MOVWF  05
+....................    set_tris_b (0x00); // 
+00E0:  MOVLW  00
+00E1:  MOVWF  06
+....................    setup_adc_ports (ALL_ANALOG) ; 
+00E2:  BCF    1F.4
+00E3:  BCF    1F.5
+00E4:  MOVF   1B,W
+00E5:  ANDLW  80
+00E6:  IORLW  7F
+00E7:  MOVWF  1B
+....................    setup_adc (adc_clock_div_8); 
+00E8:  BCF    1F.6
+00E9:  BCF    03.5
+00EA:  BSF    1F.6
+00EB:  BCF    1F.7
+00EC:  BSF    03.5
+00ED:  BCF    1F.7
+00EE:  BCF    03.5
+00EF:  BSF    1F.0
+....................     
 ....................    WHILE (1){ 
 ....................       // inicio bucle infinito 
-....................       canal0 = read_adc () ; 
-00F3:  BSF    1F.2
-00F4:  BTFSC  1F.2
-00F5:  GOTO   0F4
-00F6:  MOVF   1E,W
-00F7:  MOVWF  20
-....................       printf("a --->%03u\n\r",canal0); 
-00F8:  MOVLW  04
-00F9:  BSF    03.6
-00FA:  MOVWF  0D
-00FB:  MOVLW  00
-00FC:  MOVWF  0F
-00FD:  BCF    03.0
-00FE:  MOVLW  06
-00FF:  BCF    03.6
-0100:  MOVWF  21
-0101:  GOTO   00B
-0102:  MOVF   20,W
-0103:  MOVWF  21
-0104:  MOVLW  03
-0105:  MOVWF  22
-0106:  GOTO   072
-0107:  MOVLW  0A
-0108:  BTFSS  0C.4
+....................       set_adc_channel (0); 
+00F0:  MOVLW  00
+00F1:  MOVWF  78
+00F2:  MOVF   1F,W
+00F3:  ANDLW  C7
+00F4:  IORWF  78,W
+00F5:  MOVWF  1F
+....................       delay_ms (10) ; 
+00F6:  MOVLW  0A
+00F7:  MOVWF  24
+00F8:  CALL   011
+....................       celda1 = read_adc (); 
+00F9:  BSF    1F.2
+00FA:  BTFSC  1F.2
+00FB:  GOTO   0FA
+00FC:  MOVF   1E,W
+00FD:  MOVWF  20
+....................       set_adc_channel (1); 
+00FE:  MOVLW  08
+00FF:  MOVWF  78
+0100:  MOVF   1F,W
+0101:  ANDLW  C7
+0102:  IORWF  78,W
+0103:  MOVWF  1F
+....................       delay_ms (10) ; 
+0104:  MOVLW  0A
+0105:  MOVWF  24
+0106:  CALL   011
+....................       celda2 = read_adc (); 
+0107:  BSF    1F.2
+0108:  BTFSC  1F.2
 0109:  GOTO   108
-010A:  MOVWF  19
-010B:  MOVLW  0D
-010C:  BTFSS  0C.4
-010D:  GOTO   10C
-010E:  MOVWF  19
-....................       delay_ms(100) ; 
-010F:  MOVLW  64
-0110:  MOVWF  21
-0111:  GOTO   0AB
+010A:  MOVF   1E,W
+010B:  MOVWF  21
+....................       set_adc_channel (2); 
+010C:  MOVLW  10
+010D:  MOVWF  78
+010E:  MOVF   1F,W
+010F:  ANDLW  C7
+0110:  IORWF  78,W
+0111:  MOVWF  1F
+....................       delay_ms (10) ; 
+0112:  MOVLW  0A
+0113:  MOVWF  24
+0114:  CALL   011
+....................       celda3 = read_adc (); 
+0115:  BSF    1F.2
+0116:  BTFSC  1F.2
+0117:  GOTO   116
+0118:  MOVF   1E,W
+0119:  MOVWF  22
+....................       printf ("a --- > %03u %03u %03u\n\r", celda1, celda2, celda3); 
+011A:  MOVLW  04
+011B:  BSF    03.6
+011C:  MOVWF  0D
+011D:  MOVLW  00
+011E:  MOVWF  0F
+011F:  BCF    03.0
+0120:  MOVLW  08
+0121:  BCF    03.6
+0122:  MOVWF  23
+0123:  GOTO   025
+0124:  MOVF   20,W
+0125:  MOVWF  23
+0126:  MOVLW  03
+0127:  MOVWF  24
+0128:  CALL   08C
+0129:  MOVLW  20
+012A:  BTFSS  0C.4
+012B:  GOTO   12A
+012C:  MOVWF  19
+012D:  MOVF   21,W
+012E:  MOVWF  23
+012F:  MOVLW  03
+0130:  MOVWF  24
+0131:  CALL   08C
+0132:  MOVLW  20
+0133:  BTFSS  0C.4
+0134:  GOTO   133
+0135:  MOVWF  19
+0136:  MOVF   22,W
+0137:  MOVWF  23
+0138:  MOVLW  03
+0139:  MOVWF  24
+013A:  CALL   08C
+013B:  MOVLW  0A
+013C:  BTFSS  0C.4
+013D:  GOTO   13C
+013E:  MOVWF  19
+013F:  MOVLW  0D
+0140:  BTFSS  0C.4
+0141:  GOTO   140
+0142:  MOVWF  19
+....................       delay_ms (1000); 
+0143:  MOVLW  04
+0144:  MOVWF  23
+0145:  MOVLW  FA
+0146:  MOVWF  24
+0147:  CALL   011
+0148:  DECFSZ 23,F
+0149:  GOTO   145
 ....................    } 
-0112:  GOTO   0F3
+014A:  GOTO   0F0
 .................... } 
 ....................  
-0113:  SLEEP
+014B:  SLEEP
 
 Configuration Fuses:
    Word  1: 2F11   NOWDT PUT INTRC NOMCLR NOBROWNOUT NOLVP NOCPD NOWRT NODEBUG CCPB3 NOPROTECT
