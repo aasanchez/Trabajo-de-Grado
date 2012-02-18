@@ -13,7 +13,7 @@ class Metodos(QtGui.QMainWindow):
         self.ventana=Ui_MainWindow()
         self.ventana.setupUi(self)
         
-        self.setWindowTitle("BP")
+        self.setWindowTitle("Graficador USB")
         
         #color de fondo
         self.ventana.qwtPlot.setCanvasBackground(Qt.black)
@@ -27,10 +27,10 @@ class Metodos(QtGui.QMainWindow):
         self.ventana.qwtPlot.insertLegend(Qwt.QwtLegend(), Qwt.QwtPlot.BottomLegend)
         
         
-        self.maximo=100  #máxima cantidad de valores en x, (en y es automático)
+        self.maximo=200  #máxima cantidad de valores en x, (en y es automático)
         self.primer_vez=True  #para controlar la conexión (ver iniciar())
         
-        self.frecuencia = 50
+        self.frecuencia = 5
         
         self.crear_lineas()
         self.crear_escalas()
@@ -59,7 +59,7 @@ class Metodos(QtGui.QMainWindow):
         #intenta conectarse con el primero que pueda de los primeros 20 puertos
         for port in range(20):
             try:
-                self.pinguino = serial.Serial('/dev/ttyACM%s' %port, timeout=1)
+                self.pinguino = serial.Serial('/dev/ttyUSB%s' %port, timeout=1)
                 return True
             except: pass
         return False
