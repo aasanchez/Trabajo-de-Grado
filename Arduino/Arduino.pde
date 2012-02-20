@@ -95,7 +95,7 @@ void loop()
     Serial.print(accel_y);  // echo the number received to screen
     Serial.print(",");    
     Serial.print(accel_z);  // echo the number received to screen    
+
     Serial.println("");     // prints carriage return
-    //delay(1000);
-    
+    delay(400);             // wait for a second   
 }

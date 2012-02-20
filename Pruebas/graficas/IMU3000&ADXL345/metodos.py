@@ -27,10 +27,10 @@ class Metodos(QtGui.QMainWindow):
         self.ventana.qwtPlot.insertLegend(Qwt.QwtLegend(), Qwt.QwtPlot.BottomLegend)
         
         
-        self.maximo=200  #máxima cantidad de valores en x, (en y es automático)
+        self.maximo=100  #máxima cantidad de valores en x, (en y es automático)
         self.primer_vez=True  #para controlar la conexión (ver iniciar())
         
-        self.frecuencia = 5
+        self.frecuencia = 20
         
         self.crear_lineas()
         self.crear_escalas()
