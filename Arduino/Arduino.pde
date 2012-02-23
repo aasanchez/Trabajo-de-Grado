@@ -11,9 +11,10 @@
 #define ADXL345_POWER_CTL 0x2D
 
 byte buffer[12];          // Array para almacenar los valdores del I2C
-int IMU[6];               //Valor Bruto del IMU 0:GiroX;1:GiroY;2:GiroX;3:AccelX;4:AccelY;5:Accel:6
-long tempIMU[6];           //Valor de Calibracion del IMU 0:GiroX;1:GiroY;2:GiroX;3:AccelX;4:AccelY;5:Accel:6
-int zeroIMU[6];           //Lectura Promedio del IMU; 0:GiroX;1:GiroY;2:GiroX;3:AccelX;4:AccelY;5:Accel:6
+int IMU[6];               //Valores del IMU 0:GiroX;1:GiroY;2:GiroX;3:AccelX;4:AccelY;5:Accel:6
+int zeroIMU[6];           //Resultado de Calibracion IMU, para puesta a 0; 0:GiroX;1:GiroY;2:GiroX;3:AccelX;4:AccelY;5:Accel:6
+long tempIMU[6];           //valores temporales de Calibracion del IMU 0:GiroX;1:GiroY;2:GiroX;3:AccelX;4:AccelY;5:Accel:6
+
 int i;
 
 #include <Wire.h>
@@ -101,7 +102,7 @@ void calibrarIMU(){
 }
 
 void setup(){
-  Serial.begin(9600); 
+  //Serial.begin(9600); 
   Wire.begin();
   configIMU();
   calibrarIMU(); 
@@ -124,22 +125,18 @@ void leerIMU(){
   //Dividimos y obtenemos el promdio y restamos el valor de Calibracion
   for(int n=0;n<=5;n++){ 
     IMU[n] = (tempIMU[n] / muestras)-zeroIMU[n];    
-  }   
+  }
 }
+
 void loop(){
   leerIMU();
-  Serial.print(IMU[0]);  // echo the number received to screen
-  Serial.print(",");
-  Serial.print(IMU[1]);  // echo the number received to screen
-  Serial.print(",");    
-  Serial.print(IMU[2]);  // echo the number received to screen 
-  Serial.print(",");     
   Serial.print(IMU[3]);  // echo the number received to screen
   Serial.print(",");
   Serial.print(IMU[4]);  // echo the number received to screen
   Serial.print(",");    
-  Serial.println(IMU[5]);  // echo the number received to screen     
+  Serial.println(IMU[5]);  // echo the number received to screen   
 }
+
 
 
 
