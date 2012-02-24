@@ -4,6 +4,7 @@
  Autor: Alexis Sanchez
  Creative Commons
  */
+#include <math.h>
 
 #define GYRO 0x68         // Direccion del Giroscopo para I2C
 #define REG_GYRO_X 0x1D   // Direccion para GYRO_XOUT_H en el IMU-3000 
@@ -11,10 +12,10 @@
 #define ADXL345_POWER_CTL 0x2D
 
 byte buffer[12];          // Array para almacenar los valdores del I2C
-int IMU[6];               //Valores del IMU 0:GiroX;1:GiroY;2:GiroX;3:AccelX;4:AccelY;5:Accel:6
-int zeroIMU[6];           //Resultado de Calibracion IMU, para puesta a 0; 0:GiroX;1:GiroY;2:GiroX;3:AccelX;4:AccelY;5:Accel:6
-long tempIMU[6];           //valores temporales de Calibracion del IMU 0:GiroX;1:GiroY;2:GiroX;3:AccelX;4:AccelY;5:Accel:6
-
+int IMU[6];               //Valores del IMU 0:GiroX;1:GiroY;2:GiroX;3:AccelX;4:AccelY;5:AccelZ
+int zeroIMU[6];           //Resultado de Calibracion IMU, para puesta a 0; 0:GiroX;1:GiroY;2:GiroX;3:AccelX;4:AccelY;5:AccelZ
+long tempIMU[6];           //valores temporales de Calibracion del IMU 0:GiroX;1:GiroY;2:GiroX;3:AccelX;4:AccelY;5:AccelZ
+int ACC_angle;
 int i;
 
 #include <Wire.h>
@@ -82,27 +83,28 @@ void calibrarIMU(){
   int muestras = 500;
   //Limpiamos el Vector
   for(int n=0;n<=5;n++){
-    zeroIMU[n] = 2;
+    zeroIMU[n] = 0;
   }
   for(int n=0;n<=5;n++){
-    tempIMU[n] = 2;
+    tempIMU[n] = 0;
   }
   //Sumamos para para el Promedio
   for(int n=0;n<muestras;n++){
     getIMU();
-    for(int n=0;n<=5;n++){ 
+    for(int n=0;n<5;n++){ 
       tempIMU[n] = tempIMU[n] + IMU[n];    
     }
   }
   //Dividimos y obtenemos el promdio
-  for(int n=0;n<=5;n++){ 
+  for(int n=0;n<5;n++){ 
     zeroIMU[n] = tempIMU[n] / muestras; 
-  } 
+  }
+  zeroIMU[5] = 0; //Correccion segun datasheet
 
 }
 
 void setup(){
-  //Serial.begin(9600); 
+  Serial.begin(9600); 
   Wire.begin();
   configIMU();
   calibrarIMU(); 
@@ -128,14 +130,55 @@ void leerIMU(){
   }
 }
 
-void loop(){
-  leerIMU();
+int getAccAngle() {
+  return arctan2(-IMU[5], -IMU[3]);    // in Quid: 1024/(2*PI))
+}
+
+int arctan2(int y, int x) {
+  int coeff_1 = 128;
+  int coeff_2 = 3*coeff_1;
+  float abs_y = abs(y)+1e-10;
+  float r, angle;
+
+  if (x >= 0) {
+    r = (x - abs_y) / (x + abs_y);
+    angle = coeff_1 - coeff_1 * r;
+  }  
+  else {
+    r = (x + abs_y) / (abs_y - x);
+    angle = coeff_2 - coeff_1 * r;
+  }
+  if (y < 0)      return int(-angle);
+  else            return int(angle);
+}
+
+void printADXL345(){
   Serial.print(IMU[3]);  // echo the number received to screen
   Serial.print(",");
   Serial.print(IMU[4]);  // echo the number received to screen
   Serial.print(",");    
-  Serial.println(IMU[5]);  // echo the number received to screen   
+  Serial.println(IMU[5]);  // echo the number received to screen     
 }
+
+void printIMU3000(){
+  Serial.print(IMU[0]);  // echo the number received to screen
+  Serial.print(",");
+  Serial.print(IMU[5]);  // echo the number received to screen
+  Serial.print(",");    
+  Serial.println(IMU[3]);  // echo the number received to screen     
+}
+
+void loop(){
+  leerIMU();
+  ACC_angle = getAccAngle();
+  Serial.print(ACC_angle);  // echo the number received to screen
+  Serial.print(",");
+  Serial.print(0);  // echo the number received to screen
+  Serial.print(",");    
+  Serial.println(0);  // echo the number received to screen     
+}
+
+
 
 
 

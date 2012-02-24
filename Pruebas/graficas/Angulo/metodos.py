@@ -13,13 +13,13 @@ class Metodos(QtGui.QMainWindow):
         self.ventana=Ui_MainWindow()
         self.ventana.setupUi(self)
         
-        self.setWindowTitle("BP")
+        self.setWindowTitle("Graficador USB")
         
         #color de fondo
         self.ventana.qwtPlot.setCanvasBackground(Qt.black)
         
         #leyendas
-        self.ventana.qwtPlot.setTitle("Grafica de Señales Giroscopo")
+        self.ventana.qwtPlot.setTitle("Nivel de Inclinacion")
         self.ventana.qwtPlot.setAxisTitle(Qwt.QwtPlot.yLeft, "Lectura")
         self.ventana.qwtPlot.setAxisTitle(Qwt.QwtPlot.xBottom, "Tiempo")
         
@@ -30,7 +30,7 @@ class Metodos(QtGui.QMainWindow):
         self.maximo=100  #máxima cantidad de valores en x, (en y es automático)
         self.primer_vez=True  #para controlar la conexión (ver iniciar())
         
-        self.frecuencia = 50
+        self.frecuencia = 20
         
         self.crear_lineas()
         self.crear_escalas()
@@ -57,9 +57,9 @@ class Metodos(QtGui.QMainWindow):
     #----------------------------------------------------------------------
     def conectarPinguino(self):
         #intenta conectarse con el primero que pueda de los primeros 20 puertos
-        for port in range(20):
+        for port in range(3):
             try:
-                self.pinguino = serial.Serial('/dev/ttyACM%s' %port, timeout=1)
+                self.pinguino = serial.Serial('/dev/ttyUSB%s' %port, timeout=1)
                 return True
             except: pass
         return False
@@ -72,35 +72,22 @@ class Metodos(QtGui.QMainWindow):
         valores_1=zeros(len(self.cantidad_valores))#,Float)
         valores_2=zeros(len(self.cantidad_valores))
         valores_3=zeros(len(self.cantidad_valores))
-        valores_4=zeros(len(self.cantidad_valores))
-        valores_5=zeros(len(self.cantidad_valores))
-        valores_6=zeros(len(self.cantidad_valores))
-        self.all_valores=[valores_1, valores_2, valores_3, valores_4, valores_5, valores_6]
+        self.all_valores=[valores_1, valores_2, valores_3]
         
     #----------------------------------------------------------------------
     def crear_lineas(self):
         #se crean cada linea que se va a graficar y se le asigna un color,
-        #al final se agregan todas en una lista y se activan (attach)
+        #al final se agregan todas en una lista y se activan (attach)      
+        valor1=Qwt.QwtPlotCurve("ACC Angle")
+        valor1.setPen(QPen(Qt.red))
         
-        valor1=Qwt.QwtPlotCurve("valor1")
-        valor1.setPen(QPen(Qt.cyan)) 
+        valor2=Qwt.QwtPlotCurve("Acelerometro Z")
+        valor2.setPen(QPen(Qt.blue))
         
-        valor2=Qwt.QwtPlotCurve("valor2")
-        valor2.setPen(QPen(Qt.magenta))
+        valor3=Qwt.QwtPlotCurve("Acelerometro X")
+        valor3.setPen(QPen(Qt.yellow))
         
-        valor3=Qwt.QwtPlotCurve("valor3")
-        valor3.setPen(QPen(Qt.green))
-        
-        valor4=Qwt.QwtPlotCurve("valor4")
-        valor4.setPen(QPen(Qt.red))
-        
-        valor5=Qwt.QwtPlotCurve("valor5")
-        valor5.setPen(QPen(Qt.blue))
-        
-        valor6=Qwt.QwtPlotCurve("valor6")
-        valor6.setPen(QPen(Qt.yellow))
-        
-        self.all_lineas=[valor1, valor2, valor3, valor4, valor5, valor6]
+        self.all_lineas=[valor1, valor2, valor3]
         for linea in self.all_lineas:  linea.attach(self.ventana.qwtPlot) 
         
     #----------------------------------------------------------------------
@@ -133,11 +120,13 @@ class Metodos(QtGui.QMainWindow):
         
         data_int_list = map(lambda i : int (i), [i for i in data_string_list if i != ""])
 
-        if len(data_int_list) == 6:
+        if len(data_int_list) == 3:
             #depronto sea útil ver los valores en la statusbar :)
             self.ventana.statusBar.showMessage(str(data_int_list))
             return data_int_list
-        else: return [0, 0, 0, 0, 0, 0]  #por si ha ocurrido un error
+        else: 
+			return [0, 0, 0]  #por si ha ocurrido un error
+			print 'Error'
         
             
     #----------------------------------------------------------------------
@@ -152,7 +141,7 @@ class Metodos(QtGui.QMainWindow):
     
         if not self.pause:
             data = self.getData()
-            for i in range(6):
+            for i in range(3):
                 value = data[i]
                 
                 if self.valor<self.maximo: self.all_valores[i][self.valor]=value
