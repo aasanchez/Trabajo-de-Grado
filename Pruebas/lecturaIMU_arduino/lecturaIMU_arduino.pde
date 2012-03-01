@@ -24,7 +24,6 @@ int i;
 void setup()
 {
     Serial.begin(9600); 
-    
     Wire.begin();
     // Set Gyro settings
     // Sample Rate 1kHz, Filter Bandwidth 42Hz, Gyro Range 500 d/s 
@@ -96,6 +95,6 @@ void loop()
     Serial.print(",");    
     Serial.print(accel_z);  // echo the number received to screen    
     Serial.println("");     // prints carriage return
-    //delay(1000);
+    delay(10);
     
 }

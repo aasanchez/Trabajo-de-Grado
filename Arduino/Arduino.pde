@@ -17,7 +17,7 @@ int zeroIMU[6];           //Resultado de Calibracion IMU, para puesta a 0; 0:Gir
 long tempIMU[6];           //valores temporales de Calibracion del IMU 0:GiroX;1:GiroY;2:GiroX;3:AccelX;4:AccelY;5:AccelZ
 int ACC_angle;
 int i;
-
+int RunLed = 13;          //Led de inicio codigo
 #include <Wire.h>
 
 void configIMU(){
@@ -104,10 +104,13 @@ void calibrarIMU(){
 }
 
 void setup(){
-  Serial.begin(9600); 
-  Wire.begin();
-  configIMU();
-  calibrarIMU(); 
+  pinMode(RunLed, OUTPUT);
+  digitalWrite(RunLed, LOW);
+  Serial.begin(9600);             //Declaramos la comunicacion Serial
+  Wire.begin();                   //Iniciamos la comunicacion I2C
+  configIMU();                    //Configuramos el IMU3000
+  calibrarIMU();                  //Calibramos el sensor con los valores actuales
+  digitalWrite(RunLed, HIGH);  
 }
 
 void leerIMU(){
@@ -131,7 +134,7 @@ void leerIMU(){
 }
 
 int getAccAngle() {
-  return arctan2(-IMU[5], -IMU[3]);    // in Quid: 1024/(2*PI))
+  return arctan2(-IMU[5], -IMU[3]) + 256;    // En Quids
 }
 
 int arctan2(int y, int x) {
@@ -152,30 +155,14 @@ int arctan2(int y, int x) {
   else            return int(angle);
 }
 
-void printADXL345(){
-  Serial.print(IMU[3]);  // echo the number received to screen
-  Serial.print(",");
-  Serial.print(IMU[4]);  // echo the number received to screen
-  Serial.print(",");    
-  Serial.println(IMU[5]);  // echo the number received to screen     
-}
-
-void printIMU3000(){
-  Serial.print(IMU[0]);  // echo the number received to screen
-  Serial.print(",");
-  Serial.print(IMU[5]);  // echo the number received to screen
-  Serial.print(",");    
-  Serial.println(IMU[3]);  // echo the number received to screen     
-}
-
 void loop(){
   leerIMU();
   ACC_angle = getAccAngle();
   Serial.print(ACC_angle);  // echo the number received to screen
   Serial.print(",");
-  Serial.print(0);  // echo the number received to screen
+  Serial.print(IMU[5]);  // echo the number received to screen
   Serial.print(",");    
-  Serial.println(0);  // echo the number received to screen     
+  Serial.println(IMU[3]);  // echo the number received to screen   
 }
 
 
