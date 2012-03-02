@@ -5,20 +5,36 @@
  Creative Commons
  */
 #include <math.h>
+#include <Wire.h>
 
 #define GYRO 0x68         // Direccion del Giroscopo para I2C
 #define REG_GYRO_X 0x1D   // Direccion para GYRO_XOUT_H en el IMU-3000 
 #define ACCEL 0x53        // Direccion del Acelerometro para I2C
 #define ADXL345_POWER_CTL 0x2D
 
-byte buffer[12];          // Array para almacenar los valdores del I2C
-int IMU[6];               //Valores del IMU 0:GiroX;1:GiroY;2:GiroX;3:AccelX;4:AccelY;5:AccelZ
-int zeroIMU[6];           //Resultado de Calibracion IMU, para puesta a 0; 0:GiroX;1:GiroY;2:GiroX;3:AccelX;4:AccelY;5:AccelZ
-long tempIMU[6];           //valores temporales de Calibracion del IMU 0:GiroX;1:GiroY;2:GiroX;3:AccelX;4:AccelY;5:AccelZ
-int ACC_angle;
-int i;
-int RunLed = 13;          //Led de inicio codigo
-#include <Wire.h>
+//
+//  Variables para el Control de IMU
+//
+byte buffer[12];           // Array para almacenar los valdores del I2C
+int  IMU[6];               // Valores del IMU 0:GiroX;1:GiroY;2:GiroX;3:AccelX;4:AccelY;5:AccelZ
+int  zeroIMU[6];           // Resultado de Calibracion IMU, para puesta a 0; 0:GiroX;1:GiroY;2:GiroX;3:AccelX;4:AccelY;5:AccelZ
+long tempIMU[6];           // valores temporales de Calibracion del IMU 0:GiroX;1:GiroY;2:GiroX;3:AccelX;4:AccelY;5:AccelZ
+
+//  Calculos de Estabilizacion
+int  ACC_angle;            // Angulo de Retorno de Arctan2
+int  GYRO_rate;
+
+//  Variables de Tiempo
+int  STD_LOOP_TIME  = 9; 
+int  lastLoopTime = STD_LOOP_TIME;
+int  lastLoopUsefulTime = STD_LOOP_TIME;
+unsigned long loopStartTime = 0;
+
+//Variables Operativas
+int i;                    // Variable de iteracion General
+
+//Alias a Pines
+int RunLed = 13;          // Led de inicio codigo
 
 void configIMU(){
   // Configuramos el Giroscopo
@@ -100,22 +116,11 @@ void calibrarIMU(){
     zeroIMU[n] = tempIMU[n] / muestras; 
   }
   zeroIMU[5] = 0; //Correccion segun datasheet
-
-}
-
-void setup(){
-  pinMode(RunLed, OUTPUT);
-  digitalWrite(RunLed, LOW);
-  Serial.begin(9600);             //Declaramos la comunicacion Serial
-  Wire.begin();                   //Iniciamos la comunicacion I2C
-  configIMU();                    //Configuramos el IMU3000
-  calibrarIMU();                  //Calibramos el sensor con los valores actuales
-  digitalWrite(RunLed, HIGH);  
 }
 
 void leerIMU(){
   //Numero de Muestras para lectura
-  int muestras = 10;
+  int muestras = 3;
   //Limpiamos el Vector
   for(int n=0;n<=5;n++){
     tempIMU[n] = 0;
@@ -137,6 +142,10 @@ int getAccAngle() {
   return arctan2(-IMU[5], -IMU[3]) + 256;    // En Quids
 }
 
+int getGyroRate() {
+  return int(IMU[1] / 4.583333333);
+}
+
 int arctan2(int y, int x) {
   int coeff_1 = 128;
   int coeff_2 = 3*coeff_1;
@@ -155,14 +164,39 @@ int arctan2(int y, int x) {
   else            return int(angle);
 }
 
+void serialOut_sensor() {
+static int skip=0;
+  if(skip++==20) {
+    skip = 0;
+    Serial.print(ACC_angle);
+    Serial.print(",");
+    Serial.print(GYRO_rate);
+    Serial.print("\\n");
+  }
+}
+
+void setup(){
+  pinMode(RunLed, OUTPUT);
+  digitalWrite(RunLed, LOW);
+  Serial.begin(115200);           //Declaramos la comunicacion Serial
+  Wire.begin();                   //Iniciamos la comunicacion I2C
+  configIMU();                    //Configuramos el IMU3000
+  calibrarIMU();                  //Calibramos el sensor con los valores actuales
+  digitalWrite(RunLed, HIGH);  
+}
+
+
 void loop(){
+  // ********************* Adquisicion de Sensor y Filtrado *******************
   leerIMU();
   ACC_angle = getAccAngle();
-  Serial.print(ACC_angle);  // echo the number received to screen
-  Serial.print(",");
-  Serial.print(IMU[5]);  // echo the number received to screen
-  Serial.print(",");    
-  Serial.println(IMU[3]);  // echo the number received to screen   
+  GYRO_rate = getGyroRate();
+  // ****************************+* print Debug  ******************************
+  serialOut_sensor();
+  
+  
+  
+  
 }
 
 
