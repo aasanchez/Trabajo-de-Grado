@@ -953,6 +953,14 @@ We've spent an enormous amount of time creating and checking these footprints an
 <text x="-2.54" y="-2.54" size="1.778" layer="96" rot="R90">&gt;VALUE</text>
 <pin name="VDD" x="0" y="-2.54" visible="off" length="short" direction="sup" rot="R90"/>
 </symbol>
+<symbol name="+12V">
+<wire x1="1.27" y1="-1.905" x2="0" y2="0" width="0.254" layer="94"/>
+<wire x1="0" y1="0" x2="-1.27" y2="-1.905" width="0.254" layer="94"/>
+<wire x1="1.27" y1="-0.635" x2="0" y2="1.27" width="0.254" layer="94"/>
+<wire x1="0" y1="1.27" x2="-1.27" y2="-0.635" width="0.254" layer="94"/>
+<text x="-2.54" y="-5.08" size="1.778" layer="96" rot="R90">&gt;VALUE</text>
+<pin name="+12V" x="0" y="-2.54" visible="off" length="short" direction="sup" rot="R90"/>
+</symbol>
 </symbols>
 <devicesets>
 <deviceset name="VSS" prefix="VSS">
@@ -972,6 +980,19 @@ We've spent an enormous amount of time creating and checking these footprints an
 <description>&lt;b&gt;SUPPLY SYMBOL&lt;/b&gt;</description>
 <gates>
 <gate name="G$1" symbol="VDD" x="0" y="0"/>
+</gates>
+<devices>
+<device name="">
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="+12V" prefix="P+">
+<description>&lt;b&gt;SUPPLY SYMBOL&lt;/b&gt;</description>
+<gates>
+<gate name="1" symbol="+12V" x="0" y="0"/>
 </gates>
 <devices>
 <device name="">
@@ -1027,6 +1048,52 @@ We've spent an enormous amount of time creating and checking these footprints an
 <wire x1="7.62" y1="0" x2="7.62" y2="15.24" width="0.127" layer="21"/>
 <wire x1="7.62" y1="15.24" x2="0" y2="15.24" width="0.127" layer="21"/>
 </package>
+<package name="UK1122">
+<pad name="GND" x="26.67" y="-20.32" drill="0.8" shape="long" rot="R90"/>
+<pad name="+5" x="29.21" y="-20.32" drill="0.8" shape="long" rot="R90"/>
+<pad name="IN1" x="31.75" y="-20.32" drill="0.8" shape="long" rot="R90"/>
+<pad name="ENA" x="34.29" y="-20.32" drill="0.8" shape="long" rot="R90"/>
+<pad name="EN2" x="36.83" y="-20.32" drill="0.8" shape="long" rot="R90"/>
+<pad name="CSA" x="39.37" y="-20.32" drill="0.8" shape="long" rot="R90"/>
+<pad name="IN3" x="41.91" y="-20.32" drill="0.8" shape="long" rot="R90"/>
+<pad name="ENB" x="44.45" y="-20.32" drill="0.8" shape="long" rot="R90"/>
+<pad name="IN4" x="46.99" y="-20.32" drill="0.8" shape="long" rot="R90"/>
+<pad name="CSB" x="49.53" y="-20.32" drill="0.8" shape="long" rot="R90"/>
+<pad name="-" x="13.97" y="-20.32" drill="0.8" shape="long" rot="R90"/>
+<pad name="+" x="11.43" y="-20.32" drill="0.8" shape="long" rot="R90"/>
+<pad name="MOT2A" x="76.2" y="34.29" drill="0.8" shape="long" rot="R180"/>
+<pad name="MOT2R" x="76.2" y="36.83" drill="0.8" shape="long" rot="R180"/>
+<pad name="MOT1A" x="-12.7" y="34.29" drill="0.8" shape="long" rot="R180"/>
+<pad name="MOT1R" x="-12.7" y="36.83" drill="0.8" shape="long" rot="R180"/>
+<wire x1="0" y1="0" x2="63.5" y2="0" width="0.127" layer="21"/>
+<wire x1="63.5" y1="0" x2="63.5" y2="63.5" width="0.127" layer="21"/>
+<wire x1="0" y1="0" x2="0" y2="63.5" width="0.127" layer="21"/>
+<wire x1="48.26" y1="63.5" x2="63.5" y2="63.5" width="0.127" layer="21"/>
+<wire x1="0" y1="63.5" x2="15.24" y2="63.5" width="0.127" layer="21"/>
+<wire x1="22.352" y1="57.658" x2="22.606" y2="57.658" width="0.1524" layer="21"/>
+<wire x1="22.606" y1="57.658" x2="40.894" y2="57.658" width="0.1524" layer="51"/>
+<wire x1="40.894" y1="57.658" x2="41.148" y2="57.658" width="0.1524" layer="21"/>
+<wire x1="22.352" y1="61.214" x2="22.352" y2="57.658" width="0.1524" layer="21"/>
+<wire x1="41.148" y1="61.214" x2="41.148" y2="57.658" width="0.1524" layer="21"/>
+<rectangle x1="22.606" y1="54.864" x2="23.114" y2="57.658" layer="51"/>
+<rectangle x1="25.146" y1="54.864" x2="25.654" y2="57.658" layer="51"/>
+<rectangle x1="27.686" y1="54.864" x2="28.194" y2="57.658" layer="51"/>
+<rectangle x1="30.226" y1="54.864" x2="30.734" y2="57.658" layer="51"/>
+<rectangle x1="32.766" y1="54.864" x2="33.274" y2="57.658" layer="51"/>
+<rectangle x1="35.306" y1="54.864" x2="35.814" y2="57.658" layer="51"/>
+<rectangle x1="37.846" y1="54.864" x2="38.354" y2="57.658" layer="51"/>
+<rectangle x1="40.386" y1="54.864" x2="40.894" y2="57.658" layer="51"/>
+<rectangle x1="22.275" y1="61.135" x2="41.225" y2="62.81" layer="21"/>
+<text x="29.21" y="58.42" size="1.27" layer="21">L298</text>
+<wire x1="15.24" y1="63.5" x2="48.26" y2="63.5" width="0.127" layer="21"/>
+<rectangle x1="15.24" y1="63.5" x2="17.78" y2="78.74" layer="21"/>
+<rectangle x1="45.72" y1="63.5" x2="48.26" y2="78.74" layer="21"/>
+<rectangle x1="21.59" y1="63.5" x2="24.13" y2="78.74" layer="21"/>
+<rectangle x1="39.37" y1="63.5" x2="41.91" y2="78.74" layer="21"/>
+<rectangle x1="27.94" y1="63.5" x2="30.48" y2="78.74" layer="21"/>
+<rectangle x1="33.02" y1="63.5" x2="35.56" y2="78.74" layer="21"/>
+<rectangle x1="15.24" y1="63.5" x2="48.26" y2="64.77" layer="21"/>
+</package>
 </packages>
 <symbols>
 <symbol name="IMU3000COMBO">
@@ -1035,8 +1102,8 @@ We've spent an enormous amount of time creating and checking these footprints an
 <pin name="IMUINT" x="-5.08" y="12.7" visible="pin" length="middle"/>
 <pin name="SCL" x="-5.08" y="10.16" visible="pin" length="middle"/>
 <pin name="SDA" x="-5.08" y="7.62" visible="pin" length="middle"/>
-<pin name="VSS" x="-5.08" y="5.08" visible="pin" length="middle" direction="pwr"/>
-<pin name="3V3" x="-5.08" y="2.54" visible="pin" length="middle" direction="pwr"/>
+<pin name="GND" x="-5.08" y="5.08" visible="pin" length="middle" direction="pwr"/>
+<pin name="VCC" x="-5.08" y="2.54" visible="pin" length="middle" direction="pwr"/>
 <wire x1="0" y1="20.32" x2="0" y2="0" width="0.254" layer="94"/>
 <wire x1="0" y1="0" x2="20.32" y2="0" width="0.254" layer="94"/>
 <wire x1="20.32" y1="0" x2="20.32" y2="20.32" width="0.254" layer="94"/>
@@ -1079,6 +1146,29 @@ We've spent an enormous amount of time creating and checking these footprints an
 <text x="6.985" y="9.525" size="1.27" layer="97">CHAN-2</text>
 <text x="6.985" y="17.145" size="1.27" layer="97">CHAN-1</text>
 </symbol>
+<symbol name="UK1122">
+<pin name="GND" x="17.78" y="0" visible="pin" length="middle" direction="pwr" rot="R90"/>
+<pin name="+5" x="20.32" y="0" visible="pin" length="middle" direction="pwr" rot="R90"/>
+<pin name="IN1" x="22.86" y="0" visible="pin" length="middle" direction="in" rot="R90"/>
+<pin name="ENA" x="25.4" y="0" visible="pin" length="middle" direction="in" rot="R90"/>
+<pin name="IN2" x="27.94" y="0" visible="pin" length="middle" direction="in" rot="R90"/>
+<pin name="CSA" x="30.48" y="0" visible="pin" length="middle" direction="out" rot="R90"/>
+<pin name="IN3" x="33.02" y="0" visible="pin" length="middle" direction="in" rot="R90"/>
+<pin name="ENB" x="35.56" y="0" length="middle" rot="R90"/>
+<pin name="IN4" x="38.1" y="0" visible="pin" length="middle" direction="in" rot="R90"/>
+<pin name="CSB" x="40.64" y="0" visible="pin" length="middle" direction="out" rot="R90"/>
+<pin name="-" x="7.62" y="0" visible="pin" length="middle" direction="pwr" rot="R90"/>
+<pin name="+" x="5.08" y="0" visible="pin" length="middle" direction="pwr" rot="R90"/>
+<pin name="MOT1A" x="-5.08" y="25.4" length="middle"/>
+<pin name="MOT1R" x="-5.08" y="27.94" length="middle"/>
+<pin name="MOT2A" x="50.8" y="25.4" length="middle" rot="R180"/>
+<pin name="MOT2R" x="50.8" y="27.94" length="middle" rot="R180"/>
+<wire x1="0" y1="5.08" x2="0" y2="35.56" width="0.254" layer="94"/>
+<wire x1="0" y1="35.56" x2="45.72" y2="35.56" width="0.254" layer="94"/>
+<wire x1="45.72" y1="35.56" x2="45.72" y2="5.08" width="0.254" layer="94"/>
+<wire x1="45.72" y1="5.08" x2="0" y2="5.08" width="0.254" layer="94"/>
+<text x="2.54" y="33.02" size="1.778" layer="95">&gt;Name</text>
+</symbol>
 </symbols>
 <devicesets>
 <deviceset name="IMU3000COMBO">
@@ -1088,13 +1178,13 @@ We've spent an enormous amount of time creating and checking these footprints an
 <devices>
 <device name="" package="IMU3000-COMBO">
 <connects>
-<connect gate="G$1" pin="3V3" pad="3V3"/>
 <connect gate="G$1" pin="AXINT1" pad="AXINT1"/>
 <connect gate="G$1" pin="AXINT2" pad="AXINT2"/>
+<connect gate="G$1" pin="GND" pad="VSS"/>
 <connect gate="G$1" pin="IMUINT" pad="IMUINT"/>
 <connect gate="G$1" pin="SCL" pad="SCL"/>
 <connect gate="G$1" pin="SDA" pad="SDA"/>
-<connect gate="G$1" pin="VSS" pad="VSS"/>
+<connect gate="G$1" pin="VCC" pad="3V3"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -1128,6 +1218,36 @@ We've spent an enormous amount of time creating and checking these footprints an
 </device>
 </devices>
 </deviceset>
+<deviceset name="UK1122">
+<gates>
+<gate name="G$1" symbol="UK1122" x="15.24" y="-15.24"/>
+</gates>
+<devices>
+<device name="" package="UK1122">
+<connects>
+<connect gate="G$1" pin="+" pad="+" route="any"/>
+<connect gate="G$1" pin="+5" pad="+5"/>
+<connect gate="G$1" pin="-" pad="-"/>
+<connect gate="G$1" pin="CSA" pad="CSA"/>
+<connect gate="G$1" pin="CSB" pad="CSB"/>
+<connect gate="G$1" pin="ENA" pad="ENA"/>
+<connect gate="G$1" pin="ENB" pad="ENB"/>
+<connect gate="G$1" pin="GND" pad="GND"/>
+<connect gate="G$1" pin="IN1" pad="IN1"/>
+<connect gate="G$1" pin="IN2" pad="EN2"/>
+<connect gate="G$1" pin="IN3" pad="IN3"/>
+<connect gate="G$1" pin="IN4" pad="IN4"/>
+<connect gate="G$1" pin="MOT1A" pad="MOT1A"/>
+<connect gate="G$1" pin="MOT1R" pad="MOT1R"/>
+<connect gate="G$1" pin="MOT2A" pad="MOT2A"/>
+<connect gate="G$1" pin="MOT2R" pad="MOT2R"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
 </devicesets>
 </library>
 </libraries>
@@ -1148,11 +1268,18 @@ We've spent an enormous amount of time creating and checking these footprints an
 <part name="VSS3" library="supply1" deviceset="VSS" device=""/>
 <part name="VDD2" library="supply1" deviceset="VDD" device=""/>
 <part name="U$1" library="aasanchez" deviceset="LOGIC-LEVEL-CONVERTER" device=""/>
+<part name="U$3" library="aasanchez" deviceset="UK1122" device=""/>
+<part name="VSS4" library="supply1" deviceset="VSS" device=""/>
+<part name="P+1" library="supply1" deviceset="+12V" device=""/>
+<part name="VDD3" library="supply1" deviceset="VDD" device=""/>
 </parts>
 <sheets>
 <sheet>
 <description>Arduino</description>
 <plain>
+<text x="91.44" y="45.72" size="1.778" layer="95">IN1</text>
+<text x="91.44" y="48.26" size="1.778" layer="95">IN2</text>
+<text x="91.44" y="50.8" size="1.778" layer="95">ENA</text>
 </plain>
 <instances>
 <instance part="U1" gate="G$1" x="76.2" y="63.5"/>
@@ -1206,6 +1333,49 @@ We've spent an enormous amount of time creating and checking these footprints an
 <label x="53.34" y="71.12" size="1.778" layer="95"/>
 </segment>
 </net>
+<net name="D13" class="0">
+<segment>
+<pinref part="U1" gate="G$1" pin="D13"/>
+<wire x1="88.9" y1="45.72" x2="91.44" y2="45.72" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$4" class="0">
+<segment>
+<pinref part="U1" gate="G$1" pin="D12"/>
+<wire x1="88.9" y1="48.26" x2="91.44" y2="48.26" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$5" class="0">
+<segment>
+<pinref part="U1" gate="G$1" pin="*D11"/>
+<wire x1="88.9" y1="50.8" x2="91.44" y2="50.8" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$6" class="0">
+<segment>
+<pinref part="U1" gate="G$1" pin="*D9"/>
+<wire x1="88.9" y1="55.88" x2="91.44" y2="55.88" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="SERVO-01" class="0">
+<segment>
+<pinref part="U1" gate="G$1" pin="*D10"/>
+<wire x1="88.9" y1="53.34" x2="96.52" y2="53.34" width="0.1524" layer="91"/>
+<label x="96.52" y="53.34" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="N$8" class="0">
+<segment>
+<pinref part="U1" gate="G$1" pin="D8"/>
+<wire x1="88.9" y1="58.42" x2="91.44" y2="58.42" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$9" class="0">
+<segment>
+<pinref part="U1" gate="G$1" pin="D7"/>
+<wire x1="88.9" y1="60.96" x2="91.44" y2="60.96" width="0.1524" layer="91"/>
+</segment>
+</net>
 </nets>
 </sheet>
 <sheet>
@@ -1225,7 +1395,7 @@ We've spent an enormous amount of time creating and checking these footprints an
 <net name="3V3" class="0">
 <segment>
 <wire x1="43.18" y1="60.96" x2="43.18" y2="53.34" width="0.1524" layer="91"/>
-<pinref part="U$2" gate="G$1" pin="3V3"/>
+<pinref part="U$2" gate="G$1" pin="VCC"/>
 <wire x1="43.18" y1="53.34" x2="63.5" y2="53.34" width="0.1524" layer="91"/>
 <pinref part="U$1" gate="G$1" pin="LV"/>
 <wire x1="43.18" y1="60.96" x2="35.56" y2="60.96" width="0.1524" layer="91"/>
@@ -1233,7 +1403,7 @@ We've spent an enormous amount of time creating and checking these footprints an
 </net>
 <net name="VSS" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="VSS"/>
+<pinref part="U$2" gate="G$1" pin="GND"/>
 <wire x1="63.5" y1="55.88" x2="60.96" y2="55.88" width="0.1524" layer="91"/>
 <wire x1="60.96" y1="55.88" x2="60.96" y2="48.26" width="0.1524" layer="91"/>
 <pinref part="VSS2" gate="G$1" pin="VSS"/>
@@ -1292,10 +1462,87 @@ We've spent an enormous amount of time creating and checking these footprints an
 <plain>
 </plain>
 <instances>
+<instance part="U$3" gate="G$1" x="0" y="0"/>
+<instance part="VSS4" gate="G$1" x="12.7" y="-10.16"/>
+<instance part="P+1" gate="1" x="0" y="-2.54" rot="R90"/>
+<instance part="VDD3" gate="G$1" x="20.32" y="-17.78" rot="R180"/>
 </instances>
 <busses>
 </busses>
 <nets>
+<net name="VSS" class="0">
+<segment>
+<pinref part="U$3" gate="G$1" pin="-"/>
+<wire x1="7.62" y1="0" x2="7.62" y2="-2.54" width="0.1524" layer="91"/>
+<wire x1="7.62" y1="-2.54" x2="12.7" y2="-2.54" width="0.1524" layer="91"/>
+<pinref part="U$3" gate="G$1" pin="GND"/>
+<wire x1="12.7" y1="-2.54" x2="17.78" y2="-2.54" width="0.1524" layer="91"/>
+<wire x1="17.78" y1="-2.54" x2="17.78" y2="0" width="0.1524" layer="91"/>
+<wire x1="17.78" y1="-2.54" x2="30.48" y2="-2.54" width="0.1524" layer="91"/>
+<pinref part="U$3" gate="G$1" pin="CSA"/>
+<wire x1="30.48" y1="-2.54" x2="30.48" y2="0" width="0.1524" layer="91"/>
+<pinref part="U$3" gate="G$1" pin="CSB"/>
+<wire x1="40.64" y1="0" x2="40.64" y2="-2.54" width="0.1524" layer="91"/>
+<wire x1="40.64" y1="-2.54" x2="30.48" y2="-2.54" width="0.1524" layer="91"/>
+<pinref part="VSS4" gate="G$1" pin="VSS"/>
+<wire x1="12.7" y1="-7.62" x2="12.7" y2="-2.54" width="0.1524" layer="91"/>
+<junction x="12.7" y="-2.54"/>
+<junction x="17.78" y="-2.54"/>
+<junction x="30.48" y="-2.54"/>
+</segment>
+</net>
+<net name="+12V" class="0">
+<segment>
+<pinref part="P+1" gate="1" pin="+12V"/>
+<wire x1="2.54" y1="-2.54" x2="5.08" y2="-2.54" width="0.1524" layer="91"/>
+<pinref part="U$3" gate="G$1" pin="+"/>
+<wire x1="5.08" y1="-2.54" x2="5.08" y2="0" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="VDD" class="0">
+<segment>
+<pinref part="VDD3" gate="G$1" pin="VDD"/>
+<pinref part="U$3" gate="G$1" pin="+5"/>
+<wire x1="20.32" y1="-15.24" x2="20.32" y2="0" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="D13" class="0">
+<segment>
+<pinref part="U$3" gate="G$1" pin="IN1"/>
+<wire x1="22.86" y1="0" x2="22.86" y2="-7.62" width="0.1524" layer="91"/>
+<label x="22.86" y="-7.62" size="1.778" layer="95" rot="R270"/>
+</segment>
+</net>
+<net name="N$13" class="0">
+<segment>
+<pinref part="U$3" gate="G$1" pin="ENA"/>
+<wire x1="25.4" y1="0" x2="25.4" y2="-7.62" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$14" class="0">
+<segment>
+<pinref part="U$3" gate="G$1" pin="IN2"/>
+<wire x1="27.94" y1="0" x2="27.94" y2="-7.62" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$15" class="0">
+<segment>
+<pinref part="U$3" gate="G$1" pin="IN3"/>
+<wire x1="33.02" y1="0" x2="33.02" y2="-7.62" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$16" class="0">
+<segment>
+<pinref part="U$3" gate="G$1" pin="ENB"/>
+<wire x1="35.56" y1="0" x2="35.56" y2="-7.62" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$17" class="0">
+<segment>
+<pinref part="U$3" gate="G$1" pin="IN4"/>
+<wire x1="38.1" y1="0" x2="38.1" y2="-7.62" width="0.1524" layer="91"/>
+</segment>
+</net>
 </nets>
 </sheet>
 </sheets>
