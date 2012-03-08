@@ -983,6 +983,153 @@ We've spent an enormous amount of time creating and checking these footprints an
 </deviceset>
 </devicesets>
 </library>
+<library name="aasanchez">
+<packages>
+<package name="IMU3000-COMBO">
+<text x="2.794" y="5.842" size="1.016" layer="21" font="vector" ratio="15">VCC</text>
+<text x="2.794" y="8.382" size="1.016" layer="21" font="vector" ratio="15">GND</text>
+<text x="2.794" y="10.922" size="1.016" layer="21" font="vector" ratio="15">SDA</text>
+<text x="2.794" y="13.462" size="1.016" layer="21" font="vector" ratio="15">SCL</text>
+<text x="2.794" y="16.002" size="1.016" layer="21" font="vector" ratio="15">IMUINT</text>
+<text x="2.794" y="18.542" size="1.016" layer="21" font="vector" ratio="15">AxINT1</text>
+<text x="2.794" y="21.082" size="1.016" layer="21" font="vector" ratio="15">AxINT2</text>
+<wire x1="20.32" y1="0" x2="20.32" y2="27.94" width="0.127" layer="21"/>
+<pad name="3V3" x="1.27" y="6.35" drill="0.8" shape="long"/>
+<pad name="VSS" x="1.27" y="8.89" drill="0.8" shape="long"/>
+<pad name="SDA" x="1.27" y="11.43" drill="0.8" shape="long"/>
+<pad name="SCL" x="1.27" y="13.97" drill="0.8" shape="long"/>
+<pad name="IMUINT" x="1.27" y="16.51" drill="0.8" shape="long"/>
+<pad name="AXINT1" x="1.27" y="19.05" drill="0.8" shape="long"/>
+<wire x1="20.32" y1="0" x2="0" y2="0" width="0.127" layer="21"/>
+<wire x1="0" y1="0" x2="0" y2="27.94" width="0.127" layer="21"/>
+<wire x1="0" y1="27.94" x2="20.32" y2="27.94" width="0.127" layer="21"/>
+<pad name="AXINT2" x="1.27" y="21.59" drill="0.8" shape="long"/>
+<hole x="2.54" y="25.4" drill="3.2"/>
+<hole x="17.78" y="25.4" drill="3.2"/>
+<hole x="17.78" y="2.54" drill="3.2"/>
+<hole x="2.54" y="2.54" drill="3.2"/>
+</package>
+<package name="LEVEL-CONVERTER">
+<pad name="P$1" x="-1.27" y="13.97" drill="0.8" shape="long"/>
+<pad name="P$2" x="-1.27" y="11.43" drill="0.8" shape="long"/>
+<pad name="P$3" x="-1.27" y="8.89" drill="0.8" shape="long"/>
+<pad name="P$4" x="-1.27" y="6.35" drill="0.8" shape="long"/>
+<pad name="P$5" x="-1.27" y="3.81" drill="0.8" shape="long"/>
+<pad name="P$6" x="-1.27" y="1.27" drill="0.8" shape="long"/>
+<pad name="P$12" x="8.89" y="13.97" drill="0.8" shape="long"/>
+<pad name="P$11" x="8.89" y="11.43" drill="0.8" shape="long"/>
+<pad name="P$10" x="8.89" y="8.89" drill="0.8" shape="long"/>
+<pad name="P$9" x="8.89" y="6.35" drill="0.8" shape="long"/>
+<pad name="P$8" x="8.89" y="3.81" drill="0.8" shape="long"/>
+<pad name="P$7" x="8.89" y="1.27" drill="0.8" shape="long"/>
+<wire x1="0" y1="15.24" x2="0" y2="0" width="0.127" layer="21"/>
+<wire x1="0" y1="0" x2="7.62" y2="0" width="0.127" layer="21"/>
+<wire x1="7.62" y1="0" x2="7.62" y2="15.24" width="0.127" layer="21"/>
+<wire x1="7.62" y1="15.24" x2="0" y2="15.24" width="0.127" layer="21"/>
+</package>
+</packages>
+<symbols>
+<symbol name="IMU3000COMBO">
+<pin name="AXINT2" x="-5.08" y="17.78" visible="pin" length="middle"/>
+<pin name="AXINT1" x="-5.08" y="15.24" visible="pin" length="middle"/>
+<pin name="IMUINT" x="-5.08" y="12.7" visible="pin" length="middle"/>
+<pin name="SCL" x="-5.08" y="10.16" visible="pin" length="middle"/>
+<pin name="SDA" x="-5.08" y="7.62" visible="pin" length="middle"/>
+<pin name="VSS" x="-5.08" y="5.08" visible="pin" length="middle" direction="pwr"/>
+<pin name="3V3" x="-5.08" y="2.54" visible="pin" length="middle" direction="pwr"/>
+<wire x1="0" y1="20.32" x2="0" y2="0" width="0.254" layer="94"/>
+<wire x1="0" y1="0" x2="20.32" y2="0" width="0.254" layer="94"/>
+<wire x1="20.32" y1="0" x2="20.32" y2="20.32" width="0.254" layer="94"/>
+<wire x1="20.32" y1="20.32" x2="0" y2="20.32" width="0.254" layer="94"/>
+</symbol>
+<symbol name="LEVELCONVERTER">
+<wire x1="0" y1="27.94" x2="0" y2="17.78" width="0.254" layer="94"/>
+<wire x1="0" y1="17.78" x2="0" y2="10.16" width="0.254" layer="94"/>
+<wire x1="0" y1="10.16" x2="0" y2="0" width="0.254" layer="94"/>
+<wire x1="0" y1="0" x2="10.16" y2="0" width="0.254" layer="94"/>
+<wire x1="10.16" y1="0" x2="20.32" y2="0" width="0.254" layer="94"/>
+<wire x1="20.32" y1="0" x2="20.32" y2="10.16" width="0.254" layer="94"/>
+<wire x1="20.32" y1="10.16" x2="20.32" y2="17.78" width="0.254" layer="94"/>
+<wire x1="20.32" y1="17.78" x2="20.32" y2="27.94" width="0.254" layer="94"/>
+<wire x1="20.32" y1="27.94" x2="10.16" y2="27.94" width="0.254" layer="94"/>
+<pin name="TXI-1" x="-5.08" y="22.86" visible="pin" length="middle"/>
+<pin name="RXO-1" x="-5.08" y="20.32" visible="pin" length="middle"/>
+<pin name="LV" x="-5.08" y="15.24" visible="pin" length="middle" direction="pwr"/>
+<pin name="GND" x="-5.08" y="12.7" visible="pin" length="middle" direction="pwr"/>
+<pin name="RXO-2" x="-5.08" y="7.62" visible="pin" length="middle"/>
+<pin name="TXI-2" x="-5.08" y="5.08" visible="pin" length="middle"/>
+<pin name="TXO-1" x="25.4" y="22.86" visible="pin" length="middle" rot="R180"/>
+<pin name="RXI-1" x="25.4" y="20.32" visible="pin" length="middle" rot="R180"/>
+<pin name="HV" x="25.4" y="15.24" visible="pin" length="middle" direction="pwr" rot="R180"/>
+<pin name="@GND" x="20.32" y="12.7" visible="off" length="point" direction="pwr" rot="R180"/>
+<pin name="RXI-2" x="25.4" y="7.62" visible="pin" length="middle" rot="R180"/>
+<pin name="TXO-2" x="25.4" y="5.08" visible="pin" length="middle" rot="R180"/>
+<wire x1="10.16" y1="27.94" x2="0" y2="27.94" width="0.254" layer="94"/>
+<wire x1="10.16" y1="27.94" x2="10.16" y2="25.4" width="0.254" layer="94"/>
+<wire x1="10.16" y1="0" x2="10.16" y2="2.54" width="0.254" layer="94"/>
+<text x="6.35" y="1.27" size="1.778" layer="97">LV</text>
+<text x="11.43" y="1.27" size="1.778" layer="97">HV</text>
+<text x="11.43" y="25.4" size="1.778" layer="97">HV</text>
+<text x="6.35" y="25.4" size="1.778" layer="97">LV</text>
+<wire x1="0" y1="10.16" x2="5.08" y2="10.16" width="0.254" layer="94"/>
+<wire x1="20.32" y1="10.16" x2="15.24" y2="10.16" width="0.254" layer="94"/>
+<wire x1="20.32" y1="17.78" x2="15.24" y2="17.78" width="0.254" layer="94"/>
+<wire x1="0" y1="17.78" x2="5.08" y2="17.78" width="0.254" layer="94"/>
+<wire x1="10.16" y1="16.51" x2="10.16" y2="11.43" width="0.254" layer="94"/>
+<text x="6.985" y="9.525" size="1.27" layer="97">CHAN-2</text>
+<text x="6.985" y="17.145" size="1.27" layer="97">CHAN-1</text>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="IMU3000COMBO">
+<gates>
+<gate name="G$1" symbol="IMU3000COMBO" x="-10.16" y="-10.16"/>
+</gates>
+<devices>
+<device name="" package="IMU3000-COMBO">
+<connects>
+<connect gate="G$1" pin="3V3" pad="3V3"/>
+<connect gate="G$1" pin="AXINT1" pad="AXINT1"/>
+<connect gate="G$1" pin="AXINT2" pad="AXINT2"/>
+<connect gate="G$1" pin="IMUINT" pad="IMUINT"/>
+<connect gate="G$1" pin="SCL" pad="SCL"/>
+<connect gate="G$1" pin="SDA" pad="SDA"/>
+<connect gate="G$1" pin="VSS" pad="VSS"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="LOGIC-LEVEL-CONVERTER">
+<gates>
+<gate name="G$1" symbol="LEVELCONVERTER" x="-10.16" y="-10.16"/>
+</gates>
+<devices>
+<device name="" package="LEVEL-CONVERTER">
+<connects>
+<connect gate="G$1" pin="@GND" pad="P$9"/>
+<connect gate="G$1" pin="GND" pad="P$4"/>
+<connect gate="G$1" pin="HV" pad="P$10"/>
+<connect gate="G$1" pin="LV" pad="P$3"/>
+<connect gate="G$1" pin="RXI-1" pad="P$11"/>
+<connect gate="G$1" pin="RXI-2" pad="P$8"/>
+<connect gate="G$1" pin="RXO-1" pad="P$2"/>
+<connect gate="G$1" pin="RXO-2" pad="P$5"/>
+<connect gate="G$1" pin="TXI-1" pad="P$1"/>
+<connect gate="G$1" pin="TXI-2" pad="P$6"/>
+<connect gate="G$1" pin="TXO-1" pad="P$12"/>
+<connect gate="G$1" pin="TXO-2" pad="P$7"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -996,6 +1143,11 @@ We've spent an enormous amount of time creating and checking these footprints an
 <part name="U1" library="SparkFun" deviceset="ARDUINO_SHIELD" device="LONGPADS"/>
 <part name="VSS1" library="supply1" deviceset="VSS" device=""/>
 <part name="VDD1" library="supply1" deviceset="VDD" device=""/>
+<part name="U$2" library="aasanchez" deviceset="IMU3000COMBO" device=""/>
+<part name="VSS2" library="supply1" deviceset="VSS" device=""/>
+<part name="VSS3" library="supply1" deviceset="VSS" device=""/>
+<part name="VDD2" library="supply1" deviceset="VDD" device=""/>
+<part name="U$1" library="aasanchez" deviceset="LOGIC-LEVEL-CONVERTER" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -1026,7 +1178,7 @@ We've spent an enormous amount of time creating and checking these footprints an
 <junction x="60.96" y="48.26"/>
 </segment>
 </net>
-<net name="3.3V" class="0">
+<net name="3V3" class="0">
 <segment>
 <pinref part="U1" gate="G$1" pin="3.3V"/>
 <wire x1="63.5" y1="55.88" x2="58.42" y2="55.88" width="0.1524" layer="91"/>
@@ -1061,10 +1213,78 @@ We've spent an enormous amount of time creating and checking these footprints an
 <plain>
 </plain>
 <instances>
+<instance part="U$2" gate="G$1" x="68.58" y="50.8"/>
+<instance part="VSS2" gate="G$1" x="60.96" y="45.72"/>
+<instance part="VSS3" gate="G$1" x="45.72" y="63.5" rot="R90"/>
+<instance part="VDD2" gate="G$1" x="-5.08" y="60.96" rot="R90"/>
+<instance part="U$1" gate="G$1" x="30.48" y="76.2" rot="R180"/>
 </instances>
 <busses>
 </busses>
 <nets>
+<net name="3V3" class="0">
+<segment>
+<wire x1="43.18" y1="60.96" x2="43.18" y2="53.34" width="0.1524" layer="91"/>
+<pinref part="U$2" gate="G$1" pin="3V3"/>
+<wire x1="43.18" y1="53.34" x2="63.5" y2="53.34" width="0.1524" layer="91"/>
+<pinref part="U$1" gate="G$1" pin="LV"/>
+<wire x1="43.18" y1="60.96" x2="35.56" y2="60.96" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="VSS" class="0">
+<segment>
+<pinref part="U$2" gate="G$1" pin="VSS"/>
+<wire x1="63.5" y1="55.88" x2="60.96" y2="55.88" width="0.1524" layer="91"/>
+<wire x1="60.96" y1="55.88" x2="60.96" y2="48.26" width="0.1524" layer="91"/>
+<pinref part="VSS2" gate="G$1" pin="VSS"/>
+</segment>
+<segment>
+<pinref part="VSS3" gate="G$1" pin="VSS"/>
+<pinref part="U$1" gate="G$1" pin="GND"/>
+<wire x1="43.18" y1="63.5" x2="35.56" y2="63.5" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="VDD" class="0">
+<segment>
+<pinref part="U$1" gate="G$1" pin="HV"/>
+<pinref part="VDD2" gate="G$1" pin="VDD"/>
+<wire x1="5.08" y1="60.96" x2="-2.54" y2="60.96" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="SCL" class="0">
+<segment>
+<pinref part="U$1" gate="G$1" pin="TXO-1"/>
+<wire x1="5.08" y1="53.34" x2="0" y2="53.34" width="0.1524" layer="91"/>
+<label x="-5.08" y="53.34" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="SDA" class="0">
+<segment>
+<pinref part="U$1" gate="G$1" pin="TXO-2"/>
+<wire x1="5.08" y1="71.12" x2="0" y2="71.12" width="0.1524" layer="91"/>
+<label x="-5.08" y="71.12" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="N$1" class="0">
+<segment>
+<pinref part="U$1" gate="G$1" pin="TXI-1"/>
+<wire x1="35.56" y1="53.34" x2="40.64" y2="53.34" width="0.1524" layer="91"/>
+<wire x1="40.64" y1="53.34" x2="40.64" y2="50.8" width="0.1524" layer="91"/>
+<wire x1="40.64" y1="50.8" x2="58.42" y2="50.8" width="0.1524" layer="91"/>
+<wire x1="58.42" y1="50.8" x2="58.42" y2="60.96" width="0.1524" layer="91"/>
+<pinref part="U$2" gate="G$1" pin="SCL"/>
+<wire x1="58.42" y1="60.96" x2="63.5" y2="60.96" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$2" class="0">
+<segment>
+<pinref part="U$1" gate="G$1" pin="TXI-2"/>
+<wire x1="35.56" y1="71.12" x2="53.34" y2="71.12" width="0.1524" layer="91"/>
+<wire x1="53.34" y1="71.12" x2="53.34" y2="58.42" width="0.1524" layer="91"/>
+<pinref part="U$2" gate="G$1" pin="SDA"/>
+<wire x1="53.34" y1="58.42" x2="63.5" y2="58.42" width="0.1524" layer="91"/>
+</segment>
+</net>
 </nets>
 </sheet>
 <sheet>
