@@ -1841,15 +1841,15 @@ design rules under a new name.</description>
 <contactref element="JP2" pad="1"/>
 <contactref element="R6" pad="2"/>
 <contactref element="T1" pad="3"/>
-<contactref element="X3" pad="2"/>
 <contactref element="X1" pad="2"/>
-<contactref element="D1" pad="A"/>
-<contactref element="C1" pad="-"/>
-<contactref element="C2" pad="2"/>
 <contactref element="D2" pad="C"/>
+<contactref element="X3" pad="2"/>
+<contactref element="C1" pad="-"/>
+<contactref element="D1" pad="A"/>
 <contactref element="C3" pad="2"/>
 <contactref element="C4" pad="2"/>
 <contactref element="C5" pad="-"/>
+<contactref element="C2" pad="2"/>
 <wire x1="81.28" y1="9.525" x2="78.74" y2="53.34" width="0" layer="19" extent="1-1"/>
 <wire x1="101.6" y1="9.525" x2="81.28" y2="9.525" width="0" layer="19" extent="1-1"/>
 <wire x1="25.4" y1="24.13" x2="81.28" y2="9.525" width="0" layer="19" extent="1-1"/>
