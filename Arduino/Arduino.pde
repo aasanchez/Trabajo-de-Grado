@@ -35,7 +35,7 @@ unsigned long loopStartTime = 0;
 int i;                    // Variable de iteracion General
 
 //Alias a Pines
-int RunLed = 13;          // Led de inicio codigo
+
 
 void configIMU(){
   // Configuramos el Giroscopo
@@ -171,14 +171,18 @@ void serialOut_sensor() {
     skip = 0;
     Serial.print(ACC_angle);
     Serial.print(",");
-    Serial.println(GYRO_rate);
+    Serial.print(GYRO_rate);
+    Serial.print(",");
+    Serial.println(0);
   }
 }
 
 void serialOut_labView() {
   Serial.print(actAngle);
   Serial.print(",");
-  Serial.println(ACC_angle);
+  Serial.print(ACC_angle);
+  Serial.print(",");
+  Serial.println(0);  
 }
 
 // --- Kalman filter module  ----------------------------------------------------------------------------
@@ -218,13 +222,10 @@ float kalmanCalculate(float newAngle, float newRate,int looptime) {
 
 
 void setup(){
-  pinMode(RunLed, OUTPUT);
-  digitalWrite(RunLed, LOW);
-  Serial.begin(115200);           //Declaramos la comunicacion Serial
+  Serial.begin(9600);           //Declaramos la comunicacion Serial
   Wire.begin();                   //Iniciamos la comunicacion I2C
   configIMU();                    //Configuramos el IMU3000
   calibrarIMU();                  //Calibramos el sensor con los valores actuales
-  digitalWrite(RunLed, HIGH);  
 }
 
 
@@ -235,7 +236,7 @@ void loop(){
   GYRO_rate = getGyroRate();
   actAngle = kalmanCalculate(ACC_angle, GYRO_rate, lastLoopTime);
   // *************************** print Debug  *********************************
-  serialOut_labView();
+  serialOut_sensor();
   // *********************** loop timing control ******************************
   lastLoopUsefulTime = millis()-loopStartTime;
   if(lastLoopUsefulTime<STD_LOOP_TIME)         delay(STD_LOOP_TIME-lastLoopUsefulTime);

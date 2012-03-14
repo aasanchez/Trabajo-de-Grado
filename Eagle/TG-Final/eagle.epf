@@ -365,10 +365,10 @@ UsedLibrary="C:/Program Files/EAGLE-6.1.0/lbr/elektro/e-symbole.lbr"
 
 [Win_1]
 Type="Control Panel"
-Loc="51 15 650 406"
+Loc="0 24 599 423"
 State=1
 Number=0
 
 [Desktop]
-Screen="1366 768"
+Screen="1366 697"
 Window="Win_1"
