@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -112,12 +112,12 @@
 <packages>
 <package name="BASE">
 <wire x1="-35.56" y1="-86.36" x2="35.56" y2="-86.36" width="0.6096" layer="20"/>
-<wire x1="-35.56" y1="-86.36" x2="-86.36" y2="-35.56" width="0.6096" layer="21"/>
-<wire x1="35.56" y1="-86.36" x2="86.36" y2="-35.56" width="0.6096" layer="21"/>
-<wire x1="-86.36" y1="-35.56" x2="-86.36" y2="35.56" width="0.6096" layer="21"/>
-<wire x1="86.36" y1="-35.56" x2="86.36" y2="35.56" width="0.6096" layer="21"/>
-<wire x1="-86.36" y1="35.56" x2="-35.56" y2="86.36" width="0.6096" layer="21"/>
-<wire x1="35.56" y1="86.36" x2="86.36" y2="35.56" width="0.6096" layer="21"/>
+<wire x1="-35.56" y1="-86.36" x2="-86.36" y2="-35.56" width="0.6096" layer="20"/>
+<wire x1="35.56" y1="-86.36" x2="86.36" y2="-35.56" width="0.6096" layer="20"/>
+<wire x1="-86.36" y1="-35.56" x2="-86.36" y2="35.56" width="0.6096" layer="20"/>
+<wire x1="86.36" y1="-35.56" x2="86.36" y2="35.56" width="0.6096" layer="20"/>
+<wire x1="-86.36" y1="35.56" x2="-35.56" y2="86.36" width="0.6096" layer="20"/>
+<wire x1="35.56" y1="86.36" x2="86.36" y2="35.56" width="0.6096" layer="20"/>
 <pad name="PIN07" x="-8.89" y="76.2" drill="0.8" diameter="1.6764" shape="long" rot="R90"/>
 <pad name="PIN06" x="-6.35" y="76.2" drill="0.8" diameter="1.6764" shape="long" rot="R90"/>
 <pad name="PIN05" x="-3.81" y="76.2" drill="0.8" diameter="1.6764" shape="long" rot="R90"/>
@@ -152,7 +152,7 @@
 <pad name="PIN31" x="76.2" y="8.89" drill="0.8" diameter="1.6764" shape="long" rot="R180"/>
 <hole x="-25.4" y="73.66" drill="3.2"/>
 <hole x="25.4" y="73.66" drill="3.2"/>
-<wire x1="-35.56" y1="86.36" x2="35.56" y2="86.36" width="0.6096" layer="21"/>
+<wire x1="-35.56" y1="86.36" x2="35.56" y2="86.36" width="0.6096" layer="20"/>
 <hole x="-25.4" y="-73.66" drill="3.2"/>
 <hole x="25.4" y="-73.66" drill="3.2"/>
 </package>
@@ -232,6 +232,16 @@
 <wire x1="15.24" y1="12.7" x2="15.24" y2="0" width="0.254" layer="94"/>
 <wire x1="15.24" y1="0" x2="0" y2="0" width="0.254" layer="94"/>
 </symbol>
+<symbol name="+6V">
+<wire x1="0" y1="0" x2="0" y2="2.54" width="0.254" layer="94"/>
+<wire x1="0" y1="2.54" x2="-1.27" y2="1.27" width="0.254" layer="94"/>
+<wire x1="-1.27" y1="1.27" x2="0" y2="5.08" width="0.254" layer="94"/>
+<wire x1="0" y1="5.08" x2="1.27" y2="1.27" width="0.254" layer="94"/>
+<wire x1="1.27" y1="1.27" x2="0" y2="2.54" width="0.254" layer="94"/>
+<wire x1="0" y1="3.6576" x2="0" y2="3.048" width="0.127" layer="94"/>
+<wire x1="-0.3048" y1="3.3528" x2="0.3048" y2="3.3528" width="0.127" layer="94"/>
+<pin name="P$1" x="0" y="0" visible="off" length="point" direction="sup"/>
+</symbol>
 </symbols>
 <devicesets>
 <deviceset name="BASE">
@@ -308,6 +318,18 @@
 <connect gate="G$1" pin="ROJO1" pad="P$1"/>
 <connect gate="G$1" pin="ROJO2" pad="P$3"/>
 </connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="+6V">
+<gates>
+<gate name="G$1" symbol="+6V" x="0" y="0"/>
+</gates>
+<devices>
+<device name="">
 <technologies>
 <technology name=""/>
 </technologies>
@@ -1342,41 +1364,6 @@ Standard 3-pin 0.1" header. Use with straight break away headers (SKU : PRT-0011
 </deviceset>
 </devicesets>
 </library>
-<library name="supply2">
-<description>&lt;b&gt;Supply Symbols&lt;/b&gt;&lt;p&gt;
-GND, VCC, 0V, +5V, -5V, etc.&lt;p&gt;
-Please keep in mind, that these devices are necessary for the
-automatic wiring of the supply signals.&lt;p&gt;
-The pin name defined in the symbol is identical to the net which is to be wired automatically.&lt;p&gt;
-In this library the device names are the same as the pin names of the symbols, therefore the correct signal names appear next to the supply symbols in the schematic.&lt;p&gt;
-&lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;</description>
-<packages>
-</packages>
-<symbols>
-<symbol name="+07V">
-<wire x1="-0.635" y1="1.27" x2="0.635" y2="1.27" width="0.1524" layer="94"/>
-<wire x1="0" y1="0.635" x2="0" y2="1.905" width="0.1524" layer="94"/>
-<circle x="0" y="1.27" radius="1.27" width="0.254" layer="94"/>
-<text x="-1.905" y="3.175" size="1.778" layer="96">&gt;VALUE</text>
-<pin name="+7V" x="0" y="-2.54" visible="off" length="short" direction="sup" rot="R90"/>
-</symbol>
-</symbols>
-<devicesets>
-<deviceset name="+7V" prefix="SUPPLY">
-<description>&lt;b&gt;SUPPLY SYMBOL&lt;/b&gt;</description>
-<gates>
-<gate name="G$1" symbol="+07V" x="0" y="0"/>
-</gates>
-<devices>
-<device name="">
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
-</devicesets>
-</library>
 <library name="con-wago-508">
 <description>&lt;b&gt;Wago Screw Clamps&lt;/b&gt;&lt;p&gt;
 Grid 5.08 mm&lt;p&gt;
@@ -1477,10 +1464,6 @@ Grid 5.08 mm&lt;p&gt;
 <part name="VSS2" library="supply1" deviceset="VSS" device=""/>
 <part name="VSS3" library="supply1" deviceset="VSS" device=""/>
 <part name="VSS4" library="supply1" deviceset="VSS" device=""/>
-<part name="SUPPLY1" library="supply2" deviceset="+7V" device="" value="+6V"/>
-<part name="SUPPLY2" library="supply2" deviceset="+7V" device="" value="+6V"/>
-<part name="SUPPLY3" library="supply2" deviceset="+7V" device="" value="+6V"/>
-<part name="SUPPLY4" library="supply2" deviceset="+7V" device="" value="+6V"/>
 <part name="MOTOR1" library="con-wago-508" deviceset="W237-02P" device="" value=" "/>
 <part name="MOTOR2" library="con-wago-508" deviceset="W237-02P" device="" value=" "/>
 <part name="VSS5" library="supply1" deviceset="VSS" device=""/>
@@ -1492,12 +1475,18 @@ Grid 5.08 mm&lt;p&gt;
 <part name="P+4" library="supply1" deviceset="+12V" device=""/>
 <part name="P+5" library="supply1" deviceset="+5V" device=""/>
 <part name="+3V1" library="supply1" deviceset="+3V3" device=""/>
-<part name="+3V2" library="supply1" deviceset="+3V3" device=""/>
+<part name="U$13" library="aasanchez" deviceset="+6V" device=""/>
+<part name="U$14" library="aasanchez" deviceset="+6V" device=""/>
+<part name="U$15" library="aasanchez" deviceset="+6V" device=""/>
+<part name="U$16" library="aasanchez" deviceset="+6V" device=""/>
+<part name="U$17" library="aasanchez" deviceset="+6V" device=""/>
+<part name="VSS8" library="supply1" deviceset="VSS" device=""/>
 </parts>
 <sheets>
 <sheet>
 <description>Base</description>
 <plain>
+<text x="100.33" y="27.94" size="1.778" layer="96" rot="R90">+6V</text>
 </plain>
 <instances>
 <instance part="U$1" gate="G$1" x="58.42" y="53.34"/>
@@ -1506,7 +1495,7 @@ Grid 5.08 mm&lt;p&gt;
 <instance part="P+4" gate="1" x="88.9" y="27.94" rot="R180"/>
 <instance part="P+5" gate="1" x="104.14" y="27.94" rot="R180"/>
 <instance part="+3V1" gate="G$1" x="111.76" y="27.94" rot="R180"/>
-<instance part="+3V2" gate="G$1" x="96.52" y="27.94" rot="R180"/>
+<instance part="U$13" gate="G$1" x="96.52" y="30.48" rot="R180"/>
 </instances>
 <busses>
 </busses>
@@ -1607,6 +1596,35 @@ Grid 5.08 mm&lt;p&gt;
 <label x="78.74" y="63.5" size="1.778" layer="95"/>
 </segment>
 </net>
+<net name="P$1" class="0">
+<segment>
+<pinref part="U$1" gate="G$1" pin="PIN19"/>
+<pinref part="U$13" gate="G$1" pin="P$1"/>
+<wire x1="73.66" y1="43.18" x2="96.52" y2="43.18" width="0.1524" layer="91"/>
+<wire x1="96.52" y1="43.18" x2="96.52" y2="30.48" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="SENSE1" class="0">
+<segment>
+<pinref part="U$1" gate="G$1" pin="PIN15"/>
+<wire x1="43.18" y1="35.56" x2="38.1" y2="35.56" width="0.1524" layer="91"/>
+<label x="27.94" y="35.56" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="SENSE3" class="0">
+<segment>
+<pinref part="U$1" gate="G$1" pin="PIN14"/>
+<wire x1="43.18" y1="38.1" x2="38.1" y2="38.1" width="0.1524" layer="91"/>
+<label x="27.94" y="38.1" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="SENSE2" class="0">
+<segment>
+<pinref part="U$1" gate="G$1" pin="PIN13"/>
+<wire x1="43.18" y1="40.64" x2="38.1" y2="40.64" width="0.1524" layer="91"/>
+<label x="27.94" y="40.64" size="1.778" layer="95"/>
+</segment>
+</net>
 </nets>
 </sheet>
 <sheet>
@@ -1670,13 +1688,51 @@ Grid 5.08 mm&lt;p&gt;
 <plain>
 </plain>
 <instances>
-<instance part="BAT001" gate="G$1" x="5.08" y="5.08"/>
-<instance part="BAT003" gate="G$1" x="40.64" y="5.08"/>
+<instance part="BAT001" gate="G$1" x="22.86" y="25.4"/>
+<instance part="BAT003" gate="G$1" x="22.86" y="-15.24"/>
 <instance part="BAT002" gate="G$1" x="22.86" y="5.08"/>
+<instance part="VSS8" gate="G$1" x="41.91" y="-24.13"/>
 </instances>
 <busses>
 </busses>
 <nets>
+<net name="VSS" class="0">
+<segment>
+<wire x1="41.91" y1="30.48" x2="41.91" y2="2.54" width="0.1524" layer="91"/>
+<pinref part="VSS8" gate="G$1" pin="VSS"/>
+<pinref part="BAT001" gate="G$1" pin="4"/>
+<wire x1="41.91" y1="2.54" x2="41.91" y2="-10.16" width="0.1524" layer="91"/>
+<wire x1="41.91" y1="-10.16" x2="41.91" y2="-21.59" width="0.1524" layer="91"/>
+<wire x1="27.94" y1="30.48" x2="41.91" y2="30.48" width="0.1524" layer="91"/>
+<pinref part="BAT003" gate="G$1" pin="4"/>
+<wire x1="27.94" y1="-10.16" x2="41.91" y2="-10.16" width="0.1524" layer="91"/>
+<junction x="41.91" y="-10.16"/>
+<pinref part="BAT002" gate="G$1" pin="1"/>
+<wire x1="27.94" y1="2.54" x2="41.91" y2="2.54" width="0.1524" layer="91"/>
+<junction x="41.91" y="2.54"/>
+</segment>
+</net>
+<net name="SENSE1" class="0">
+<segment>
+<pinref part="BAT001" gate="G$1" pin="1"/>
+<wire x1="27.94" y1="22.86" x2="30.48" y2="22.86" width="0.1524" layer="91"/>
+<label x="30.48" y="22.86" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="SENSE2" class="0">
+<segment>
+<pinref part="BAT002" gate="G$1" pin="4"/>
+<wire x1="27.94" y1="10.16" x2="30.48" y2="10.16" width="0.1524" layer="91"/>
+<label x="30.48" y="10.16" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="SENSE3" class="0">
+<segment>
+<pinref part="BAT003" gate="G$1" pin="1"/>
+<wire x1="27.94" y1="-17.78" x2="30.48" y2="-17.78" width="0.1524" layer="91"/>
+<label x="30.48" y="-17.78" size="1.778" layer="95"/>
+</segment>
+</net>
 </nets>
 </sheet>
 <sheet>
@@ -1692,10 +1748,10 @@ Grid 5.08 mm&lt;p&gt;
 <instance part="VSS2" gate="G$1" x="40.64" y="-2.54"/>
 <instance part="VSS3" gate="G$1" x="12.7" y="-22.86"/>
 <instance part="VSS4" gate="G$1" x="40.64" y="-22.86"/>
-<instance part="SUPPLY1" gate="G$1" x="15.24" y="-15.24" rot="R270"/>
-<instance part="SUPPLY2" gate="G$1" x="43.18" y="-15.24" rot="R270"/>
-<instance part="SUPPLY3" gate="G$1" x="43.18" y="5.08" rot="R270"/>
-<instance part="SUPPLY4" gate="G$1" x="15.24" y="5.08" rot="R270"/>
+<instance part="U$14" gate="G$1" x="12.7" y="5.08" rot="R270"/>
+<instance part="U$15" gate="G$1" x="13.97" y="-15.24" rot="R270"/>
+<instance part="U$16" gate="G$1" x="41.91" y="-15.24" rot="R270"/>
+<instance part="U$17" gate="G$1" x="41.91" y="5.08" rot="R270"/>
 </instances>
 <busses>
 </busses>
@@ -1724,28 +1780,6 @@ Grid 5.08 mm&lt;p&gt;
 <pinref part="VSS4" gate="G$1" pin="VSS"/>
 <wire x1="38.1" y1="-17.78" x2="40.64" y2="-17.78" width="0.1524" layer="91"/>
 <wire x1="40.64" y1="-17.78" x2="40.64" y2="-20.32" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="+6V" class="0">
-<segment>
-<pinref part="SUPPLY1" gate="G$1" pin="+7V"/>
-<pinref part="JP3" gate="G$1" pin="2"/>
-<wire x1="12.7" y1="-15.24" x2="10.16" y2="-15.24" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<pinref part="SUPPLY4" gate="G$1" pin="+7V"/>
-<pinref part="JP1" gate="G$1" pin="2"/>
-<wire x1="12.7" y1="5.08" x2="10.16" y2="5.08" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<pinref part="SUPPLY3" gate="G$1" pin="+7V"/>
-<pinref part="JP2" gate="G$1" pin="2"/>
-<wire x1="40.64" y1="5.08" x2="38.1" y2="5.08" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<pinref part="SUPPLY2" gate="G$1" pin="+7V"/>
-<pinref part="JP4" gate="G$1" pin="2"/>
-<wire x1="40.64" y1="-15.24" x2="38.1" y2="-15.24" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="SERVO01" class="0">
@@ -1778,6 +1812,28 @@ Grid 5.08 mm&lt;p&gt;
 <wire x1="38.1" y1="-12.7" x2="40.64" y2="-12.7" width="0.1524" layer="91"/>
 <wire x1="40.64" y1="-12.7" x2="40.64" y2="-7.62" width="0.1524" layer="91"/>
 <label x="40.64" y="-7.62" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="P$1" class="0">
+<segment>
+<pinref part="JP3" gate="G$1" pin="2"/>
+<pinref part="U$15" gate="G$1" pin="P$1"/>
+<wire x1="10.16" y1="-15.24" x2="13.97" y2="-15.24" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="JP1" gate="G$1" pin="2"/>
+<pinref part="U$14" gate="G$1" pin="P$1"/>
+<wire x1="10.16" y1="5.08" x2="12.7" y2="5.08" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="JP2" gate="G$1" pin="2"/>
+<pinref part="U$17" gate="G$1" pin="P$1"/>
+<wire x1="38.1" y1="5.08" x2="41.91" y2="5.08" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="JP4" gate="G$1" pin="2"/>
+<pinref part="U$16" gate="G$1" pin="P$1"/>
+<wire x1="38.1" y1="-15.24" x2="41.91" y2="-15.24" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
