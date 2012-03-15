@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -232,15 +232,35 @@
 <wire x1="15.24" y1="12.7" x2="15.24" y2="0" width="0.254" layer="94"/>
 <wire x1="15.24" y1="0" x2="0" y2="0" width="0.254" layer="94"/>
 </symbol>
+<symbol name="+22V2">
+<wire x1="0" y1="2.54" x2="-1.27" y2="1.27" width="0.254" layer="94"/>
+<wire x1="-1.27" y1="1.27" x2="0" y2="3.81" width="0.254" layer="94"/>
+<wire x1="0" y1="3.81" x2="1.27" y2="1.27" width="0.254" layer="94"/>
+<wire x1="1.27" y1="1.27" x2="0" y2="2.54" width="0.254" layer="94"/>
+<pin name="+22V" x="0" y="0" visible="off" length="short" direction="sup" rot="R90"/>
+<text x="-2.54" y="0" size="1.778" layer="96" rot="R90">&gt;VALUE</text>
+<wire x1="0" y1="3.81" x2="-1.27" y2="2.54" width="0.254" layer="94"/>
+<wire x1="-1.27" y1="2.54" x2="0" y2="5.08" width="0.254" layer="94"/>
+<wire x1="0" y1="5.08" x2="1.27" y2="2.54" width="0.254" layer="94"/>
+<wire x1="1.27" y1="2.54" x2="0" y2="3.81" width="0.254" layer="94"/>
+</symbol>
+<symbol name="+11V1">
+<wire x1="0" y1="0" x2="1.27" y2="-1.27" width="0.254" layer="94"/>
+<wire x1="1.27" y1="-1.27" x2="0" y2="1.27" width="0.254" layer="94"/>
+<wire x1="0" y1="1.27" x2="-1.27" y2="-1.27" width="0.254" layer="94"/>
+<wire x1="-1.27" y1="-1.27" x2="0" y2="0" width="0.254" layer="94"/>
+<pin name="+11V1" x="0" y="-2.54" visible="off" length="short" direction="sup" rot="R90"/>
+<text x="-2.54" y="-3.81" size="1.778" layer="96" rot="R90">&gt;VALUE</text>
+</symbol>
 <symbol name="+6V">
-<wire x1="0" y1="0" x2="0" y2="2.54" width="0.254" layer="94"/>
 <wire x1="0" y1="2.54" x2="-1.27" y2="1.27" width="0.254" layer="94"/>
 <wire x1="-1.27" y1="1.27" x2="0" y2="5.08" width="0.254" layer="94"/>
 <wire x1="0" y1="5.08" x2="1.27" y2="1.27" width="0.254" layer="94"/>
 <wire x1="1.27" y1="1.27" x2="0" y2="2.54" width="0.254" layer="94"/>
 <wire x1="0" y1="3.6576" x2="0" y2="3.048" width="0.127" layer="94"/>
 <wire x1="-0.3048" y1="3.3528" x2="0.3048" y2="3.3528" width="0.127" layer="94"/>
-<pin name="P$1" x="0" y="0" visible="off" length="point" direction="sup"/>
+<pin name="+6V" x="0" y="0" visible="off" length="short" direction="sup" rot="R90"/>
+<text x="-2.54" y="0" size="1.778" layer="96" rot="R90">&gt;VALUE</text>
 </symbol>
 </symbols>
 <devicesets>
@@ -318,6 +338,30 @@
 <connect gate="G$1" pin="ROJO1" pad="P$1"/>
 <connect gate="G$1" pin="ROJO2" pad="P$3"/>
 </connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="+22V2">
+<gates>
+<gate name="G$1" symbol="+22V2" x="0" y="0"/>
+</gates>
+<devices>
+<device name="">
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="11V1">
+<gates>
+<gate name="G$1" symbol="+11V1" x="0" y="2.54"/>
+</gates>
+<devices>
+<device name="">
 <technologies>
 <technology name=""/>
 </technologies>
@@ -1267,22 +1311,6 @@ Standard 3-pin 0.1" header. Use with straight break away headers (SKU : PRT-0011
 <text x="-2.54" y="-5.08" size="1.778" layer="96" rot="R90">&gt;VALUE</text>
 <pin name="VSS" x="0" y="2.54" visible="off" length="short" direction="sup" rot="R270"/>
 </symbol>
-<symbol name="+24V">
-<wire x1="1.27" y1="-0.635" x2="0" y2="0" width="0.254" layer="94"/>
-<wire x1="0" y1="0" x2="-1.27" y2="-0.635" width="0.254" layer="94"/>
-<wire x1="1.27" y1="-0.635" x2="0" y2="1.27" width="0.254" layer="94"/>
-<wire x1="0" y1="1.27" x2="-1.27" y2="-0.635" width="0.254" layer="94"/>
-<text x="-2.54" y="-5.08" size="1.778" layer="96" rot="R90">&gt;VALUE</text>
-<pin name="+24V" x="0" y="-2.54" visible="off" length="short" direction="sup" rot="R90"/>
-</symbol>
-<symbol name="+12V">
-<wire x1="1.27" y1="-1.905" x2="0" y2="0" width="0.254" layer="94"/>
-<wire x1="0" y1="0" x2="-1.27" y2="-1.905" width="0.254" layer="94"/>
-<wire x1="1.27" y1="-0.635" x2="0" y2="1.27" width="0.254" layer="94"/>
-<wire x1="0" y1="1.27" x2="-1.27" y2="-0.635" width="0.254" layer="94"/>
-<text x="-2.54" y="-5.08" size="1.778" layer="96" rot="R90">&gt;VALUE</text>
-<pin name="+12V" x="0" y="-2.54" visible="off" length="short" direction="sup" rot="R90"/>
-</symbol>
 <symbol name="+5V">
 <wire x1="1.27" y1="-1.905" x2="0" y2="0" width="0.254" layer="94"/>
 <wire x1="0" y1="0" x2="-1.27" y2="-1.905" width="0.254" layer="94"/>
@@ -1295,38 +1323,20 @@ Standard 3-pin 0.1" header. Use with straight break away headers (SKU : PRT-0011
 <text x="-2.54" y="-5.08" size="1.778" layer="96" rot="R90">&gt;VALUE</text>
 <pin name="+3V3" x="0" y="-2.54" visible="off" length="short" direction="sup" rot="R90"/>
 </symbol>
+<symbol name="+12V">
+<wire x1="1.27" y1="-1.905" x2="0" y2="0" width="0.254" layer="94"/>
+<wire x1="0" y1="0" x2="-1.27" y2="-1.905" width="0.254" layer="94"/>
+<wire x1="1.27" y1="-0.635" x2="0" y2="1.27" width="0.254" layer="94"/>
+<wire x1="0" y1="1.27" x2="-1.27" y2="-0.635" width="0.254" layer="94"/>
+<text x="-2.54" y="-5.08" size="1.778" layer="96" rot="R90">&gt;VALUE</text>
+<pin name="+12V" x="0" y="-2.54" visible="off" length="short" direction="sup" rot="R90"/>
+</symbol>
 </symbols>
 <devicesets>
 <deviceset name="VSS" prefix="VSS">
 <description>&lt;b&gt;SUPPLY SYMBOL&lt;/b&gt;</description>
 <gates>
 <gate name="G$1" symbol="VSS" x="0" y="0"/>
-</gates>
-<devices>
-<device name="">
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
-<deviceset name="+24V" prefix="P+">
-<description>&lt;b&gt;SUPPLY SYMBOL&lt;/b&gt;</description>
-<gates>
-<gate name="1" symbol="+24V" x="0" y="0"/>
-</gates>
-<devices>
-<device name="">
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
-<deviceset name="+12V" prefix="P+">
-<description>&lt;b&gt;SUPPLY SYMBOL&lt;/b&gt;</description>
-<gates>
-<gate name="1" symbol="+12V" x="0" y="0"/>
 </gates>
 <devices>
 <device name="">
@@ -1353,6 +1363,19 @@ Standard 3-pin 0.1" header. Use with straight break away headers (SKU : PRT-0011
 <description>&lt;b&gt;SUPPLY SYMBOL&lt;/b&gt;</description>
 <gates>
 <gate name="G$1" symbol="+3V3" x="0" y="0"/>
+</gates>
+<devices>
+<device name="">
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="+12V" prefix="P+">
+<description>&lt;b&gt;SUPPLY SYMBOL&lt;/b&gt;</description>
+<gates>
+<gate name="1" symbol="+12V" x="0" y="0"/>
 </gates>
 <devices>
 <device name="">
@@ -1468,78 +1491,39 @@ Grid 5.08 mm&lt;p&gt;
 <part name="MOTOR2" library="con-wago-508" deviceset="W237-02P" device="" value=" "/>
 <part name="VSS5" library="supply1" deviceset="VSS" device=""/>
 <part name="VSS6" library="supply1" deviceset="VSS" device=""/>
-<part name="P+1" library="supply1" deviceset="+24V" device=""/>
-<part name="P+2" library="supply1" deviceset="+12V" device=""/>
-<part name="VSS7" library="supply1" deviceset="VSS" device=""/>
-<part name="P+3" library="supply1" deviceset="+24V" device=""/>
-<part name="P+4" library="supply1" deviceset="+12V" device=""/>
-<part name="P+5" library="supply1" deviceset="+5V" device=""/>
-<part name="+3V1" library="supply1" deviceset="+3V3" device=""/>
-<part name="U$13" library="aasanchez" deviceset="+6V" device=""/>
-<part name="U$14" library="aasanchez" deviceset="+6V" device=""/>
-<part name="U$15" library="aasanchez" deviceset="+6V" device=""/>
-<part name="U$16" library="aasanchez" deviceset="+6V" device=""/>
-<part name="U$17" library="aasanchez" deviceset="+6V" device=""/>
 <part name="VSS8" library="supply1" deviceset="VSS" device=""/>
+<part name="VSS7" library="supply1" deviceset="VSS" device=""/>
+<part name="U$13" library="aasanchez" deviceset="+22V2" device=""/>
+<part name="U$14" library="aasanchez" deviceset="11V1" device=""/>
+<part name="U$15" library="aasanchez" deviceset="+6V" device=""/>
+<part name="P+1" library="supply1" deviceset="+5V" device=""/>
+<part name="+3V1" library="supply1" deviceset="+3V3" device=""/>
+<part name="P+2" library="supply1" deviceset="+12V" device=""/>
+<part name="U$16" library="aasanchez" deviceset="+22V2" device=""/>
+<part name="U$17" library="aasanchez" deviceset="11V1" device=""/>
+<part name="U$18" library="aasanchez" deviceset="+6V" device=""/>
+<part name="U$19" library="aasanchez" deviceset="+6V" device=""/>
+<part name="U$20" library="aasanchez" deviceset="+6V" device=""/>
+<part name="U$21" library="aasanchez" deviceset="+6V" device=""/>
 </parts>
 <sheets>
 <sheet>
 <description>Base</description>
 <plain>
-<text x="100.33" y="27.94" size="1.778" layer="96" rot="R90">+6V</text>
 </plain>
 <instances>
 <instance part="U$1" gate="G$1" x="58.42" y="53.34"/>
-<instance part="VSS7" gate="G$1" x="76.2" y="27.94"/>
-<instance part="P+3" gate="1" x="81.28" y="27.94" rot="R180"/>
-<instance part="P+4" gate="1" x="88.9" y="27.94" rot="R180"/>
-<instance part="P+5" gate="1" x="104.14" y="27.94" rot="R180"/>
-<instance part="+3V1" gate="G$1" x="111.76" y="27.94" rot="R180"/>
-<instance part="U$13" gate="G$1" x="96.52" y="30.48" rot="R180"/>
+<instance part="VSS7" gate="G$1" x="76.2" y="30.48"/>
+<instance part="U$13" gate="G$1" x="81.28" y="33.02" rot="R180"/>
+<instance part="U$14" gate="G$1" x="96.52" y="30.48" rot="R180"/>
+<instance part="U$15" gate="G$1" x="104.14" y="33.02" rot="R180"/>
+<instance part="P+1" gate="1" x="111.76" y="30.48" rot="R180"/>
+<instance part="+3V1" gate="G$1" x="119.38" y="30.48" rot="R180"/>
+<instance part="P+2" gate="1" x="88.9" y="30.48" rot="R180"/>
 </instances>
 <busses>
 </busses>
 <nets>
-<net name="VSS" class="0">
-<segment>
-<pinref part="U$1" gate="G$1" pin="PIN16"/>
-<pinref part="VSS7" gate="G$1" pin="VSS"/>
-<wire x1="73.66" y1="35.56" x2="76.2" y2="35.56" width="0.1524" layer="91"/>
-<wire x1="76.2" y1="35.56" x2="76.2" y2="30.48" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="+24V" class="0">
-<segment>
-<pinref part="U$1" gate="G$1" pin="PIN17"/>
-<pinref part="P+3" gate="1" pin="+24V"/>
-<wire x1="73.66" y1="38.1" x2="81.28" y2="38.1" width="0.1524" layer="91"/>
-<wire x1="81.28" y1="38.1" x2="81.28" y2="30.48" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="+12V" class="0">
-<segment>
-<pinref part="U$1" gate="G$1" pin="PIN18"/>
-<pinref part="P+4" gate="1" pin="+12V"/>
-<wire x1="73.66" y1="40.64" x2="88.9" y2="40.64" width="0.1524" layer="91"/>
-<wire x1="88.9" y1="40.64" x2="88.9" y2="30.48" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="+5V" class="0">
-<segment>
-<pinref part="U$1" gate="G$1" pin="PIN20"/>
-<pinref part="P+5" gate="1" pin="+5V"/>
-<wire x1="73.66" y1="45.72" x2="104.14" y2="45.72" width="0.1524" layer="91"/>
-<wire x1="104.14" y1="45.72" x2="104.14" y2="30.48" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="+3V3" class="0">
-<segment>
-<pinref part="U$1" gate="G$1" pin="PIN21"/>
-<pinref part="+3V1" gate="G$1" pin="+3V3"/>
-<wire x1="73.66" y1="48.26" x2="111.76" y2="48.26" width="0.1524" layer="91"/>
-<wire x1="111.76" y1="48.26" x2="111.76" y2="30.48" width="0.1524" layer="91"/>
-</segment>
-</net>
 <net name="M1-RED" class="0">
 <segment>
 <wire x1="73.66" y1="68.58" x2="78.74" y2="68.58" width="0.1524" layer="91"/>
@@ -1596,14 +1580,6 @@ Grid 5.08 mm&lt;p&gt;
 <label x="78.74" y="63.5" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="P$1" class="0">
-<segment>
-<pinref part="U$1" gate="G$1" pin="PIN19"/>
-<pinref part="U$13" gate="G$1" pin="P$1"/>
-<wire x1="73.66" y1="43.18" x2="96.52" y2="43.18" width="0.1524" layer="91"/>
-<wire x1="96.52" y1="43.18" x2="96.52" y2="30.48" width="0.1524" layer="91"/>
-</segment>
-</net>
 <net name="SENSE1" class="0">
 <segment>
 <pinref part="U$1" gate="G$1" pin="PIN15"/>
@@ -1625,6 +1601,62 @@ Grid 5.08 mm&lt;p&gt;
 <label x="27.94" y="40.64" size="1.778" layer="95"/>
 </segment>
 </net>
+<net name="VSS" class="0">
+<segment>
+<pinref part="U$1" gate="G$1" pin="PIN16"/>
+<pinref part="VSS7" gate="G$1" pin="VSS"/>
+<wire x1="73.66" y1="35.56" x2="76.2" y2="35.56" width="0.1524" layer="91"/>
+<wire x1="76.2" y1="35.56" x2="76.2" y2="33.02" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="+22V" class="0">
+<segment>
+<pinref part="U$1" gate="G$1" pin="PIN17"/>
+<pinref part="U$13" gate="G$1" pin="+22V"/>
+<wire x1="73.66" y1="38.1" x2="81.28" y2="38.1" width="0.1524" layer="91"/>
+<wire x1="81.28" y1="38.1" x2="81.28" y2="33.02" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="+12V" class="0">
+<segment>
+<pinref part="U$1" gate="G$1" pin="PIN18"/>
+<pinref part="P+2" gate="1" pin="+12V"/>
+<wire x1="73.66" y1="40.64" x2="88.9" y2="40.64" width="0.1524" layer="91"/>
+<wire x1="88.9" y1="40.64" x2="88.9" y2="33.02" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="+11V1" class="0">
+<segment>
+<pinref part="U$1" gate="G$1" pin="PIN19"/>
+<pinref part="U$14" gate="G$1" pin="+11V1"/>
+<wire x1="73.66" y1="43.18" x2="96.52" y2="43.18" width="0.1524" layer="91"/>
+<wire x1="96.52" y1="43.18" x2="96.52" y2="33.02" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="+6V" class="0">
+<segment>
+<pinref part="U$1" gate="G$1" pin="PIN20"/>
+<pinref part="U$15" gate="G$1" pin="+6V"/>
+<wire x1="73.66" y1="45.72" x2="104.14" y2="45.72" width="0.1524" layer="91"/>
+<wire x1="104.14" y1="45.72" x2="104.14" y2="33.02" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="+5V" class="0">
+<segment>
+<pinref part="U$1" gate="G$1" pin="PIN21"/>
+<pinref part="P+1" gate="1" pin="+5V"/>
+<wire x1="73.66" y1="48.26" x2="111.76" y2="48.26" width="0.1524" layer="91"/>
+<wire x1="111.76" y1="48.26" x2="111.76" y2="33.02" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="+3V3" class="0">
+<segment>
+<pinref part="U$1" gate="G$1" pin="PIN22"/>
+<pinref part="+3V1" gate="G$1" pin="+3V3"/>
+<wire x1="73.66" y1="50.8" x2="119.38" y2="50.8" width="0.1524" layer="91"/>
+<wire x1="119.38" y1="50.8" x2="119.38" y2="33.02" width="0.1524" layer="91"/>
+</segment>
+</net>
 </nets>
 </sheet>
 <sheet>
@@ -1636,8 +1668,8 @@ Grid 5.08 mm&lt;p&gt;
 <instance part="U$12" gate="G$1" x="86.36" y="66.04" rot="R90"/>
 <instance part="VSS5" gate="G$1" x="63.5" y="53.34"/>
 <instance part="VSS6" gate="G$1" x="78.74" y="53.34"/>
-<instance part="P+1" gate="1" x="48.26" y="63.5"/>
-<instance part="P+2" gate="1" x="71.12" y="63.5"/>
+<instance part="U$16" gate="G$1" x="50.8" y="63.5"/>
+<instance part="U$17" gate="G$1" x="71.12" y="66.04"/>
 </instances>
 <busses>
 </busses>
@@ -1654,15 +1686,6 @@ Grid 5.08 mm&lt;p&gt;
 <wire x1="78.74" y1="55.88" x2="78.74" y2="60.96" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="+24V" class="0">
-<segment>
-<pinref part="P+1" gate="1" pin="+24V"/>
-<wire x1="48.26" y1="60.96" x2="48.26" y2="58.42" width="0.1524" layer="91"/>
-<pinref part="U$11" gate="G$1" pin="ROJO1"/>
-<wire x1="55.88" y1="58.42" x2="55.88" y2="60.96" width="0.1524" layer="91"/>
-<wire x1="48.26" y1="58.42" x2="55.88" y2="58.42" width="0.1524" layer="91"/>
-</segment>
-</net>
 <net name="N$1" class="0">
 <segment>
 <pinref part="U$11" gate="G$1" pin="NEGRO1"/>
@@ -1672,13 +1695,22 @@ Grid 5.08 mm&lt;p&gt;
 <wire x1="60.96" y1="58.42" x2="60.96" y2="60.96" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="+12V" class="0">
+<net name="+22V" class="0">
+<segment>
+<pinref part="U$16" gate="G$1" pin="+22V"/>
+<wire x1="50.8" y1="63.5" x2="50.8" y2="58.42" width="0.1524" layer="91"/>
+<pinref part="U$11" gate="G$1" pin="ROJO1"/>
+<wire x1="50.8" y1="58.42" x2="55.88" y2="58.42" width="0.1524" layer="91"/>
+<wire x1="55.88" y1="58.42" x2="55.88" y2="60.96" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="+11V1" class="0">
 <segment>
 <pinref part="U$12" gate="G$1" pin="ROJO"/>
 <wire x1="76.2" y1="60.96" x2="76.2" y2="58.42" width="0.1524" layer="91"/>
+<pinref part="U$17" gate="G$1" pin="+11V1"/>
 <wire x1="76.2" y1="58.42" x2="71.12" y2="58.42" width="0.1524" layer="91"/>
-<pinref part="P+2" gate="1" pin="+12V"/>
-<wire x1="71.12" y1="58.42" x2="71.12" y2="60.96" width="0.1524" layer="91"/>
+<wire x1="71.12" y1="58.42" x2="71.12" y2="63.5" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
@@ -1748,10 +1780,10 @@ Grid 5.08 mm&lt;p&gt;
 <instance part="VSS2" gate="G$1" x="40.64" y="-2.54"/>
 <instance part="VSS3" gate="G$1" x="12.7" y="-22.86"/>
 <instance part="VSS4" gate="G$1" x="40.64" y="-22.86"/>
-<instance part="U$14" gate="G$1" x="12.7" y="5.08" rot="R270"/>
-<instance part="U$15" gate="G$1" x="13.97" y="-15.24" rot="R270"/>
-<instance part="U$16" gate="G$1" x="41.91" y="-15.24" rot="R270"/>
-<instance part="U$17" gate="G$1" x="41.91" y="5.08" rot="R270"/>
+<instance part="U$18" gate="G$1" x="15.24" y="5.08" rot="R270"/>
+<instance part="U$19" gate="G$1" x="43.18" y="5.08" rot="R270"/>
+<instance part="U$20" gate="G$1" x="43.18" y="-15.24" rot="R270"/>
+<instance part="U$21" gate="G$1" x="15.24" y="-15.24" rot="R270"/>
 </instances>
 <busses>
 </busses>
@@ -1814,32 +1846,32 @@ Grid 5.08 mm&lt;p&gt;
 <label x="40.64" y="-7.62" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="P$1" class="0">
-<segment>
-<pinref part="JP3" gate="G$1" pin="2"/>
-<pinref part="U$15" gate="G$1" pin="P$1"/>
-<wire x1="10.16" y1="-15.24" x2="13.97" y2="-15.24" width="0.1524" layer="91"/>
-</segment>
+<net name="+6V" class="0">
 <segment>
 <pinref part="JP1" gate="G$1" pin="2"/>
-<pinref part="U$14" gate="G$1" pin="P$1"/>
-<wire x1="10.16" y1="5.08" x2="12.7" y2="5.08" width="0.1524" layer="91"/>
+<pinref part="U$18" gate="G$1" pin="+6V"/>
+<wire x1="10.16" y1="5.08" x2="15.24" y2="5.08" width="0.1524" layer="91"/>
 </segment>
 <segment>
+<pinref part="U$19" gate="G$1" pin="+6V"/>
 <pinref part="JP2" gate="G$1" pin="2"/>
-<pinref part="U$17" gate="G$1" pin="P$1"/>
-<wire x1="38.1" y1="5.08" x2="41.91" y2="5.08" width="0.1524" layer="91"/>
+<wire x1="43.18" y1="5.08" x2="38.1" y2="5.08" width="0.1524" layer="91"/>
 </segment>
 <segment>
+<pinref part="U$20" gate="G$1" pin="+6V"/>
 <pinref part="JP4" gate="G$1" pin="2"/>
-<pinref part="U$16" gate="G$1" pin="P$1"/>
-<wire x1="38.1" y1="-15.24" x2="41.91" y2="-15.24" width="0.1524" layer="91"/>
+<wire x1="43.18" y1="-15.24" x2="38.1" y2="-15.24" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U$21" gate="G$1" pin="+6V"/>
+<pinref part="JP3" gate="G$1" pin="2"/>
+<wire x1="15.24" y1="-15.24" x2="10.16" y2="-15.24" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
 </sheet>
 <sheet>
-<description>DC CONECTION</description>
+<description>MOTOR CONNECTION</description>
 <plain>
 </plain>
 <instances>
