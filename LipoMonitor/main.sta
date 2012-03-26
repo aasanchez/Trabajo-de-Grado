@@ -1,0 +1,44 @@
+
+ROM used: 20 (0%)
+          20 (0%) including unused fragments
+
+          0 Average locations per line
+          20 Average locations per statement
+
+RAM used: 5 (1%) at main() level
+          5 (1%) worst case
+
+Stack used: 0 worst case (out of 8 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   10     0   0  main.c
+   18     0   0  main.h
+  322     0   0  C:\Program Files\PICC\devices\16F88.h
+----- -----
+  350     1 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     16  80   0     3  0.0  main
+
+Program metrics:
+    Functions               1
+    Statements              1
+    Comments                82
+    Volume (V)              3
+    Difficilty (D)          0.0
+    Effort to implement (E) 0
+    Time to implement (T)   0 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    214
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF    16  2028  
+00800-00FFF     0  2048  
+
+
+

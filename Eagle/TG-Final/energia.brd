@@ -2005,6 +2005,12 @@ design rules under a new name.</description>
 <element name="C19" library="rcl" package="C050-024X044" value="0.1uf" x="26.67" y="100.33" rot="R90"/>
 <element name="LED4" library="adafruit" package="LED3MM" value="VERDE" x="21.59" y="87.63" rot="R90"/>
 <element name="R6" library="rcl" package="0204/5" value="680" x="21.59" y="100.33" rot="R90"/>
+<element name="LED5" library="adafruit" package="LED3MM" value="" x="-48.26" y="-2.54"/>
+<element name="R7" library="rcl" package="0204/5" value="470" x="-46.99" y="-7.62"/>
+<element name="LED6" library="adafruit" package="LED3MM" value="" x="-48.26" y="-19.05"/>
+<element name="R8" library="rcl" package="0204/5" value="470" x="-46.99" y="-13.97"/>
+<element name="LED7" library="adafruit" package="LED3MM" value="" x="-48.26" y="-29.21"/>
+<element name="R9" library="rcl" package="0204/5" value="470" x="-46.99" y="-24.13"/>
 </elements>
 <signals>
 <signal name="VSS">
@@ -2034,7 +2040,6 @@ design rules under a new name.</description>
 <contactref element="C4" pad="2"/>
 <contactref element="JP1" pad="4"/>
 <contactref element="MONITORBATERIA" pad="5"/>
-<contactref element="R4" pad="2"/>
 <contactref element="C18" pad="2"/>
 <contactref element="R3" pad="2"/>
 <contactref element="C19" pad="2"/>
@@ -2143,7 +2148,6 @@ design rules under a new name.</description>
 <wire x1="56.778025" y1="82.178025" x2="57.15" y2="83.07605" width="1.016" layer="16" curve="45"/>
 <wire x1="57.15" y1="83.07605" x2="57.15" y2="85.09" width="1.016" layer="16"/>
 <wire x1="35.56" y1="137.16" x2="35.56" y2="139.7" width="1.016" layer="16"/>
-<wire x1="35.56" y1="139.7" x2="34.29" y2="140.97" width="1.016" layer="16"/>
 <wire x1="34.29" y1="152.4" x2="34.29" y2="154.94" width="1.016" layer="16"/>
 <wire x1="34.29" y1="154.94" x2="33.02" y2="156.21" width="1.016" layer="16"/>
 <wire x1="33.02" y1="156.21" x2="20.32" y2="156.21" width="1.016" layer="16"/>
@@ -2172,6 +2176,12 @@ design rules under a new name.</description>
 <via x="60.96" y="76.2" extent="1-16" drill="0.8" diameter="2.1844"/>
 <wire x1="33.02" y1="107.95" x2="31.75" y2="109.22" width="1.016" layer="16"/>
 <wire x1="31.75" y1="109.22" x2="31.75" y2="128.27" width="1.016" layer="16"/>
+<contactref element="R7" pad="1"/>
+<contactref element="R8" pad="1"/>
+<contactref element="R9" pad="1"/>
+<wire x1="-49.53" y1="-13.97" x2="-49.53" y2="-24.13" width="0" layer="19" extent="1-1"/>
+<wire x1="-49.53" y1="-7.62" x2="-49.53" y2="-13.97" width="0" layer="19" extent="1-1"/>
+<wire x1="26.67" y1="10.16" x2="-49.53" y2="-7.62" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="+22V">
 <contactref element="U$1" pad="PIN17"/>
@@ -2589,7 +2599,9 @@ design rules under a new name.</description>
 <signal name="N$2">
 <contactref element="JP1" pad="6"/>
 <contactref element="MONITORBATERIA" pad="4"/>
-<wire x1="33.02" y1="137.16" x2="29.21" y2="152.4" width="0" layer="19" extent="1-1"/>
+<contactref element="R4" pad="2"/>
+<wire x1="34.29" y1="140.97" x2="29.21" y2="152.4" width="0" layer="19" extent="1-1"/>
+<wire x1="33.02" y1="137.16" x2="34.29" y2="140.97" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$5">
 <contactref element="JP1" pad="3"/>
@@ -2614,6 +2626,21 @@ design rules under a new name.</description>
 <contactref element="R6" pad="1"/>
 <contactref element="LED4" pad="K"/>
 <wire x1="21.59" y1="97.79" x2="21.59" y2="88.9" width="1.016" layer="16"/>
+</signal>
+<signal name="N$15">
+<contactref element="LED5" pad="K"/>
+<contactref element="R7" pad="2"/>
+<wire x1="-46.99" y1="-2.54" x2="-44.45" y2="-7.62" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$16">
+<contactref element="LED6" pad="K"/>
+<contactref element="R8" pad="2"/>
+<wire x1="-44.45" y1="-13.97" x2="-46.99" y2="-19.05" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$19">
+<contactref element="LED7" pad="K"/>
+<contactref element="R9" pad="2"/>
+<wire x1="-44.45" y1="-24.13" x2="-46.99" y2="-29.21" width="0" layer="19" extent="1-1"/>
 </signal>
 </signals>
 </board>
