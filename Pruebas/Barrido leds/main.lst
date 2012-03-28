@@ -1,0 +1,246 @@
+CCS PCM C Compiler, Version 4.114, 93471994               26-mar-12 10:50
+
+               Filename: Z:\AlarmaBateria\main.lst
+
+               ROM used: 165 words (4%)
+                         Largest free fragment is 2048
+               RAM used: 8 (2%) at main() level
+                         9 (2%) worst case
+               Stack:    1 locations
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   018
+0003:  NOP
+.................... #include <16F88.H>  
+.................... //////// Standard Header file for the PIC16F88 device //////////////// 
+.................... #device PIC16F88 
+.................... #list 
+....................  
+.................... #device adc=8 
+.................... #FUSES INTRC, NOWDT, NOLVP, NOCPD, NOWRT, NODEBUG, NOPROTECT, NOFCMEN, NOIESO  
+.................... #FUSES NOMCLR, NOBROWNOUT, CCPB3 
+.................... #use delay(clock=8000000)  
+0004:  MOVLW  23
+0005:  MOVWF  04
+0006:  BCF    03.7
+0007:  MOVF   00,W
+0008:  BTFSC  03.2
+0009:  GOTO   017
+000A:  MOVLW  02
+000B:  MOVWF  78
+000C:  CLRF   77
+000D:  DECFSZ 77,F
+000E:  GOTO   00D
+000F:  DECFSZ 78,F
+0010:  GOTO   00C
+0011:  MOVLW  97
+0012:  MOVWF  77
+0013:  DECFSZ 77,F
+0014:  GOTO   013
+0015:  DECFSZ 00,F
+0016:  GOTO   00A
+0017:  RETURN
+.................... #use fast_io(a)  
+.................... #use fast_io(b) 
+.................... #byte porta=0x05  
+.................... #define CELDA1_LED PIN_B0 
+.................... #define CELDA2_LED PIN_B1 
+.................... #define CELDA3_LED PIN_B2 
+....................  
+....................    INT celda1; 
+....................    INT celda2; 
+....................    INT celda3; 
+....................  
+.................... void main(){ 
+0018:  CLRF   04
+0019:  BCF    03.7
+001A:  MOVLW  1F
+001B:  ANDWF  03,F
+001C:  MOVLW  72
+001D:  BSF    03.5
+001E:  MOVWF  0F
+001F:  MOVF   0F,W
+0020:  BCF    1F.4
+0021:  BCF    1F.5
+0022:  MOVF   1B,W
+0023:  ANDLW  80
+0024:  MOVWF  1B
+0025:  MOVLW  07
+0026:  MOVWF  1C
+....................    porta = 0; 
+0027:  BCF    03.5
+0028:  CLRF   05
+....................    set_tris_a (0xff); 
+0029:  MOVLW  FF
+002A:  BSF    03.5
+002B:  MOVWF  05
+....................    set_tris_b (0x00); // 
+002C:  MOVLW  00
+002D:  MOVWF  06
+....................    setup_adc_ports (ALL_ANALOG) ; 
+002E:  BCF    1F.4
+002F:  BCF    1F.5
+0030:  MOVF   1B,W
+0031:  ANDLW  80
+0032:  IORLW  7F
+0033:  MOVWF  1B
+....................    setup_adc (adc_clock_div_8); 
+0034:  BCF    1F.6
+0035:  BCF    03.5
+0036:  BSF    1F.6
+0037:  BCF    1F.7
+0038:  BSF    03.5
+0039:  BCF    1F.7
+003A:  BCF    03.5
+003B:  BSF    1F.0
+....................     
+....................    setup_ccp1(ccp_pwm);  
+003C:  BCF    06.3
+003D:  MOVLW  0C
+003E:  MOVWF  17
+....................    setup_timer_2(t2_div_by_1,124,1);  
+003F:  MOVLW  00
+0040:  MOVWF  78
+0041:  IORLW  04
+0042:  MOVWF  12
+0043:  MOVLW  7C
+0044:  BSF    03.5
+0045:  MOVWF  12
+....................    set_pwm1_duty(0); 
+0046:  BCF    03.5
+0047:  CLRF   15
+....................    WHILE (1){ 
+....................       // inicio bucle infinito    
+....................       set_adc_channel (0); 
+0048:  MOVLW  00
+0049:  MOVWF  78
+004A:  MOVF   1F,W
+004B:  ANDLW  C7
+004C:  IORWF  78,W
+004D:  MOVWF  1F
+....................       delay_ms (10) ; 
+004E:  MOVLW  0A
+004F:  MOVWF  23
+0050:  CALL   004
+....................       celda1 = read_adc (); 
+0051:  BSF    1F.2
+0052:  BTFSC  1F.2
+0053:  GOTO   052
+0054:  MOVF   1E,W
+0055:  MOVWF  20
+....................       set_adc_channel (1); 
+0056:  MOVLW  08
+0057:  MOVWF  78
+0058:  MOVF   1F,W
+0059:  ANDLW  C7
+005A:  IORWF  78,W
+005B:  MOVWF  1F
+....................       delay_ms (10) ; 
+005C:  MOVLW  0A
+005D:  MOVWF  23
+005E:  CALL   004
+....................       celda2 = read_adc (); 
+005F:  BSF    1F.2
+0060:  BTFSC  1F.2
+0061:  GOTO   060
+0062:  MOVF   1E,W
+0063:  MOVWF  21
+....................       set_adc_channel (2); 
+0064:  MOVLW  10
+0065:  MOVWF  78
+0066:  MOVF   1F,W
+0067:  ANDLW  C7
+0068:  IORWF  78,W
+0069:  MOVWF  1F
+....................       delay_ms (10) ; 
+006A:  MOVLW  0A
+006B:  MOVWF  23
+006C:  CALL   004
+....................       celda3 = read_adc (); 
+006D:  BSF    1F.2
+006E:  BTFSC  1F.2
+006F:  GOTO   06E
+0070:  MOVF   1E,W
+0071:  MOVWF  22
+....................       if (celda1 <= 168){ 
+0072:  MOVF   20,W
+0073:  SUBLW  A8
+0074:  BTFSS  03.0
+0075:  GOTO   078
+....................           output_low(CELDA1_LED); 
+0076:  BCF    06.0
+....................       }else{ 
+0077:  GOTO   079
+....................           output_high(CELDA1_LED); 
+0078:  BSF    06.0
+....................       } 
+....................       if (celda2 <= 168){ 
+0079:  MOVF   21,W
+007A:  SUBLW  A8
+007B:  BTFSS  03.0
+007C:  GOTO   07F
+....................           output_low(CELDA2_LED); 
+007D:  BCF    06.1
+....................       }else{ 
+007E:  GOTO   080
+....................           output_high(CELDA2_LED); 
+007F:  BSF    06.1
+....................       } 
+....................       if (celda3 <= 168){ 
+0080:  MOVF   22,W
+0081:  SUBLW  A8
+0082:  BTFSS  03.0
+0083:  GOTO   08B
+....................           output_low(CELDA3_LED); 
+0084:  BCF    06.2
+....................           set_pwm1_duty(512); 
+0085:  MOVLW  80
+0086:  MOVWF  15
+0087:  MOVF   17,W
+0088:  ANDLW  CF
+0089:  MOVWF  17
+....................       }else{ 
+008A:  GOTO   08D
+....................           output_high(CELDA3_LED); 
+008B:  BSF    06.2
+....................           set_pwm1_duty(0); 
+008C:  CLRF   15
+....................       } 
+....................       if ((celda1 <= 168)||(celda2 <= 168)||(celda3 <= 168)){ 
+008D:  MOVF   20,W
+008E:  SUBLW  A8
+008F:  BTFSC  03.0
+0090:  GOTO   099
+0091:  MOVF   21,W
+0092:  SUBLW  A8
+0093:  BTFSC  03.0
+0094:  GOTO   099
+0095:  MOVF   22,W
+0096:  SUBLW  A8
+0097:  BTFSS  03.0
+0098:  GOTO   09F
+....................           set_pwm1_duty(512); 
+0099:  MOVLW  80
+009A:  MOVWF  15
+009B:  MOVF   17,W
+009C:  ANDLW  CF
+009D:  MOVWF  17
+....................       }else{ 
+009E:  GOTO   0A0
+....................           set_pwm1_duty(0); 
+009F:  CLRF   15
+....................       }       
+....................       delay_ms (10); 
+00A0:  MOVLW  0A
+00A1:  MOVWF  23
+00A2:  CALL   004
+....................    } 
+00A3:  GOTO   048
+.................... } 
+00A4:  SLEEP
+
+Configuration Fuses:
+   Word  1: 2F11   NOWDT PUT INTRC NOMCLR NOBROWNOUT NOLVP NOCPD NOWRT NODEBUG CCPB3 NOPROTECT
+   Word  2: 3FFC   NOFCMEN NOIESO

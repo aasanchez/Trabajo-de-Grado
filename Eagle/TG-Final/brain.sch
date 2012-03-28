@@ -181,52 +181,6 @@
 <circle x="25.4" y="73.66" radius="3.81" width="6.4516" layer="41"/>
 <circle x="25.4" y="73.66" radius="3.81" width="6.4516" layer="42"/>
 </package>
-<package name="UK1122">
-<pad name="GND" x="26.67" y="-20.32" drill="0.8" shape="long" rot="R90"/>
-<pad name="+5" x="29.21" y="-20.32" drill="0.8" shape="long" rot="R90"/>
-<pad name="IN1" x="31.75" y="-20.32" drill="0.8" shape="long" rot="R90"/>
-<pad name="ENA" x="34.29" y="-20.32" drill="0.8" shape="long" rot="R90"/>
-<pad name="EN2" x="36.83" y="-20.32" drill="0.8" shape="long" rot="R90"/>
-<pad name="CSA" x="39.37" y="-20.32" drill="0.8" shape="long" rot="R90"/>
-<pad name="IN3" x="41.91" y="-20.32" drill="0.8" shape="long" rot="R90"/>
-<pad name="ENB" x="44.45" y="-20.32" drill="0.8" shape="long" rot="R90"/>
-<pad name="IN4" x="46.99" y="-20.32" drill="0.8" shape="long" rot="R90"/>
-<pad name="CSB" x="49.53" y="-20.32" drill="0.8" shape="long" rot="R90"/>
-<pad name="-" x="13.97" y="-20.32" drill="0.8" shape="long" rot="R90"/>
-<pad name="+" x="11.43" y="-20.32" drill="0.8" shape="long" rot="R90"/>
-<pad name="MOT2A" x="76.2" y="34.29" drill="0.8" shape="long" rot="R180"/>
-<pad name="MOT2R" x="76.2" y="36.83" drill="0.8" shape="long" rot="R180"/>
-<pad name="MOT1A" x="-12.7" y="34.29" drill="0.8" shape="long" rot="R180"/>
-<pad name="MOT1R" x="-12.7" y="36.83" drill="0.8" shape="long" rot="R180"/>
-<wire x1="0" y1="0" x2="63.5" y2="0" width="0.127" layer="21"/>
-<wire x1="63.5" y1="0" x2="63.5" y2="63.5" width="0.127" layer="21"/>
-<wire x1="0" y1="0" x2="0" y2="63.5" width="0.127" layer="21"/>
-<wire x1="48.26" y1="63.5" x2="63.5" y2="63.5" width="0.127" layer="21"/>
-<wire x1="0" y1="63.5" x2="15.24" y2="63.5" width="0.127" layer="21"/>
-<wire x1="22.352" y1="57.658" x2="22.606" y2="57.658" width="0.1524" layer="21"/>
-<wire x1="22.606" y1="57.658" x2="40.894" y2="57.658" width="0.1524" layer="51"/>
-<wire x1="40.894" y1="57.658" x2="41.148" y2="57.658" width="0.1524" layer="21"/>
-<wire x1="22.352" y1="61.214" x2="22.352" y2="57.658" width="0.1524" layer="21"/>
-<wire x1="41.148" y1="61.214" x2="41.148" y2="57.658" width="0.1524" layer="21"/>
-<rectangle x1="22.606" y1="54.864" x2="23.114" y2="57.658" layer="51"/>
-<rectangle x1="25.146" y1="54.864" x2="25.654" y2="57.658" layer="51"/>
-<rectangle x1="27.686" y1="54.864" x2="28.194" y2="57.658" layer="51"/>
-<rectangle x1="30.226" y1="54.864" x2="30.734" y2="57.658" layer="51"/>
-<rectangle x1="32.766" y1="54.864" x2="33.274" y2="57.658" layer="51"/>
-<rectangle x1="35.306" y1="54.864" x2="35.814" y2="57.658" layer="51"/>
-<rectangle x1="37.846" y1="54.864" x2="38.354" y2="57.658" layer="51"/>
-<rectangle x1="40.386" y1="54.864" x2="40.894" y2="57.658" layer="51"/>
-<rectangle x1="22.275" y1="61.135" x2="41.225" y2="62.81" layer="21"/>
-<text x="29.21" y="58.42" size="1.27" layer="21">L298</text>
-<wire x1="15.24" y1="63.5" x2="48.26" y2="63.5" width="0.127" layer="21"/>
-<rectangle x1="15.24" y1="63.5" x2="17.78" y2="78.74" layer="21"/>
-<rectangle x1="45.72" y1="63.5" x2="48.26" y2="78.74" layer="21"/>
-<rectangle x1="21.59" y1="63.5" x2="24.13" y2="78.74" layer="21"/>
-<rectangle x1="39.37" y1="63.5" x2="41.91" y2="78.74" layer="21"/>
-<rectangle x1="27.94" y1="63.5" x2="30.48" y2="78.74" layer="21"/>
-<rectangle x1="33.02" y1="63.5" x2="35.56" y2="78.74" layer="21"/>
-<rectangle x1="15.24" y1="63.5" x2="48.26" y2="64.77" layer="21"/>
-</package>
 <package name="IMU3000-COMBO">
 <text x="2.794" y="5.842" size="1.016" layer="21" font="vector" ratio="15">VCC</text>
 <text x="2.794" y="8.382" size="1.016" layer="21" font="vector" ratio="15">GND</text>
@@ -338,29 +292,6 @@
 <wire x1="-0.3048" y1="3.3528" x2="0.3048" y2="3.3528" width="0.127" layer="94"/>
 <pin name="+6V" x="0" y="0" visible="off" length="short" direction="sup" rot="R90"/>
 <text x="-2.54" y="0" size="1.778" layer="96" rot="R90">&gt;VALUE</text>
-</symbol>
-<symbol name="UK1122">
-<pin name="GND" x="17.78" y="0" visible="pin" length="middle" direction="pwr" rot="R90"/>
-<pin name="+5" x="20.32" y="0" visible="pin" length="middle" direction="pwr" rot="R90"/>
-<pin name="IN1" x="22.86" y="0" visible="pin" length="middle" direction="in" rot="R90"/>
-<pin name="ENA" x="25.4" y="0" visible="pin" length="middle" direction="in" rot="R90"/>
-<pin name="IN2" x="27.94" y="0" visible="pin" length="middle" direction="in" rot="R90"/>
-<pin name="CSA" x="30.48" y="0" visible="pin" length="middle" direction="out" rot="R90"/>
-<pin name="IN3" x="33.02" y="0" visible="pin" length="middle" direction="in" rot="R90"/>
-<pin name="ENB" x="35.56" y="0" length="middle" rot="R90"/>
-<pin name="IN4" x="38.1" y="0" visible="pin" length="middle" direction="in" rot="R90"/>
-<pin name="CSB" x="40.64" y="0" visible="pin" length="middle" direction="out" rot="R90"/>
-<pin name="-" x="7.62" y="0" visible="pin" length="middle" direction="pwr" rot="R90"/>
-<pin name="+" x="5.08" y="0" visible="pin" length="middle" direction="pwr" rot="R90"/>
-<pin name="MOT1A" x="-5.08" y="25.4" length="middle"/>
-<pin name="MOT1R" x="-5.08" y="27.94" length="middle"/>
-<pin name="MOT2A" x="50.8" y="25.4" length="middle" rot="R180"/>
-<pin name="MOT2R" x="50.8" y="27.94" length="middle" rot="R180"/>
-<wire x1="0" y1="5.08" x2="0" y2="35.56" width="0.254" layer="94"/>
-<wire x1="0" y1="35.56" x2="45.72" y2="35.56" width="0.254" layer="94"/>
-<wire x1="45.72" y1="35.56" x2="45.72" y2="5.08" width="0.254" layer="94"/>
-<wire x1="45.72" y1="5.08" x2="0" y2="5.08" width="0.254" layer="94"/>
-<text x="2.54" y="33.02" size="1.778" layer="95">&gt;Name</text>
 </symbol>
 <symbol name="IMU3000COMBO">
 <pin name="AXINT2" x="-5.08" y="17.78" visible="pin" length="middle"/>
@@ -490,36 +421,6 @@
 </gates>
 <devices>
 <device name="">
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
-<deviceset name="UK1122">
-<gates>
-<gate name="G$1" symbol="UK1122" x="15.24" y="-15.24"/>
-</gates>
-<devices>
-<device name="" package="UK1122">
-<connects>
-<connect gate="G$1" pin="+" pad="+" route="any"/>
-<connect gate="G$1" pin="+5" pad="+5"/>
-<connect gate="G$1" pin="-" pad="-"/>
-<connect gate="G$1" pin="CSA" pad="CSA"/>
-<connect gate="G$1" pin="CSB" pad="CSB"/>
-<connect gate="G$1" pin="ENA" pad="ENA"/>
-<connect gate="G$1" pin="ENB" pad="ENB"/>
-<connect gate="G$1" pin="GND" pad="GND"/>
-<connect gate="G$1" pin="IN1" pad="IN1"/>
-<connect gate="G$1" pin="IN2" pad="EN2"/>
-<connect gate="G$1" pin="IN3" pad="IN3"/>
-<connect gate="G$1" pin="IN4" pad="IN4"/>
-<connect gate="G$1" pin="MOT1A" pad="MOT1A"/>
-<connect gate="G$1" pin="MOT1R" pad="MOT1R"/>
-<connect gate="G$1" pin="MOT2A" pad="MOT2A"/>
-<connect gate="G$1" pin="MOT2R" pad="MOT2R"/>
-</connects>
 <technologies>
 <technology name=""/>
 </technologies>
@@ -1213,7 +1114,6 @@ http://www.ladyada.net/library/pcb/eaglelibrary.html</description>
 <part name="VDD1" library="supply1" deviceset="VDD" device=""/>
 <part name="+3V1" library="supply1" deviceset="+3V3" device=""/>
 <part name="U$6" library="adafruit" deviceset="ARDUINO" device="-NOHOLE"/>
-<part name="U$5" library="aasanchez" deviceset="UK1122" device=""/>
 <part name="U$7" library="aasanchez" deviceset="IMU3000COMBO" device=""/>
 <part name="+3V2" library="supply1" deviceset="+3V3" device=""/>
 <part name="VSS2" library="supply1" deviceset="VSS" device=""/>
@@ -1292,6 +1192,24 @@ http://www.ladyada.net/library/pcb/eaglelibrary.html</description>
 <wire x1="73.66" y1="17.78" x2="73.66" y2="0" width="0.1524" layer="91"/>
 </segment>
 </net>
+<net name="N$1" class="0">
+<segment>
+<pinref part="U$1" gate="G$1" pin="PIN15"/>
+<wire x1="-5.08" y1="2.54" x2="-10.16" y2="2.54" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$2" class="0">
+<segment>
+<pinref part="U$1" gate="G$1" pin="PIN14"/>
+<wire x1="-5.08" y1="5.08" x2="-10.16" y2="5.08" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$3" class="0">
+<segment>
+<pinref part="U$1" gate="G$1" pin="PIN13"/>
+<wire x1="-5.08" y1="7.62" x2="-10.16" y2="7.62" width="0.1524" layer="91"/>
+</segment>
+</net>
 </nets>
 </sheet>
 <sheet>
@@ -1299,17 +1217,6 @@ http://www.ladyada.net/library/pcb/eaglelibrary.html</description>
 </plain>
 <instances>
 <instance part="U$6" gate="G$1" x="22.86" y="27.94"/>
-</instances>
-<busses>
-</busses>
-<nets>
-</nets>
-</sheet>
-<sheet>
-<plain>
-</plain>
-<instances>
-<instance part="U$5" gate="G$1" x="0" y="0"/>
 </instances>
 <busses>
 </busses>
