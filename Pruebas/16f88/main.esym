@@ -1,7 +1,7 @@
 D G "__PCM__" 0 24 ""4.114""
 D G "__DEVICE__" 0 24 "88"
 D G "__DATE__" 0 24 ""28-mar-12""
-D G "__TIME__" 0 24 ""15:39:08"" "Standard Header file for the PIC16F88 device ////////////////"
+D G "__TIME__" 0 24 ""16:14:52"" "Standard Header file for the PIC16F88 device ////////////////"
 d G "PIN_A0" 2 20 "40"
 d G "PIN_A1" 2 21 "41"
 d G "PIN_A2" 2 22 "42"

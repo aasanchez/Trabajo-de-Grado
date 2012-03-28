@@ -1,19 +1,18 @@
-CCS PCM C Compiler, Version 4.114, 93471994               28-mar-12 15:39
+CCS PCM C Compiler, Version 4.114, 93471994               28-mar-12 18:52
 
-               Filename: Z:\Pruebas\16f88\main.lst
+               Filename: Z:\AlarmaBateria\main.lst
 
-               ROM used: 79 words (2%)
+               ROM used: 97 words (2%)
                          Largest free fragment is 2048
                RAM used: 8 (2%) at main() level
                          9 (2%) worst case
-               Stack:    2 locations
+               Stack:    1 locations
 
 *
 0000:  MOVLW  00
 0001:  MOVWF  0A
-0002:  GOTO   035
+0002:  GOTO   025
 0003:  NOP
-.................... #include <main.h> 
 .................... #include <16F88.h> 
 .................... //////// Standard Header file for the PIC16F88 device //////////////// 
 .................... #device PIC16F88 
@@ -34,106 +33,136 @@ CCS PCM C Compiler, Version 4.114, 93471994               28-mar-12 15:39
 .................... #FUSES IESO                     //Internal External Switch Over mode enabled 
 ....................  
 .................... #use delay(int=8000000) 
-0004:  MOVLW  23
-0005:  MOVWF  04
-0006:  BCF    03.7
-0007:  MOVF   00,W
-0008:  BTFSC  03.2
-0009:  GOTO   017
-000A:  MOVLW  02
-000B:  MOVWF  78
-000C:  CLRF   77
-000D:  DECFSZ 77,F
-000E:  GOTO   00D
-000F:  DECFSZ 78,F
-0010:  GOTO   00C
-0011:  MOVLW  97
-0012:  MOVWF  77
-0013:  DECFSZ 77,F
-0014:  GOTO   013
-0015:  DECFSZ 00,F
-0016:  GOTO   00A
-0017:  RETURN
-....................  
-....................  
-....................  
+*
+0011:  MOVLW  23
+0012:  MOVWF  04
+0013:  BCF    03.7
+0014:  MOVF   00,W
+0015:  BTFSC  03.2
+0016:  GOTO   024
+0017:  MOVLW  02
+0018:  MOVWF  78
+0019:  CLRF   77
+001A:  DECFSZ 77,F
+001B:  GOTO   01A
+001C:  DECFSZ 78,F
+001D:  GOTO   019
+001E:  MOVLW  97
+001F:  MOVWF  77
+0020:  DECFSZ 77,F
+0021:  GOTO   020
+0022:  DECFSZ 00,F
+0023:  GOTO   017
+0024:  RETURN
 ....................  
 .................... #define BUZZER PIN_B3 
+.................... #define LED1 PIN_B0 
+.................... #define LED2 PIN_B1 
+.................... #define LED3 PIN_B2 
 ....................  
 .................... long ret; 
 .................... void alarma(){ 
 ....................    FOR (ret = 0;ret <= 250; ret++){ 
-0018:  CLRF   21
-0019:  CLRF   20
-001A:  MOVF   21,F
-001B:  BTFSS  03.2
-001C:  GOTO   033
-001D:  MOVF   20,W
-001E:  SUBLW  FA
-001F:  BTFSS  03.0
-0020:  GOTO   033
 ....................       output_low (BUZZER); 
-0021:  BSF    03.5
-0022:  BCF    06.3
-0023:  BCF    03.5
-0024:  BCF    06.3
 ....................       delay_us (2000); 
-0025:  MOVLW  02
-0026:  MOVWF  23
-0027:  CALL   004
 ....................       output_high (BUZZER); 
-0028:  BSF    03.5
-0029:  BCF    06.3
-002A:  BCF    03.5
-002B:  BSF    06.3
 ....................       delay_us (2000); 
-002C:  MOVLW  02
-002D:  MOVWF  23
-002E:  CALL   004
 ....................    } 
-002F:  INCF   20,F
-0030:  BTFSC  03.2
-0031:  INCF   21,F
-0032:  GOTO   01A
 .................... } 
-0033:  BCF    0A.3
-0034:  GOTO   046 (RETURN)
-....................  
+.................... void limpiar(){ 
+....................    output_high(LED1); 
+*
+0004:  BSF    03.5
+0005:  BCF    06.0
+0006:  BCF    03.5
+0007:  BSF    06.0
+....................    output_high(LED2); 
+0008:  BSF    03.5
+0009:  BCF    06.1
+000A:  BCF    03.5
+000B:  BSF    06.1
+....................    output_high(LED3); 
+000C:  BSF    03.5
+000D:  BCF    06.2
+000E:  BCF    03.5
+000F:  BSF    06.2
+.................... } 
+0010:  RETURN
 .................... void main(){ 
-0035:  CLRF   04
-0036:  BCF    03.7
-0037:  MOVLW  1F
-0038:  ANDWF  03,F
-0039:  MOVLW  72
-003A:  BSF    03.5
-003B:  MOVWF  0F
-003C:  MOVF   0F,W
-003D:  BCF    1F.4
-003E:  BCF    1F.5
-003F:  MOVF   1B,W
-0040:  ANDLW  80
-0041:  MOVWF  1B
-0042:  MOVLW  07
-0043:  MOVWF  1C
+*
+0025:  CLRF   04
+0026:  BCF    03.7
+0027:  MOVLW  1F
+0028:  ANDWF  03,F
+0029:  MOVLW  72
+002A:  BSF    03.5
+002B:  MOVWF  0F
+002C:  MOVF   0F,W
+002D:  BCF    1F.4
+002E:  BCF    1F.5
+002F:  MOVF   1B,W
+0030:  ANDLW  80
+0031:  MOVWF  1B
+0032:  MOVLW  07
+0033:  MOVWF  1C
+....................    limpiar(); 
+0034:  BCF    03.5
+0035:  CALL   004
 ....................    WHILE (true){ 
-....................       //FOR (i = 0; i <= 4; i++){ 
-....................          alarma(); 
-0044:  BCF    03.5
-0045:  GOTO   018
-....................          delay_ms (1000); 
-0046:  MOVLW  04
-0047:  MOVWF  22
-0048:  MOVLW  FA
-0049:  MOVWF  23
-004A:  CALL   004
-004B:  DECFSZ 22,F
-004C:  GOTO   048
-....................       //} 
+....................       output_low (LED1); 
+0036:  BSF    03.5
+0037:  BCF    06.0
+0038:  BCF    03.5
+0039:  BCF    06.0
+....................       delay_ms(1000);      
+003A:  MOVLW  04
+003B:  MOVWF  22
+003C:  MOVLW  FA
+003D:  MOVWF  23
+003E:  CALL   011
+003F:  DECFSZ 22,F
+0040:  GOTO   03C
+....................       output_low (LED2); 
+0041:  BSF    03.5
+0042:  BCF    06.1
+0043:  BCF    03.5
+0044:  BCF    06.1
+....................       delay_ms(1000);         
+0045:  MOVLW  04
+0046:  MOVWF  22
+0047:  MOVLW  FA
+0048:  MOVWF  23
+0049:  CALL   011
+004A:  DECFSZ 22,F
+004B:  GOTO   047
+....................       output_low (LED3); 
+004C:  BSF    03.5
+004D:  BCF    06.2
+004E:  BCF    03.5
+004F:  BCF    06.2
+....................       delay_ms(1000); 
+0050:  MOVLW  04
+0051:  MOVWF  22
+0052:  MOVLW  FA
+0053:  MOVWF  23
+0054:  CALL   011
+0055:  DECFSZ 22,F
+0056:  GOTO   052
+....................       limpiar(); 
+0057:  CALL   004
+....................       delay_ms(1000); 
+0058:  MOVLW  04
+0059:  MOVWF  22
+005A:  MOVLW  FA
+005B:  MOVWF  23
+005C:  CALL   011
+005D:  DECFSZ 22,F
+005E:  GOTO   05A
 ....................    } 
-004D:  GOTO   045
+005F:  GOTO   036
 .................... } 
 ....................  
-004E:  SLEEP
+0060:  SLEEP
 
 Configuration Fuses:
    Word  1: 3F18   NOWDT NOPUT INTRC_IO NOMCLR NOBROWNOUT NOLVP NOCPD NOWRT NODEBUG CCPB0 NOPROTECT

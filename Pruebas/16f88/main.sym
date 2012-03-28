@@ -47,7 +47,7 @@ Compiler Settings:
     Float,Double:   32,32
 
 Output Files:
-    Errors:      main.err
+    Errors:      ..\..\AlarmaBateria\main.err
     Ext Symbols: main.esym
     INHX8:       main.hex
     Symbols:     main.sym

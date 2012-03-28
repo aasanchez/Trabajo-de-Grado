@@ -1,7 +1,7 @@
-004     @WRITE_PROGRAM_MEMORY8.P1
-004-005 @READ_PROGRAM_MEMORY8.P2
-015     CCP_1
+004-005 @READ_PROGRAM_MEMORY8.P1
+004     @WRITE_PROGRAM_MEMORY8.P2
 015     CCP_1_LOW
+015     CCP_1
 016     CCP_1_HIGH
 020-021 ret
 022     MAIN.@SCRATCH1
@@ -17,10 +17,10 @@
 10D-10E @WRITE_PROGRAM_MEMORY8.P2
 
 ROM Allocation:
-0004  @delay_ms1
-0018  alarma
-0035  MAIN
-0035  @cinit
+0011  @delay_ms1
+0004  limpiar
+0025  MAIN
+0025  @cinit
 
 
 User Memory space: 
@@ -28,15 +28,14 @@ User Memory space:
 User Memory space: 
 
 Project Directory:
-    Z:\Pruebas\16f88\
+    Z:\AlarmaBateria\
 
 Project Files:
     main.c
-    main.h
     C:\Program Files\PICC\devices\16F88.h
 
 Units:
-    Z:\Pruebas\16f88\main (main)
+    Z:\AlarmaBateria\main (main)
 
 Compiler Settings:
     Processor:      PIC16F88
