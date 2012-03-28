@@ -1,3 +1,7 @@
 ÀÄmain
-   ÀÄmain  0/35  Ram=0
-      ÀÄ??0??
+   ÀÄMAIN  0/26  Ram=1
+      ÃÄ??0??
+      ÃÄalarma  0/29  Ram=0
+      ³  ÃÄ@delay_ms1  0/20  Ram=1
+      ³  ÀÄ@delay_ms1  0/20  Ram=1
+      ÀÄ@delay_ms1  0/20  Ram=1

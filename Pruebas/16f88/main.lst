@@ -1,17 +1,17 @@
-CCS PCM C Compiler, Version 4.114, 93471994               28-mar-12 13:43
+CCS PCM C Compiler, Version 4.114, 93471994               28-mar-12 15:39
 
                Filename: Z:\Pruebas\16f88\main.lst
 
-               ROM used: 39 words (1%)
+               ROM used: 79 words (2%)
                          Largest free fragment is 2048
-               RAM used: 5 (1%) at main() level
-                         5 (1%) worst case
-               Stack:    0 locations
+               RAM used: 8 (2%) at main() level
+                         9 (2%) worst case
+               Stack:    2 locations
 
 *
 0000:  MOVLW  00
 0001:  MOVWF  0A
-0002:  GOTO   004
+0002:  GOTO   035
 0003:  NOP
 .................... #include <main.h> 
 .................... #include <16F88.h> 
@@ -34,55 +34,106 @@ CCS PCM C Compiler, Version 4.114, 93471994               28-mar-12 13:43
 .................... #FUSES IESO                     //Internal External Switch Over mode enabled 
 ....................  
 .................... #use delay(int=8000000) 
+0004:  MOVLW  23
+0005:  MOVWF  04
+0006:  BCF    03.7
+0007:  MOVF   00,W
+0008:  BTFSC  03.2
+0009:  GOTO   017
+000A:  MOVLW  02
+000B:  MOVWF  78
+000C:  CLRF   77
+000D:  DECFSZ 77,F
+000E:  GOTO   00D
+000F:  DECFSZ 78,F
+0010:  GOTO   00C
+0011:  MOVLW  97
+0012:  MOVWF  77
+0013:  DECFSZ 77,F
+0014:  GOTO   013
+0015:  DECFSZ 00,F
+0016:  GOTO   00A
+0017:  RETURN
 ....................  
 ....................  
 ....................  
 ....................  
-.................... #define LED PIN_B3 
-.................... #define DELAY 250 
-.................... void main(){ 
-0004:  CLRF   04
-0005:  BCF    03.7
-0006:  MOVLW  1F
-0007:  ANDWF  03,F
-0008:  MOVLW  72
-0009:  BSF    03.5
-000A:  MOVWF  0F
-000B:  MOVF   0F,W
-000C:  BCF    1F.4
-000D:  BCF    1F.5
-000E:  MOVF   1B,W
-000F:  ANDLW  80
-0010:  MOVWF  1B
-0011:  MOVLW  07
-0012:  MOVWF  1C
-....................     while(true){ 
-....................       output_low(LED); 
-0013:  BCF    06.3
-0014:  BCF    03.5
-0015:  BCF    06.3
-....................       delay_us(DELAY); 
-0016:  MOVLW  A6
-0017:  MOVWF  77
-0018:  DECFSZ 77,F
-0019:  GOTO   018
-001A:  NOP
-....................       output_high(LED); 
-001B:  BSF    03.5
-001C:  BCF    06.3
-001D:  BCF    03.5
-001E:  BSF    06.3
-....................       delay_us(DELAY); 
-001F:  MOVLW  A6
-0020:  MOVWF  77
-0021:  DECFSZ 77,F
-0022:  GOTO   021
-0023:  NOP
-....................     } 
-0024:  BSF    03.5
-0025:  GOTO   013
+.................... #define BUZZER PIN_B3 
+....................  
+.................... long ret; 
+.................... void alarma(){ 
+....................    FOR (ret = 0;ret <= 250; ret++){ 
+0018:  CLRF   21
+0019:  CLRF   20
+001A:  MOVF   21,F
+001B:  BTFSS  03.2
+001C:  GOTO   033
+001D:  MOVF   20,W
+001E:  SUBLW  FA
+001F:  BTFSS  03.0
+0020:  GOTO   033
+....................       output_low (BUZZER); 
+0021:  BSF    03.5
+0022:  BCF    06.3
+0023:  BCF    03.5
+0024:  BCF    06.3
+....................       delay_us (2000); 
+0025:  MOVLW  02
+0026:  MOVWF  23
+0027:  CALL   004
+....................       output_high (BUZZER); 
+0028:  BSF    03.5
+0029:  BCF    06.3
+002A:  BCF    03.5
+002B:  BSF    06.3
+....................       delay_us (2000); 
+002C:  MOVLW  02
+002D:  MOVWF  23
+002E:  CALL   004
+....................    } 
+002F:  INCF   20,F
+0030:  BTFSC  03.2
+0031:  INCF   21,F
+0032:  GOTO   01A
 .................... } 
-0026:  SLEEP
+0033:  BCF    0A.3
+0034:  GOTO   046 (RETURN)
+....................  
+.................... void main(){ 
+0035:  CLRF   04
+0036:  BCF    03.7
+0037:  MOVLW  1F
+0038:  ANDWF  03,F
+0039:  MOVLW  72
+003A:  BSF    03.5
+003B:  MOVWF  0F
+003C:  MOVF   0F,W
+003D:  BCF    1F.4
+003E:  BCF    1F.5
+003F:  MOVF   1B,W
+0040:  ANDLW  80
+0041:  MOVWF  1B
+0042:  MOVLW  07
+0043:  MOVWF  1C
+....................    WHILE (true){ 
+....................       //FOR (i = 0; i <= 4; i++){ 
+....................          alarma(); 
+0044:  BCF    03.5
+0045:  GOTO   018
+....................          delay_ms (1000); 
+0046:  MOVLW  04
+0047:  MOVWF  22
+0048:  MOVLW  FA
+0049:  MOVWF  23
+004A:  CALL   004
+004B:  DECFSZ 22,F
+004C:  GOTO   048
+....................       //} 
+....................    } 
+004D:  GOTO   045
+.................... } 
+....................  
+004E:  SLEEP
 
 Configuration Fuses:
    Word  1: 3F18   NOWDT NOPUT INTRC_IO NOMCLR NOBROWNOUT NOLVP NOCPD NOWRT NODEBUG CCPB0 NOPROTECT
