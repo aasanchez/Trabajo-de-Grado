@@ -1,13 +1,14 @@
 004-005 @READ_PROGRAM_MEMORY8.P1
 004     @WRITE_PROGRAM_MEMORY8.P2
-015     CCP_1
+005     porta
 015     CCP_1_LOW
+015     CCP_1
 016     CCP_1_HIGH
 020     i
 021-022 ret
-023     iniciarleds.tempo
-023     MAIN.@SCRATCH1
-024     @delay_ms1.P1
+023-024 Bateria1
+025     iniciarleds.tempo
+026     @delay_ms1.P1
 077     @SCRATCH
 078     @SCRATCH
 078     _RETURN_
@@ -19,12 +20,12 @@
 10D-10E @WRITE_PROGRAM_MEMORY8.P2
 
 ROM Allocation:
-0011  @delay_ms1
+0008  @delay_ms1
 0004  ALLOFF
-002C  ALLON
-0025  iniciarleds
-0043  MAIN
-0043  @cinit
+0023  ALLON
+001C  iniciarleds
+0031  MAIN
+0031  @cinit
 
 
 User Memory space: 
@@ -44,7 +45,7 @@ Units:
 Compiler Settings:
     Processor:      PIC16F88
     Pointer Size:   16
-    ADC Range:      0-255
+    ADC Range:      0-1023
     Opt Level:      9
     Short,Int,Long: UNSIGNED: 1,8,16
     Float,Double:   32,32

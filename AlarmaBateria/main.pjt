@@ -22,3 +22,6 @@ Count=1
 [Opened Files]
 1=main.c
 2=
+[documentation]
+template=C:\Program Files\PICC\template_sdd.rtf
+output=C:\Users\Virtual\Desktop\main.rtf
