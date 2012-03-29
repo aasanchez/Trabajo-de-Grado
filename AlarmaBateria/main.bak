@@ -19,7 +19,13 @@
 #define LED1 PIN_B0
 #define LED2 PIN_B1
 #define LED3 PIN_B2
-
+#define LED1ON output_low (LED1)
+#define LED1OFF output_high (LED1)
+#define LED2ON output_low (LED2)
+#define LED2OFF output_high (LED2)
+#define LED3ON output_low (LED3)
+#define LED3OFF output_high (LED3)
+int i;
 long ret;
 void alarma(){
    FOR (ret = 0;ret <= 250; ret++){
@@ -29,18 +35,36 @@ void alarma(){
       delay_us (2000);
    }
 }
-void limpiar(){
-   output_high(LED1);
-   output_high(LED2);
+void ALLOFF(){
+   LED1OFF;
+   LED2OFF;
+   LED3OFF;
+}
+void ALLON(){
+   LED1ON;
+   LED2ON;
+   LED3ON;
+}
+void iniciarleds(){
+   int tempo = 100;
+   for(i=0;i<=4;i++){
+      ALLON();
+      delay_ms(tempo);
+      ALLOFF();
+      delay_ms(tempo);
+   }
 }
 void main(){
-   limpiar();
+   ALLOFF();
+   iniciarleds();
    WHILE (true){
-      output_low (LED1);
+      LED1ON;
       delay_ms(1000);     
-      output_low (LED2);
+      LED2ON;
       delay_ms(1000);        
-      limpiar();
+      LED3ON;
+      delay_ms(1000);
+      ALLOFF();
       delay_ms(1000);
    }
 }

@@ -1,9 +1,14 @@
 ÀÄmain
-   ÀÄMAIN  0/60  Ram=1
+   ÀÄMAIN  0/61  Ram=1
       ÃÄ??0??
-      ÃÄlimpiar  0/13  Ram=0
+      ÃÄALLOFF  0/13  Ram=0
+      ÃÄiniciarleds  0/30  Ram=1
+      ³  ÃÄALLON  (Inline)  Ram=0
+      ³  ÃÄ@delay_ms1  0/20  Ram=1
+      ³  ÃÄALLOFF  0/13  Ram=0
+      ³  ÀÄ@delay_ms1  0/20  Ram=1
       ÃÄ@delay_ms1  0/20  Ram=1
       ÃÄ@delay_ms1  0/20  Ram=1
       ÃÄ@delay_ms1  0/20  Ram=1
-      ÃÄlimpiar  0/13  Ram=0
+      ÃÄALLOFF  0/13  Ram=0
       ÀÄ@delay_ms1  0/20  Ram=1
