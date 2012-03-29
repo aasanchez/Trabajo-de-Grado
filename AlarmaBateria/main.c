@@ -1,34 +1,32 @@
 //*PURPOSE Monitor de Baterias Lipo de 3 Celdas
-
 //*AUTHOR Alexis Sánchez
-
-
 #include <16F88.h>
-#device adc=10 
-
+#device adc=8 
 #FUSES NOWDT                    //No Watch Dog Timer
 #FUSES NOPUT                    //No Power Up Timer
 #FUSES INTRC                    //Internal RC Osc
-#FUSES NOMCLR                   //Master Clear pin used for I/O
+#FUSES NOMCLR                   //Master Clear pin used FOR I/O
 #FUSES NOBROWNOUT               //No brownout reset
-#FUSES NOLVP                    //No low voltage prgming, B3(PIC16) or B5(PIC18) used for I/O
+#FUSES NOLVP                    //No low voltage prgming, B3(PIC16) or B5(PIC18) used FOR I/O
 #FUSES NOCPD                    //No EE protection
 #FUSES NOWRT                    //Program memory not write protected
-#FUSES NODEBUG                  //No Debug mode for ICD
+#FUSES NODEBUG                  //No Debug mode FOR ICD
 #FUSES NOPROTECT                //Code not protected from reading
 #FUSES FCMEN                    //Fail-safe clock monitor enabled
-#FUSES IESO                     //Internal External Switch Over mode enabled
-
-#use delay(int=8000000)
+#FUSES IESO                     //Internal External SWITCH Over mode enabled
+#use delay(INT=8000000)
+//#use rs232(baud=9600,PARITY=N,XMIT=PIN_b5,RCV=PIN_b2,BITS =8) 
 #use fast_io(a)
 #use fast_io(b)
 #byte porta=0x05 
+#use fast_io (B) 
+#byte portb =0x06 
 
 //Alias a Pines
-#define BUZZER PIN_B3
+#define BUZZER PIN_B4
 #define LED1 PIN_B0
 #define LED2 PIN_B1
-#define LED3 PIN_B2
+#define LED3 PIN_B3
 
 //Definimos Aleas a algunas funciones basicas
 #define LED1ON output_low (LED1)
@@ -37,27 +35,32 @@
 #define LED2OFF output_high (LED2)
 #define LED3ON output_low (LED3)
 #define LED3OFF output_high (LED3)
+#define BUZZEROFF output_low (BUZZER)
+#define BUZZERON output_high (BUZZER)
+
 //Variables
 int i;
 long ret;
-long Bateria1;/*
+int Bateria1;/*
 long Bateria2;
 long Bateria3;*/
 //*Alarma sonora
 void alarma(){ 
-   FOR (ret = 0;ret <= 250; ret++){
-      output_low (BUZZER);
-      delay_us (2000);
-      output_high (BUZZER);
-      delay_us (2000);
+   FOR(ret=0; ret<=250; ret++){
+   output_low(BUZZER);
+   delay_us(2000);
+   output_high(BUZZER);
+   delay_us(2000);
    }
 }
+
 //*Apagar todod los led
 void ALLOFF(){
    LED1OFF;
    LED2OFF;
    LED3OFF;
 }
+
 //*Encender todos los leds
 void ALLON(){
    LED1ON;
@@ -67,31 +70,39 @@ void ALLON(){
 
 //*Probar leds al encender
 void iniciarleds(){
-   int tempo = 100;
-   for(i=0;i<=4;i++){
+   INT tempo=100;
+   FOR(i=0; i<=4; i++){
       ALLON();
       delay_ms(tempo);
       ALLOFF();
       delay_ms(tempo);
    }
 }
+
 void main(){
    //*Configurar Analog
-   set_tris_a (0xff);
-   set_tris_b (0x00);
-   setup_adc_ports(sAN0|sAN1|sAN3);
-   setup_adc (adc_clock_div_8);
+   set_tris_a(0xff);
+   set_tris_b(0x00);
+   setup_adc_ports(san0);
+   setup_adc(adc_clock_div_8);
+   
    ALLOFF();
    iniciarleds();
-   WHILE (true){
-      set_adc_channel (0);
-      delay_ms (20) ;
-      Bateria1 = read_adc ();
-      if (Bateria1 < 733){
+   WHILE(true){
+      set_adc_channel(0);
+      delay_ms(10);
+      Bateria1=read_adc();
+      //printf("Bateria1--->%u\n\r", Bateria1);
+      IF(Bateria1<=211){
          LED1ON;
-      }else{
+         }ELSE{
          LED1OFF;
       }
+      IF(Bateria1<=197){
+         BUZZERON;
+         }ELSE{
+         BUZZEROFF;
+      }      
    }
 }
 

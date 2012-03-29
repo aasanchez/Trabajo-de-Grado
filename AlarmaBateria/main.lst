@@ -1,11 +1,11 @@
-CCS PCM C Compiler, Version 4.114, 93471994               29-mar-12 00:39
+CCS PCM C Compiler, Version 4.114, 93471994               29-mar-12 11:51
 
                Filename: Z:\AlarmaBateria\main.lst
 
-               ROM used: 117 words (3%)
+               ROM used: 114 words (3%)
                          Largest free fragment is 2048
-               RAM used: 10 (3%) at main() level
-                         12 (3%) worst case
+               RAM used: 9 (2%) at main() level
+                         11 (3%) worst case
                Stack:    2 locations
 
 *
@@ -14,33 +14,28 @@ CCS PCM C Compiler, Version 4.114, 93471994               29-mar-12 00:39
 0002:  GOTO   031
 0003:  NOP
 .................... //*PURPOSE Monitor de Baterias Lipo de 3 Celdas 
-....................  
 .................... //*AUTHOR Alexis Sánchez 
-....................  
-....................  
 .................... #include <16F88.h> 
 .................... //////// Standard Header file for the PIC16F88 device //////////////// 
 .................... #device PIC16F88 
 .................... #list 
 ....................  
-.................... #device adc=10  
-....................  
+.................... #device adc=8  
 .................... #FUSES NOWDT                    //No Watch Dog Timer 
 .................... #FUSES NOPUT                    //No Power Up Timer 
 .................... #FUSES INTRC                    //Internal RC Osc 
-.................... #FUSES NOMCLR                   //Master Clear pin used for I/O 
+.................... #FUSES NOMCLR                   //Master Clear pin used FOR I/O 
 .................... #FUSES NOBROWNOUT               //No brownout reset 
-.................... #FUSES NOLVP                    //No low voltage prgming, B3(PIC16) or B5(PIC18) used for I/O 
+.................... #FUSES NOLVP                    //No low voltage prgming, B3(PIC16) or B5(PIC18) used FOR I/O 
 .................... #FUSES NOCPD                    //No EE protection 
 .................... #FUSES NOWRT                    //Program memory not write protected 
-.................... #FUSES NODEBUG                  //No Debug mode for ICD 
+.................... #FUSES NODEBUG                  //No Debug mode FOR ICD 
 .................... #FUSES NOPROTECT                //Code not protected from reading 
 .................... #FUSES FCMEN                    //Fail-safe clock monitor enabled 
-.................... #FUSES IESO                     //Internal External Switch Over mode enabled 
-....................  
-.................... #use delay(int=8000000) 
+.................... #FUSES IESO                     //Internal External SWITCH Over mode enabled 
+.................... #use delay(INT=8000000) 
 *
-0008:  MOVLW  26
+0008:  MOVLW  25
 0009:  MOVWF  04
 000A:  BCF    03.7
 000B:  MOVF   00,W
@@ -60,15 +55,18 @@ CCS PCM C Compiler, Version 4.114, 93471994               29-mar-12 00:39
 0019:  DECFSZ 00,F
 001A:  GOTO   00E
 001B:  RETURN
+.................... //#use rs232(baud=9600,PARITY=N,XMIT=PIN_b5,RCV=PIN_b2,BITS =8)  
 .................... #use fast_io(a) 
 .................... #use fast_io(b) 
 .................... #byte porta=0x05  
+.................... #use fast_io (B)  
+.................... #byte portb =0x06  
 ....................  
 .................... //Alias a Pines 
-.................... #define BUZZER PIN_B3 
+.................... #define BUZZER PIN_B4 
 .................... #define LED1 PIN_B0 
 .................... #define LED2 PIN_B1 
-.................... #define LED3 PIN_B2 
+.................... #define LED3 PIN_B3 
 ....................  
 .................... //Definimos Aleas a algunas funciones basicas 
 .................... #define LED1ON output_low (LED1) 
@@ -77,21 +75,25 @@ CCS PCM C Compiler, Version 4.114, 93471994               29-mar-12 00:39
 .................... #define LED2OFF output_high (LED2) 
 .................... #define LED3ON output_low (LED3) 
 .................... #define LED3OFF output_high (LED3) 
+.................... #define BUZZEROFF output_low (BUZZER) 
+.................... #define BUZZERON output_high (BUZZER) 
+....................  
 .................... //Variables 
 .................... int i; 
 .................... long ret; 
-.................... long Bateria1;/* 
+.................... int Bateria1;/* 
 .................... long Bateria2; 
 .................... long Bateria3;*/ 
 .................... //*Alarma sonora 
 .................... void alarma(){  
-....................    FOR (ret = 0;ret <= 250; ret++){ 
-....................       output_low (BUZZER); 
-....................       delay_us (2000); 
-....................       output_high (BUZZER); 
-....................       delay_us (2000); 
+....................    FOR(ret=0; ret<=250; ret++){ 
+....................    output_low(BUZZER); 
+....................    delay_us(2000); 
+....................    output_high(BUZZER); 
+....................    delay_us(2000); 
 ....................    } 
 .................... } 
+....................  
 .................... //*Apagar todod los led 
 .................... void ALLOFF(){ 
 ....................    LED1OFF; 
@@ -100,9 +102,10 @@ CCS PCM C Compiler, Version 4.114, 93471994               29-mar-12 00:39
 ....................    LED2OFF; 
 0005:  BSF    06.1
 ....................    LED3OFF; 
-0006:  BSF    06.2
+0006:  BSF    06.3
 .................... } 
 0007:  RETURN
+....................  
 .................... //*Encender todos los leds 
 .................... void ALLON(){ 
 ....................    LED1ON; 
@@ -111,16 +114,16 @@ CCS PCM C Compiler, Version 4.114, 93471994               29-mar-12 00:39
 ....................    LED2ON; 
 0024:  BCF    06.1
 ....................    LED3ON; 
-0025:  BCF    06.2
+0025:  BCF    06.3
 .................... } 
 ....................  
 .................... //*Probar leds al encender 
 .................... void iniciarleds(){ 
 *
 001C:  MOVLW  64
-001D:  MOVWF  25
-....................    int tempo = 100; 
-....................    for(i=0;i<=4;i++){ 
+001D:  MOVWF  24
+....................    INT tempo=100; 
+....................    FOR(i=0; i<=4; i++){ 
 001E:  CLRF   20
 001F:  MOVF   20,W
 0020:  SUBLW  04
@@ -129,14 +132,14 @@ CCS PCM C Compiler, Version 4.114, 93471994               29-mar-12 00:39
 ....................       ALLON(); 
 ....................       delay_ms(tempo); 
 *
-0026:  MOVF   25,W
-0027:  MOVWF  26
+0026:  MOVF   24,W
+0027:  MOVWF  25
 0028:  CALL   008
 ....................       ALLOFF(); 
 0029:  CALL   004
 ....................       delay_ms(tempo); 
-002A:  MOVF   25,W
-002B:  MOVWF  26
+002A:  MOVF   24,W
+002B:  MOVWF  25
 002C:  CALL   008
 ....................    } 
 002D:  INCF   20,F
@@ -144,6 +147,7 @@ CCS PCM C Compiler, Version 4.114, 93471994               29-mar-12 00:39
 .................... } 
 002F:  BCF    0A.3
 0030:  GOTO   054 (RETURN)
+....................  
 .................... void main(){ 
 0031:  CLRF   04
 0032:  BCF    03.7
@@ -161,77 +165,81 @@ CCS PCM C Compiler, Version 4.114, 93471994               29-mar-12 00:39
 003E:  MOVLW  07
 003F:  MOVWF  1C
 ....................    //*Configurar Analog 
-....................    set_tris_a (0xff); 
+....................    set_tris_a(0xff); 
 0040:  MOVLW  FF
 0041:  MOVWF  05
-....................    set_tris_b (0x00); 
+....................    set_tris_b(0x00); 
 0042:  MOVLW  00
 0043:  MOVWF  06
-....................    setup_adc_ports(sAN0|sAN1|sAN3); 
+....................    setup_adc_ports(san0); 
 0044:  BCF    1F.4
 0045:  BCF    1F.5
 0046:  MOVF   1B,W
 0047:  ANDLW  80
-0048:  IORLW  0B
+0048:  IORLW  01
 0049:  MOVWF  1B
-....................    setup_adc (adc_clock_div_8); 
+....................    setup_adc(adc_clock_div_8); 
 004A:  BCF    1F.6
 004B:  BCF    03.5
 004C:  BSF    1F.6
 004D:  BCF    1F.7
 004E:  BSF    03.5
-004F:  BSF    1F.7
+004F:  BCF    1F.7
 0050:  BCF    03.5
 0051:  BSF    1F.0
+....................     
 ....................    ALLOFF(); 
 0052:  CALL   004
 ....................    iniciarleds(); 
 0053:  GOTO   01C
-....................    WHILE (true){ 
-....................       set_adc_channel (0); 
+....................    WHILE(true){ 
+....................       set_adc_channel(0); 
 0054:  MOVLW  00
 0055:  MOVWF  78
 0056:  MOVF   1F,W
 0057:  ANDLW  C7
 0058:  IORWF  78,W
 0059:  MOVWF  1F
-....................       delay_ms (20) ; 
-005A:  MOVLW  14
-005B:  MOVWF  26
+....................       delay_ms(10); 
+005A:  MOVLW  0A
+005B:  MOVWF  25
 005C:  CALL   008
-....................       Bateria1 = read_adc (); 
+....................       Bateria1=read_adc(); 
 005D:  BSF    1F.2
 005E:  BTFSC  1F.2
 005F:  GOTO   05E
-0060:  BSF    03.5
-0061:  MOVF   1E,W
-0062:  BCF    03.5
-0063:  MOVWF  23
-0064:  MOVF   1E,W
-0065:  MOVWF  24
-....................       if (Bateria1 < 733){ 
-0066:  MOVF   24,W
-0067:  SUBLW  02
-0068:  BTFSS  03.0
-0069:  GOTO   072
-006A:  BTFSS  03.2
-006B:  GOTO   070
-006C:  MOVF   23,W
-006D:  SUBLW  DC
-006E:  BTFSS  03.0
-006F:  GOTO   072
+0060:  MOVF   1E,W
+0061:  MOVWF  23
+....................       //printf("Bateria1--->%u\n\r", Bateria1); 
+....................       IF(Bateria1<=211){ 
+0062:  MOVF   23,W
+0063:  SUBLW  D3
+0064:  BTFSS  03.0
+0065:  GOTO   068
 ....................          LED1ON; 
-0070:  BCF    06.0
-....................       }else{ 
-0071:  GOTO   073
+0066:  BCF    06.0
+....................          }ELSE{ 
+0067:  GOTO   069
 ....................          LED1OFF; 
-0072:  BSF    06.0
+0068:  BSF    06.0
 ....................       } 
+....................       IF(Bateria1<=197){ 
+0069:  MOVF   23,W
+006A:  SUBLW  C5
+006B:  BTFSS  03.0
+006C:  GOTO   06F
+....................          BUZZERON; 
+006D:  BSF    06.4
+....................          }ELSE{ 
+006E:  GOTO   070
+....................          BUZZEROFF; 
+006F:  BCF    06.4
+....................       }       
 ....................    } 
-0073:  GOTO   054
+0070:  GOTO   054
 .................... } 
 ....................  
-0074:  SLEEP
+0071:  SLEEP
 
 Configuration Fuses:
    Word  1: 3F18   NOWDT NOPUT INTRC_IO NOMCLR NOBROWNOUT NOLVP NOCPD NOWRT NODEBUG CCPB0 NOPROTECT

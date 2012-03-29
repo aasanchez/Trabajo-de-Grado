@@ -1,14 +1,15 @@
 004-005 @READ_PROGRAM_MEMORY8.P1
 004     @WRITE_PROGRAM_MEMORY8.P2
 005     porta
+006     portb
 015     CCP_1_LOW
 015     CCP_1
 016     CCP_1_HIGH
 020     i
 021-022 ret
-023-024 Bateria1
-025     iniciarleds.tempo
-026     @delay_ms1.P1
+023     Bateria1
+024     iniciarleds.tempo
+025     @delay_ms1.P1
 077     @SCRATCH
 078     @SCRATCH
 078     _RETURN_
@@ -45,7 +46,7 @@ Units:
 Compiler Settings:
     Processor:      PIC16F88
     Pointer Size:   16
-    ADC Range:      0-1023
+    ADC Range:      0-255
     Opt Level:      9
     Short,Int,Long: UNSIGNED: 1,8,16
     Float,Double:   32,32
