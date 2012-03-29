@@ -15,7 +15,7 @@
 #FUSES FCMEN                    //Fail-safe clock monitor enabled
 #FUSES IESO                     //Internal External SWITCH Over mode enabled
 #use delay(INT=8000000)
-#use rs232(baud=9600,PARITY=N,XMIT=PIN_b5,RCV=PIN_b2,BITS =8) 
+//#use rs232(baud=9600,PARITY=N,XMIT=PIN_b5,RCV=PIN_b2,BITS =8) 
 #use fast_io(a)
 #use fast_io(b)
 #byte porta=0x05 
@@ -41,16 +41,17 @@
 //Variables
 int i;
 long ret;
-int Bateria1;/*
-long Bateria2;
-long Bateria3;*/
+int Bateria1;
+int Bateria2;
+int Bateria3;
+
 //*Alarma sonora
-void alarma(){ 
-   FOR(ret=0; ret<=250; ret++){
-   output_low(BUZZER);
-   delay_us(2000);
-   output_high(BUZZER);
-   delay_us(2000);
+void alarma(){
+   FOR(ret=0;ret<=250;ret++){
+      output_low(BUZZER);
+      delay_us(2000);
+      output_high(BUZZER);
+      delay_us(2000);
    }
 }
 
@@ -71,7 +72,7 @@ void ALLON(){
 //*Probar leds al encender
 void iniciarleds(){
    INT tempo=100;
-   FOR(i=0; i<=4; i++){
+   FOR(i=0;i<=4;i++){
       ALLON();
       delay_ms(tempo);
       ALLOFF();
@@ -83,26 +84,47 @@ void main(){
    //*Configurar Analog
    set_tris_a(0xff);
    set_tris_b(0x00);
-   setup_adc_ports(san0);
+   setup_adc_ports(ALL_ANALOG);
    setup_adc(adc_clock_div_8);
-   
    ALLOFF();
    iniciarleds();
+
    WHILE(true){
       set_adc_channel(0);
       delay_ms(10);
       Bateria1=read_adc();
-      printf("Bateria1--->%u\n\r", Bateria1);
+
       IF(Bateria1<=211){
          LED1ON;
          }ELSE{
          LED1OFF;
       }
-      IF(Bateria1<=197){
+
+      set_adc_channel(1);
+      delay_ms(10);
+      Bateria2=read_adc();
+
+      IF(Bateria2<=211){
+         LED2ON;
+         }ELSE{
+         LED2OFF;
+      }
+
+      set_adc_channel(2);
+      delay_ms(10);
+      Bateria3=read_adc();
+
+      IF(Bateria3<=211){
+         LED3ON;
+         }ELSE{
+         LED3OFF;
+      }
+      
+      IF((Bateria1<=197)||(Bateria1<=197)||(Bateria1<=197)){
          BUZZERON;
          }ELSE{
          BUZZEROFF;
-      }      
+      }
    }
 }
 

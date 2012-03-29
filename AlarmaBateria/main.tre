@@ -1,5 +1,5 @@
 ÀÄmain
-   ÀÄMAIN  0/65  Ram=0
+   ÀÄMAIN  0/115  Ram=0
       ÃÄ??0??
       ÃÄALLOFF  0/4  Ram=0
       ÃÄiniciarleds  0/21  Ram=1
@@ -7,4 +7,6 @@
       ³  ÃÄ@delay_ms1  0/20  Ram=1
       ³  ÃÄALLOFF  0/4  Ram=0
       ³  ÀÄ@delay_ms1  0/20  Ram=1
+      ÃÄ@delay_ms1  0/20  Ram=1
+      ÃÄ@delay_ms1  0/20  Ram=1
       ÀÄ@delay_ms1  0/20  Ram=1
