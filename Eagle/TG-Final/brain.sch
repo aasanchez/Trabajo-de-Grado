@@ -1118,6 +1118,7 @@ http://www.ladyada.net/library/pcb/eaglelibrary.html</description>
 <part name="+3V2" library="supply1" deviceset="+3V3" device=""/>
 <part name="VSS2" library="supply1" deviceset="VSS" device=""/>
 <part name="U$8" library="aasanchez" deviceset="LOGIC-LEVEL-CONVERTER" device=""/>
+<part name="+3V3" library="supply1" deviceset="+3V3" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -1229,18 +1230,24 @@ http://www.ladyada.net/library/pcb/eaglelibrary.html</description>
 <instances>
 <instance part="U$7" gate="G$1" x="0" y="0"/>
 <instance part="+3V2" gate="G$1" x="-7.62" y="-2.54" rot="R180"/>
-<instance part="VSS2" gate="G$1" x="-12.7" y="2.54"/>
+<instance part="VSS2" gate="G$1" x="-12.7" y="-2.54"/>
 <instance part="U$8" gate="G$1" x="-25.4" y="-5.08" rot="MR0"/>
+<instance part="+3V3" gate="G$1" x="-15.24" y="10.16" rot="R270"/>
 </instances>
 <busses>
 </busses>
 <nets>
 <net name="+3V3" class="0">
 <segment>
-<pinref part="U$7" gate="G$1" pin="VCC"/>
 <pinref part="+3V2" gate="G$1" pin="+3V3"/>
-<wire x1="-5.08" y1="2.54" x2="-7.62" y2="2.54" width="0.1524" layer="91"/>
 <wire x1="-7.62" y1="2.54" x2="-7.62" y2="0" width="0.1524" layer="91"/>
+<pinref part="U$7" gate="G$1" pin="VCC"/>
+<wire x1="-5.08" y1="2.54" x2="-7.62" y2="2.54" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="+3V3" gate="G$1" pin="+3V3"/>
+<pinref part="U$8" gate="G$1" pin="LV"/>
+<wire x1="-17.78" y1="10.16" x2="-20.32" y2="10.16" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="VSS" class="0">
@@ -1248,6 +1255,11 @@ http://www.ladyada.net/library/pcb/eaglelibrary.html</description>
 <pinref part="U$7" gate="G$1" pin="GND"/>
 <pinref part="VSS2" gate="G$1" pin="VSS"/>
 <wire x1="-5.08" y1="5.08" x2="-12.7" y2="5.08" width="0.1524" layer="91"/>
+<wire x1="-12.7" y1="5.08" x2="-12.7" y2="0" width="0.1524" layer="91"/>
+<pinref part="U$8" gate="G$1" pin="GND"/>
+<wire x1="-20.32" y1="5.08" x2="-20.32" y2="7.62" width="0.1524" layer="91"/>
+<wire x1="-20.32" y1="5.08" x2="-12.7" y2="5.08" width="0.1524" layer="91"/>
+<junction x="-12.7" y="5.08"/>
 </segment>
 </net>
 </nets>
