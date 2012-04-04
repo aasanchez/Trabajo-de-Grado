@@ -245,10 +245,51 @@
 <pad name="P$9" x="8.89" y="6.35" drill="0.8" shape="long"/>
 <pad name="P$8" x="8.89" y="3.81" drill="0.8" shape="long"/>
 <pad name="P$7" x="8.89" y="1.27" drill="0.8" shape="long"/>
-<wire x1="0" y1="15.24" x2="0" y2="0" width="0.127" layer="21"/>
-<wire x1="0" y1="0" x2="7.62" y2="0" width="0.127" layer="21"/>
-<wire x1="7.62" y1="0" x2="7.62" y2="15.24" width="0.127" layer="21"/>
-<wire x1="7.62" y1="15.24" x2="0" y2="15.24" width="0.127" layer="21"/>
+<wire x1="0" y1="15.24" x2="0" y2="10.16" width="0.127" layer="21"/>
+<wire x1="0" y1="10.16" x2="0" y2="5.08" width="0.127" layer="21"/>
+<wire x1="0" y1="5.08" x2="0" y2="0" width="0.127" layer="21"/>
+<wire x1="0" y1="0" x2="3.81" y2="0" width="0.127" layer="21"/>
+<wire x1="3.81" y1="0" x2="7.62" y2="0" width="0.127" layer="21"/>
+<wire x1="7.62" y1="0" x2="7.62" y2="5.08" width="0.127" layer="21"/>
+<wire x1="7.62" y1="5.08" x2="7.62" y2="10.16" width="0.127" layer="21"/>
+<wire x1="7.62" y1="10.16" x2="7.62" y2="15.24" width="0.127" layer="21"/>
+<wire x1="7.62" y1="15.24" x2="3.81" y2="15.24" width="0.127" layer="21"/>
+<text x="0.635" y="14.605" size="0.508" layer="21" rot="SR270">TXI</text>
+<text x="0.635" y="12.065" size="0.508" layer="21" rot="SR270">RXO</text>
+<text x="0.635" y="9.2075" size="0.508" layer="21" rot="SR270">LV</text>
+<text x="0.635" y="6.985" size="0.508" layer="21" rot="SR270">GND</text>
+<text x="0.635" y="4.445" size="0.508" layer="21" rot="SR270">RXO</text>
+<text x="0.635" y="1.905" size="0.508" layer="21" rot="SR270">TXI</text>
+<text x="6.35" y="14.605" size="0.508" layer="21" rot="SR270">TXO</text>
+<text x="6.35" y="12.065" size="0.508" layer="21" rot="SR270">RXI</text>
+<text x="6.35" y="9.2075" size="0.508" layer="21" rot="SR270">HV</text>
+<text x="6.35" y="6.985" size="0.508" layer="21" rot="SR270">GND</text>
+<text x="6.35" y="4.445" size="0.508" layer="21" rot="SR270">RXI</text>
+<text x="6.35" y="1.905" size="0.508" layer="21" rot="SR270">TXO</text>
+<wire x1="3.81" y1="15.24" x2="0" y2="15.24" width="0.127" layer="21"/>
+<wire x1="3.81" y1="15.24" x2="3.81" y2="13.97" width="0.127" layer="21"/>
+<wire x1="3.81" y1="0" x2="3.81" y2="1.27" width="0.127" layer="21"/>
+<wire x1="0" y1="5.08" x2="1.905" y2="5.08" width="0.127" layer="21"/>
+<wire x1="7.62" y1="5.08" x2="5.715" y2="5.08" width="0.127" layer="21"/>
+<wire x1="0" y1="10.16" x2="1.905" y2="10.16" width="0.127" layer="21"/>
+<wire x1="7.62" y1="10.16" x2="5.715" y2="10.16" width="0.127" layer="21"/>
+<text x="2.54" y="9.8425" size="0.6096" layer="21">Chan1</text>
+<text x="2.54" y="4.7625" size="0.6096" layer="21">Chan2</text>
+<text x="4.445" y="14.2875" size="0.6096" layer="21">HV</text>
+<text x="4.445" y="0.3175" size="0.6096" layer="21">HV</text>
+<text x="2.2225" y="0.3175" size="0.6096" layer="21" rot="SR0">LV</text>
+<text x="2.2225" y="14.2875" size="0.6096" layer="21" rot="SR0">LV</text>
+<rectangle x1="2.2225" y1="8.5725" x2="3.4925" y2="9.2075" layer="51"/>
+<rectangle x1="4.1275" y1="8.5725" x2="5.3975" y2="9.2075" layer="51"/>
+<rectangle x1="2.2225" y1="6.0325" x2="3.4925" y2="6.6675" layer="51"/>
+<rectangle x1="4.1275" y1="6.0325" x2="5.3975" y2="6.6675" layer="51"/>
+<wire x1="3.81" y1="8.89" x2="3.81" y2="6.35" width="0.127" layer="51"/>
+<rectangle x1="3.175" y1="1.5875" x2="4.445" y2="4.1275" layer="51"/>
+<rectangle x1="3.175" y1="11.1125" x2="4.445" y2="13.6525" layer="51"/>
+<rectangle x1="1.5875" y1="11.7475" x2="2.2225" y2="13.0175" layer="51"/>
+<rectangle x1="5.3975" y1="11.7475" x2="6.0325" y2="13.0175" layer="51"/>
+<rectangle x1="1.5875" y1="2.2225" x2="2.2225" y2="3.4925" layer="51"/>
+<rectangle x1="5.3975" y1="2.2225" x2="6.0325" y2="3.4925" layer="51"/>
 </package>
 </packages>
 <symbols>
@@ -1298,6 +1339,12 @@ http://www.ladyada.net/library/pcb/eaglelibrary.html</description>
 <pinref part="U$6" gate="G$1" pin="PWM-D10"/>
 <wire x1="55.88" y1="25.4" x2="60.96" y2="25.4" width="0.1524" layer="91"/>
 <label x="60.96" y="25.4" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="N$5" class="0">
+<segment>
+<pinref part="U$6" gate="G$1" pin="3V"/>
+<wire x1="-5.08" y1="27.94" x2="-10.16" y2="27.94" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>

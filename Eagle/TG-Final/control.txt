@@ -1,0 +1,13 @@
+Partlist
+
+Exported from control.brd at 31/03/12 01:46
+
+EAGLE Version 6.1.0 Copyright (c) 1988-2012 CadSoft
+
+Assembly variant: 
+
+Part     Value          Package   Library   Position (inch)       Orientation
+
+U$1      BASE           BASE      aasanchez (-3.95 3.45)          R0
+U$3      BLUESMIRF      BLUESMIRF aasanchez (-6.05 4.45)          R270
+UK1122   UK1122         UK1122    aasanchez (-4.2 4.7)            R270
