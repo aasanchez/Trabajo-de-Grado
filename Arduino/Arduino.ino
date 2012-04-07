@@ -34,14 +34,18 @@ unsigned long loopStartTime = 0;
 
 //Variables Operativas
 int i;                    // Variable de iteracion General
+unsigned long start_time = 0;
+unsigned long end_time = 0;
+int time;
 
 //Alias a Pines
 
 
 void configIMU(){
-  // Configuramos el Giroscopo
+  // Configuramos el Giroscopo  
   // Velocidad de Muestreo 1kHz, Filtro de ancho de banda 42Hz, Rango del Girospoco 500 d/s 
-  writeTo(GYRO, 0x16, 0x0B);       
+  writeTo(GYRO, 0x15, 0x08);       
+  writeTo(GYRO, 0x16, 0x08);       
   //Establecer la direccion del acelerometro
   writeTo(GYRO, 0x18, 0x32);     
   //Setear el acelerometro como esclavo
@@ -167,23 +171,11 @@ int arctan2(int y, int x) {
 }
 
 void serialOut_sensor() {
-  static int skip=0;
-  if(skip++==20) {
-    skip = 0;
-    Serial.print(ACC_angle);
-    Serial.print(",");
-    Serial.print(GYRO_rate);
-    Serial.print(",");
-    Serial.println(0);
-  }
-}
-
-void serialOut_labView() {
-  Serial.print(actAngle);
-  Serial.print(",");
   Serial.print(ACC_angle);
   Serial.print(",");
-  Serial.println(0);  
+  Serial.print(GYRO_rate);
+  Serial.print(",");
+  Serial.println(0);
 }
 
 // --- Kalman filter module  ----------------------------------------------------------------------------
@@ -231,13 +223,14 @@ void setup(){
 
 
 void loop(){
+  
   // ********************* Adquisicion de Sensor y Filtrado *******************
   updateSensors();
   ACC_angle = getAccAngle();
   GYRO_rate = getGyroRate();
   actAngle = kalmanCalculate(ACC_angle, GYRO_rate, lastLoopTime);
   // *************************** print Debug  *********************************
-  serialOut_sensor();
+  
   // *********************** loop timing control ******************************
   lastLoopUsefulTime = millis()-loopStartTime;
   if(lastLoopUsefulTime<STD_LOOP_TIME)         delay(STD_LOOP_TIME-lastLoopUsefulTime);
