@@ -26,24 +26,21 @@ int GYRO_rate;
 int actAngle;
 
 //  Variables de Tiempo
-int  STD_LOOP_TIME  = 9; 
+int  STD_LOOP_TIME  = 5 
 int  lastLoopTime = STD_LOOP_TIME;
 int  lastLoopUsefulTime = STD_LOOP_TIME;
 unsigned long loopStartTime = 0;
 
 //Variables Operativas
 int i;                    // Variable de iteracion General
-unsigned long start_time = 0;
-unsigned long end_time = 0;
-int time;
 
-//Alias a Pines
+
 
 
 void configIMU(){
   // Configuramos el Giroscopo  
   // Velocidad de Muestreo 1kHz, Filtro de ancho de banda 42Hz, Rango del Girospoco 500 d/s 
-  writeTo(GYRO, 0x15, 0x00);       
+  writeTo(GYRO, 0x15, 0x00);
   writeTo(GYRO, 0x16, 0x08);       
   //Establecer la direccion del acelerometro
   writeTo(GYRO, 0x18, 0x32);     
@@ -214,7 +211,7 @@ float kalmanCalculate(float newAngle, float newRate,int looptime) {
 
 
 void setup(){
-  Serial.begin(9600);           //Declaramos la comunicacion Serial
+  Serial.begin(9600);             //Declaramos la comunicacion Serial
   Wire.begin();                   //Iniciamos la comunicacion I2C
   configIMU();                    //Configuramos el IMU3000
   calibrarIMU();                  //Calibramos el sensor con los valores actuales
@@ -226,10 +223,11 @@ void loop(){
   // ********************* Adquisicion de Sensor y Filtrado *******************
   updateSensors();
   ACC_angle = getAccAngle();
+  /*
   GYRO_rate = getGyroRate();
   actAngle = kalmanCalculate(ACC_angle, GYRO_rate, lastLoopTime);
   // *************************** print Debug  *********************************
-  
+  */
   // *********************** loop timing control ******************************
   lastLoopUsefulTime = millis()-loopStartTime;
   if(lastLoopUsefulTime<STD_LOOP_TIME)         delay(STD_LOOP_TIME-lastLoopUsefulTime);
