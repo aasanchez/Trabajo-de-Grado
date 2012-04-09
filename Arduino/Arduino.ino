@@ -18,8 +18,7 @@
 //
 byte buffer[12];           // Array para almacenar los valdores del I2C
 int  IMU[6];               // Valores del IMU 0:GiroX;1:GiroY;2:GiroX;3:AccelX;4:AccelY;5:AccelZ
-int  zeroIMU[6];           // Resultado de Calibracion IMU, para puesta a 0; 0:GiroX;1:GiroY;2:GiroX;3:AccelX;4:AccelY;5:AccelZ
-long tempIMU[6];           // valores temporales de Calibracion del IMU 0:GiroX;1:GiroY;2:GiroX;3:AccelX;4:AccelY;5:AccelZ
+int  zeroIMU[6];           // Resultado de Calibracion IMU, para puesta a 0; 0:GiroX;1:GiroY;2:GiroX;3:AccelX;4:AccelY;aC
 
 //  Calculos de Estabilizacion
 int ACC_angle;            // Angulo de Retorno de Arctan2
@@ -44,7 +43,7 @@ int time;
 void configIMU(){
   // Configuramos el Giroscopo  
   // Velocidad de Muestreo 1kHz, Filtro de ancho de banda 42Hz, Rango del Girospoco 500 d/s 
-  writeTo(GYRO, 0x15, 0x08);       
+  writeTo(GYRO, 0x15, 0x00);       
   writeTo(GYRO, 0x16, 0x08);       
   //Establecer la direccion del acelerometro
   writeTo(GYRO, 0x18, 0x32);     
