@@ -7,6 +7,7 @@
 #define ENB  9
 
 void setup() {
+  Serial.begin(9600); 
   for (int i = 7; i <= 13; i++) {
     pinMode(i, OUTPUT);
     digitalWrite(i,LOW);
@@ -16,12 +17,13 @@ void setup() {
 }
 
 void loop() {
+  Serial.println("Mover Motores"); 
   avance();
-  delay(1000);
-  retroceso();
-  delay(1000);
-  stoped();
-  delay(1000);
+  while(1){
+    delay(1000);
+    delay(1000);    
+    Serial.println("Avance"); 
+  }
 }
 
 void avance(){
