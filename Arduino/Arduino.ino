@@ -95,23 +95,6 @@ int arctan2(int y, int x) {     //http://dspguru.com/dsp/tricks/fixed-point-atan
   else return int(angle);
 }
 
-void serialOut_sensor() {
-  static int skip=0;
-  if(skip++==20) {
-    skip = 0;
-    Serial.print(ACC_angle);
-    Serial.print(",");
-    Serial.print(IMU[5]);
-    Serial.print(",");
-    Serial.println(IMU[3]);
-  }
-}
-
-void serialOut_labView() {
-  Serial.print(ACC_angle);
-  Serial.print(",");
-  Serial.println(actAngle);
-}
 
 
 
@@ -125,12 +108,6 @@ void setup(){
     digitalWrite(i,LOW);
   }
   i=0;
-}
-
-void serialOut_Motoresl() {
-  Serial.print(actAngle);
-  Serial.print(",");
-  Serial.println(drive);
 }
 
 void loop(){
