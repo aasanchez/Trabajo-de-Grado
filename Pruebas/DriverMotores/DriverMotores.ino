@@ -1,34 +1,54 @@
 #define IN1 13
 #define IN2 12
-#define ENA 6
+#define ENA 5
 
 #define IN3 8
 #define IN4 7
-#define ENB 5
+#define ENB 6
 
+int a=0;
 void setup() {
   Serial.begin(9600);
   for (int i = 7; i <= 13; i++) {
     pinMode(i, OUTPUT);
     digitalWrite(i,LOW);
   }
-  analogWrite(ENA,255);
-  analogWrite(ENB,255);
 }
 
 void loop() {
-  Serial.println("Avance");
-  avance();
-  delay(1000);/*
-  Serial.println("Stop");
   stoped();
-  delay(1000);  
-  Serial.println("Retroceso");
-  retroceso();
-  delay(1000);
+  while(1){
+    Serial.println("MOT1");
+      for (a=0;a<255;a++) {
+        analogWrite(ENA,a);
+        delay(10);
+      }  
+    for (a=255;a>0;a--) {
+      analogWrite(ENA,a);
+      delay(10);
+    }
+    Serial.println("MOT2");
+      for (a=0;a<255;a++) {
+        analogWrite(ENB,a);
+        delay(10);
+      }  
+    for (a=255;a>0;a--) {
+      analogWrite(ENB,a);
+      delay(10);
+    }    
+    
+    
+  }
+  /*
   Serial.println("Stop");
-  stoped();
-  delay(1000);*/
+   stoped();
+   delay(1000);  
+   Serial.println("Retroceso");
+   retroceso();
+   delay(1000);
+   Serial.println("Stop");
+   stoped();
+   delay(1000);*/
 }
 
 void avance(){
@@ -46,11 +66,13 @@ void retroceso(){
 }
 
 void stoped(){
-  digitalWrite(IN1, LOW);
+  digitalWrite(IN1, LOW;
   digitalWrite(IN2, LOW);
-  digitalWrite(IN3, LOW);
-  digitalWrite(IN4, LOW);  
+  digitalWrite(IN3, HIGH);
+  digitalWrite(IN4, HIGH);  
 }
+
+
 
 
 

@@ -15,13 +15,12 @@ Institucion: UNIVERSIDAD YACAMBU
 //Alias a Pines
 #define IN1 13
 #define IN2 12
-#define ENA 11
+#define ENA 5
 
 #define IN3 8
 #define IN4 7
-#define ENB 9
+#define ENB 6
 
-#define   GUARD_GAIN   10.0                // 20.0
 //
 // Variables para el Control de IMU
 //
@@ -29,11 +28,10 @@ byte buffer[12]; // Array para almacenar los valdores del I2C
 int IMU[6]; // Valores del IMU 0:GiroX;1:GiroY;2:GiroX;3:AccelX;4:AccelY;5:AccelZ
 int zeroIMU[6]; // Resultado de Calibracion IMU, para puesta a 0; 0:GiroX;1:GiroY;2:GiroX;3:AccelX;4:AccelY;5:AccelZ
 long tempIMU[6]; // valores temporales de Calibracion del IMU 0:GiroX;1:GiroY;2:GiroX;3:AccelX;4:AccelY;5:AccelZ
-
-// Calculos de Estabilizacion
 int ACC_angle; // Angulo de Retorno de Arctan2
 int GYRO_rate;
 int actAngle;
+
 
 // Variables de Tiempo
 int STD_LOOP_TIME = 5;
@@ -44,106 +42,32 @@ unsigned long loopStartTime = 0;
 //Variables Operativas
 int i; // Variable de iteracion General
 
+// --- PID ----------------------------------------------------------------------------
+float K = 0.5;
+float Kp = 7;                           
+float Ki = 1;                        
+float Kd = -6;       
+float Kp_Wheel = -0.025;   
+float Kd_Wheel = -8;
+
+int last_error = 0;
+int integrated_error = 0;
+float pTerm=0, iTerm=0, dTerm=0, pTerm_Wheel=0, dTerm_Wheel=0;
+int GUARD_GAIN = 10;
 int setPoint = 0;
 int drive = 0;
 
-void configIMU(){
-  // Configuramos el Giroscopo
-  // Velocidad de Muestreo 1kHz, Filtro de ancho de banda 42Hz, Rango del Girospoco 500 d/s
-  writeTo(GYRO, 0x16, 0x0B);
-  //Establecer la direccion del acelerometro
-  writeTo(GYRO, 0x18, 0x32);
-  //Setear el acelerometro como esclavo
-  writeTo(GYRO, 0x14, ACCEL);
+// --- Kalman iltro ----------------------------------------------------------------------------
+float Q_angle = 0.001;
+float Q_gyro = 0.003;
+float R_angle = 0.03;
 
-  // Ajuste el modo de paso a través de Accelerometro para que podamos encenderlo
-  writeTo(GYRO, 0x3D, 0x08);
-  // establecer el control de aceleración poder para 'medir'
-  writeTo(ACCEL, ADXL345_POWER_CTL, 8);
-  //cancelar el pasar a través del acelerometro, el Giroscopo ahora leerá aceleración para nosotros
-  writeTo(GYRO, 0x3D, 0x28);
-}
+float x_angle = 0;
+float x_bias = 0;
+float P_00 = 0, P_01 = 0, P_10 = 0, P_11 = 0;
+float dt, y, S;
+float K_0, K_1;
 
-// Funcion para escribir un valor en una direccion en un dispositivo especifico
-void writeTo(int device, byte address, byte val) {
-  Wire.beginTransmission(device); // Comienza la transmision
-  Wire.write(address); // Envia la direccion
-  Wire.write(val); // Envia el valor
-  Wire.endTransmission(); // Finaliza la transmision
-}
-
-void getIMU(){
-  for(int n=0;n<=5;n++){
-    IMU[n] = 0; //Limpiamos el vector
-  }
-
-  Wire.beginTransmission(GYRO);
-  Wire.write(REG_GYRO_X); 
-  Wire.endTransmission();
-
-
-  Wire.beginTransmission(GYRO);
-  Wire.requestFrom(GYRO,12); 
-  i = 0;
-  while(Wire.available()){
-    buffer[i] = Wire.read();
-    i++;
-  }
-  Wire.endTransmission();
-
-
-  IMU[0] = buffer[0] << 8 | buffer[1];
-  IMU[1] = buffer[2] << 8 | buffer[3];
-  IMU[2] = buffer[4] << 8 | buffer[5];
-
-  IMU[3] = buffer[7] << 8 | buffer[6];
-  IMU[4] = buffer[9] << 8 | buffer[8];
-  IMU[5] = buffer[11] << 8 | buffer[10];
-}
-
-void calibrarIMU(){
-  //Numero de Muestras para calibracin
-  int muestras = 500;
-  //Limpiamos el Vector
-  for(int n=0;n<=5;n++){
-    zeroIMU[n] = 0;
-  }
-  for(int n=0;n<=5;n++){
-    tempIMU[n] = 0;
-  }
-  //Sumamos para para el Promedio
-  for(int n=0;n<muestras;n++){
-    getIMU();
-    for(int n=0;n<5;n++){
-      tempIMU[n] = tempIMU[n] + IMU[n];
-    }
-  }
-  //Dividimos y obtenemos el promdio
-  for(int n=0;n<5;n++){
-    zeroIMU[n] = tempIMU[n] / muestras;
-  }
-  zeroIMU[5] = 0; //Correccion segun datasheet
-}
-
-void updateSensors(){
-  //Numero de Muestras para lectura
-  int muestras = 2;
-  //Limpiamos el Vector
-  for(int n=0;n<=5;n++){
-    tempIMU[n] = 0;
-  }
-  //Sumamos para para el Promedio
-  for(int n=0;n<muestras;n++){
-    getIMU();
-    for(int n=0;n<=5;n++){
-      tempIMU[n] = tempIMU[n] + IMU[n];
-    }
-  }
-  //Dividimos y obtenemos el promdio y restamos el valor de Calibracion
-  for(int n=0;n<=5;n++){
-    IMU[n] = (tempIMU[n] / muestras)-zeroIMU[n];
-  }
-}
 
 int getAccAngle() {
   return arctan2(-IMU[5], -IMU[3]) +256; // En Quids
@@ -190,81 +114,6 @@ void serialOut_labView() {
 }
 
 
-
-// --- Kalman iltro ----------------------------------------------------------------------------
-float Q_angle = 0.001; //0.001
-float Q_gyro = 0.003; //0.003
-float R_angle = 0.03; //0.03
-
-float x_angle = 0;
-float x_bias = 0;
-float P_00 = 0, P_01 = 0, P_10 = 0, P_11 = 0;
-float dt, y, S;
-float K_0, K_1;
-
-float kalmanCalculate(float newAngle, float newRate,int looptime) {
-  dt = float(looptime)/1000;
-  x_angle += dt * (newRate - x_bias);
-  P_00 += - dt * (P_10 + P_01) + Q_angle * dt;
-  P_01 += - dt * P_11;
-  P_10 += - dt * P_11;
-  P_11 += + Q_gyro * dt;
-
-  y = newAngle - x_angle;
-  S = P_00 + R_angle;
-  K_0 = P_00 / S;
-  K_1 = P_10 / S;
-
-  x_angle += K_0 * y;
-  x_bias += K_1 * y;
-  P_00 -= K_0 * P_00;
-  P_01 -= K_0 * P_01;
-  P_10 -= K_1 * P_00;
-  P_11 -= K_1 * P_01;
-
-  return x_angle;
-}
-
-// --- PID ----------------------------------------------------------------------------
-float K = 0.5;
-float Kp = 7;                           
-float Ki = 1;                        
-float Kd = -6;       
-float Kp_Wheel = -0.025;   
-float Kd_Wheel = -8;
-
-int last_error = 0;
-int integrated_error = 0;
-float pTerm=0, iTerm=0, dTerm=0, pTerm_Wheel=0, dTerm_Wheel=0;
-
-int updatePid(int targetPosition, int currentPosition)   {
-  int error = targetPosition - currentPosition; 
-  pTerm = Kp * error;
-  integrated_error += error;                                       
-  iTerm = Ki * constrain(integrated_error, -GUARD_GAIN, GUARD_GAIN);
-  dTerm = Kd * (error - last_error);                            
-  return -constrain(K*(pTerm + iTerm + dTerm + Kp_Wheel + Kd_Wheel), -255, 255);
-  //  return -constrain(K*(pTerm + iTerm + dTerm + pTerm_Wheel + dTerm_Wheel), -255, 255);  
-}
-/*
-int Drive_Motor(int torque)  {
- if (torque >= 0)  {                                  
- digitalWrite(InA_R, HIGH);                        
- digitalWrite(InB_R, HIGH);
- digitalWrite(InA_L, HIGH);                     
- digitalWrite(InB_L, HIGH);
- }  
- else {                                           
- digitalWrite(InA_R, LOW);                       
- digitalWrite(InB_R, LOW);
- digitalWrite(InA_L, LOW);                      
- digitalWrite(InB_L, LOW);
- torque = abs(torque);
- }
- analogWrite(PWM_R,torque);
- analogWrite(PWM_L,torque);                      
- }
- */
 
 void setup(){
   Serial.begin(9600); //Declaramos la comunicacion Serial
