@@ -16,10 +16,11 @@ class Metodos(QtGui.QMainWindow):
         self.setWindowTitle("Graficador USB")
         
         #color de fondo
-        self.ventana.qwtPlot.setCanvasBackground(Qt.black)
+        self.ventana.qwtPlot.setCanvasBackground(Qt.white)
         
         #leyendas
-        self.ventana.qwtPlot.setTitle("ADXL345")
+        
+        self.ventana.qwtPlot.setTitle("Vehiculo para personas con compromisos motrices bajo el modelo de Pendulo Invertido")
         self.ventana.qwtPlot.setAxisTitle(Qwt.QwtPlot.yLeft, "Lectura")
         self.ventana.qwtPlot.setAxisTitle(Qwt.QwtPlot.xBottom, "Tiempo")
         

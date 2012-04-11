@@ -35,12 +35,13 @@ unsigned long loopStartTime = 0;
 int i; // Variable de iteracion General
 
 //Alias a Pines
-#define   InA_R  13 
-#define   InB_R  12 
-#define   PWM_R  11 
-#define   InA_L  8  
-#define   InB_L  7  
-#define   PWM_L  9  
+#define IN1 13
+#define IN2 12
+#define ENA 11
+
+#define IN3 8
+#define IN4 7
+#define ENB 9
 
 int setPoint = 0;
 int drive = 0;
@@ -244,7 +245,7 @@ int updatePid(int targetPosition, int currentPosition)   {
   return -constrain(K*(pTerm + iTerm + dTerm + Kp_Wheel + Kd_Wheel), -255, 255);
   //  return -constrain(K*(pTerm + iTerm + dTerm + pTerm_Wheel + dTerm_Wheel), -255, 255);  
 }
-
+/*
 int Drive_Motor(int torque)  {
   if (torque >= 0)  {                                  
     digitalWrite(InA_R, HIGH);                        
@@ -262,7 +263,7 @@ int Drive_Motor(int torque)  {
   analogWrite(PWM_R,torque);
   analogWrite(PWM_L,torque);                      
 }
-
+*/
 
 void setup(){
   Serial.begin(9600); //Declaramos la comunicacion Serial
@@ -272,7 +273,9 @@ void setup(){
   for (int i = 7; i <= 13; i++) {
     pinMode(i, OUTPUT);
     digitalWrite(i,LOW);
-  }  
+  }
+  analogWrite(ENA,255);
+  analogWrite(ENB,255);
 }
 
 void serialOut_Motoresl() {
@@ -283,23 +286,33 @@ void serialOut_Motoresl() {
 
 void loop(){
   // ********************* Adquisicion de Sensor y Filtrado *******************
+  digitalWrite(IN1, HIGH);     //Amarillo  MOT1                      
+  digitalWrite(IN2, HIGH);     //Rojo      MOT1
+  digitalWrite(IN3, HIGH);     //Amarillo  MOT2          
+  digitalWrite(IN4, LOW);     //Rojo      MOT2
+  while(1){
+    
+  }
+  /*
   updateSensors();
-  ACC_angle = getAccAngle();
-  GYRO_rate = getGyroRate();
-  actAngle = kalmanCalculate(ACC_angle, GYRO_rate, lastLoopTime);
-
-  // *********************** PID  y motor *****************
-  
-  drive = updatePid(setPoint, actAngle);                                     // 
+   ACC_angle = getAccAngle();
+   GYRO_rate = getGyroRate();
+   actAngle = kalmanCalculate(ACC_angle, GYRO_rate, lastLoopTime);
+   
+   // *********************** PID  y motor *****************
+   
+   drive = updatePid(setPoint, actAngle);                                     // 
    if(abs(actAngle-setPoint) < 100)                   Drive_Motor(drive); 
    else                                               Drive_Motor(0);         // 
-  
-  serialOut_Motoresl();
-
-  // *********************** loop timing control ******************************
-  lastLoopUsefulTime = millis()-loopStartTime;
-  if(lastLoopUsefulTime<STD_LOOP_TIME) delay(STD_LOOP_TIME-lastLoopUsefulTime);
-  lastLoopTime = millis() - loopStartTime;
-  loopStartTime = millis();
+   
+   serialOut_Motoresl();
+   
+   // *********************** loop timing control ******************************
+   lastLoopUsefulTime = millis()-loopStartTime;
+   if(lastLoopUsefulTime<STD_LOOP_TIME) delay(STD_LOOP_TIME-lastLoopUsefulTime);
+   lastLoopTime = millis() - loopStartTime;
+   loopStartTime = millis();
+   */
 }
+
 

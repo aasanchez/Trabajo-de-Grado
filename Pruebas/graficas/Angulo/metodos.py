@@ -16,7 +16,7 @@ class Metodos(QtGui.QMainWindow):
         self.setWindowTitle("Graficador USB")
         
         #color de fondo
-        self.ventana.qwtPlot.setCanvasBackground(Qt.black)
+        self.ventana.qwtPlot.setCanvasBackground(Qt.white)
         
         #leyendas
         self.ventana.qwtPlot.setTitle("Nivel de Inclinacion")
