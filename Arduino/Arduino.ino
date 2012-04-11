@@ -1,9 +1,9 @@
 /*
 Institucion: UNIVERSIDAD YACAMBU
-Titulo: VEHÍCULO PARA PERSONAS CON COMPROMISOS MOTRICES BAJO EL MODELO DE PÉNDULO INVERTIDO.
-Autor: Alexis Sanchez
-Creative Commons
-*/
+ Titulo: VEHÍCULO PARA PERSONAS CON COMPROMISOS MOTRICES BAJO EL MODELO DE PÉNDULO INVERTIDO.
+ Autor: Alexis Sanchez
+ Creative Commons
+ */
 #include <math.h>
 #include <Wire.h>
 
@@ -35,17 +35,15 @@ unsigned long loopStartTime = 0;
 int i; // Variable de iteracion General
 
 //Alias a Pines
-#define   InA_R                 4                              // INA right motor pin 
-#define   InB_R                 5                              // INB right motor pin
-#define   PWM_R                 10                             // PWM right motor pin
-#define   InA_L                 8                              // INA left motor pin
-#define   InB_L                 9                              // INB left motor pin
-#define   PWM_L                 11                             // PWM left motor pin
+#define   InA_R  13 
+#define   InB_R  12 
+#define   PWM_R  11 
+#define   InA_L  8  
+#define   InB_L  7  
+#define   PWM_L  9  
 
 int setPoint = 0;
 int drive = 0;
-long count = 0;
-long last_count = 0;
 
 void configIMU(){
   // Configuramos el Giroscopo
@@ -189,11 +187,7 @@ void serialOut_labView() {
   Serial.println(actAngle);
 }
 
-void serialOut_Motoresl() {
-  Serial.print(actAngle);
-  Serial.print(",");
-  Serial.println(drive);
-}
+
 
 // --- Kalman iltro ----------------------------------------------------------------------------
 float Q_angle = 0.001; //0.001
@@ -230,7 +224,7 @@ float kalmanCalculate(float newAngle, float newRate,int looptime) {
 }
 
 // --- PID ----------------------------------------------------------------------------
-float K = 1.9 * 1.5;
+float K = 0.5;
 float Kp = 7;                           
 float Ki = 1;                        
 float Kd = -6;       
@@ -247,29 +241,26 @@ int updatePid(int targetPosition, int currentPosition)   {
   integrated_error += error;                                       
   iTerm = Ki * constrain(integrated_error, -GUARD_GAIN, GUARD_GAIN);
   dTerm = Kd * (error - last_error);                            
-  last_error = error;
-  pTerm_Wheel = Kp_Wheel;           
-  dTerm_Wheel = Kd_Wheel;                            
-  last_count = count;
-  return -constrain(K*(pTerm + iTerm + dTerm + pTerm_Wheel + dTerm_Wheel), -255, 255);
-//  return -constrain(K*(pTerm + iTerm + dTerm + pTerm_Wheel + dTerm_Wheel), -255, 255);  
+  return -constrain(K*(pTerm + iTerm + dTerm + Kp_Wheel + Kd_Wheel), -255, 255);
+  //  return -constrain(K*(pTerm + iTerm + dTerm + pTerm_Wheel + dTerm_Wheel), -255, 255);  
 }
 
 int Drive_Motor(int torque)  {
   if (torque >= 0)  {                                  
-    digitalWrite(InA_R, LOW);                        
+    digitalWrite(InA_R, HIGH);                        
     digitalWrite(InB_R, HIGH);
-    digitalWrite(InA_L, LOW);                     
+    digitalWrite(InA_L, HIGH);                     
     digitalWrite(InB_L, HIGH);
-  }  else {                                           
-    digitalWrite(InA_R, HIGH);                       
+  }  
+  else {                                           
+    digitalWrite(InA_R, LOW);                       
     digitalWrite(InB_R, LOW);
-    digitalWrite(InA_L, HIGH);                      
+    digitalWrite(InA_L, LOW);                      
     digitalWrite(InB_L, LOW);
     torque = abs(torque);
   }
-    analogWrite(PWM_R,torque);
-    analogWrite(PWM_L,torque);                      
+  analogWrite(PWM_R,torque);
+  analogWrite(PWM_L,torque);                      
 }
 
 
@@ -278,8 +269,17 @@ void setup(){
   Wire.begin(); //Iniciamos la comunicacion I2C
   configIMU(); //Configuramos el IMU3000
   calibrarIMU(); //Calibramos el sensor con los valores actuales
+  for (int i = 7; i <= 13; i++) {
+    pinMode(i, OUTPUT);
+    digitalWrite(i,LOW);
+  }  
 }
 
+void serialOut_Motoresl() {
+  Serial.print(actAngle);
+  Serial.print(",");
+  Serial.println(drive);
+}
 
 void loop(){
   // ********************* Adquisicion de Sensor y Filtrado *******************
@@ -287,16 +287,19 @@ void loop(){
   ACC_angle = getAccAngle();
   GYRO_rate = getGyroRate();
   actAngle = kalmanCalculate(ACC_angle, GYRO_rate, lastLoopTime);
-  
+
   // *********************** PID  y motor *****************
+  
   drive = updatePid(setPoint, actAngle);                                     // 
-  if(abs(actAngle-setPoint) < 100)                   Drive_Motor(drive); 
-  else                                               Drive_Motor(0);         // 
-    serialOut_Motoresl();
-    
+   if(abs(actAngle-setPoint) < 100)                   Drive_Motor(drive); 
+   else                                               Drive_Motor(0);         // 
+  
+  serialOut_Motoresl();
+
   // *********************** loop timing control ******************************
   lastLoopUsefulTime = millis()-loopStartTime;
   if(lastLoopUsefulTime<STD_LOOP_TIME) delay(STD_LOOP_TIME-lastLoopUsefulTime);
   lastLoopTime = millis() - loopStartTime;
   loopStartTime = millis();
 }
+
