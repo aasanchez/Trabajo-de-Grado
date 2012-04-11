@@ -1,10 +1,10 @@
 #define IN1 13
 #define IN2 12
-#define ENA 11
+#define ENA 6
 
 #define IN3 8
 #define IN4 7
-#define ENB 9
+#define ENB 5
 
 void setup() {
   Serial.begin(9600);

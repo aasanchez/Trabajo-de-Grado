@@ -11,6 +11,16 @@ Institucion: UNIVERSIDAD YACAMBU
 #define REG_GYRO_X 0x1D // Direccion para GYRO_XOUT_H en el IMU-3000
 #define ACCEL 0x53 // Direccion del Acelerometro para I2C
 #define ADXL345_POWER_CTL 0x2D
+
+//Alias a Pines
+#define IN1 13
+#define IN2 12
+#define ENA 11
+
+#define IN3 8
+#define IN4 7
+#define ENB 9
+
 #define   GUARD_GAIN   10.0                // 20.0
 //
 // Variables para el Control de IMU
@@ -33,15 +43,6 @@ unsigned long loopStartTime = 0;
 
 //Variables Operativas
 int i; // Variable de iteracion General
-
-//Alias a Pines
-#define IN1 13
-#define IN2 12
-#define ENA 11
-
-#define IN3 8
-#define IN4 7
-#define ENB 9
 
 int setPoint = 0;
 int drive = 0;
@@ -247,23 +248,23 @@ int updatePid(int targetPosition, int currentPosition)   {
 }
 /*
 int Drive_Motor(int torque)  {
-  if (torque >= 0)  {                                  
-    digitalWrite(InA_R, HIGH);                        
-    digitalWrite(InB_R, HIGH);
-    digitalWrite(InA_L, HIGH);                     
-    digitalWrite(InB_L, HIGH);
-  }  
-  else {                                           
-    digitalWrite(InA_R, LOW);                       
-    digitalWrite(InB_R, LOW);
-    digitalWrite(InA_L, LOW);                      
-    digitalWrite(InB_L, LOW);
-    torque = abs(torque);
-  }
-  analogWrite(PWM_R,torque);
-  analogWrite(PWM_L,torque);                      
-}
-*/
+ if (torque >= 0)  {                                  
+ digitalWrite(InA_R, HIGH);                        
+ digitalWrite(InB_R, HIGH);
+ digitalWrite(InA_L, HIGH);                     
+ digitalWrite(InB_L, HIGH);
+ }  
+ else {                                           
+ digitalWrite(InA_R, LOW);                       
+ digitalWrite(InB_R, LOW);
+ digitalWrite(InA_L, LOW);                      
+ digitalWrite(InB_L, LOW);
+ torque = abs(torque);
+ }
+ analogWrite(PWM_R,torque);
+ analogWrite(PWM_L,torque);                      
+ }
+ */
 
 void setup(){
   Serial.begin(9600); //Declaramos la comunicacion Serial
@@ -274,8 +275,7 @@ void setup(){
     pinMode(i, OUTPUT);
     digitalWrite(i,LOW);
   }
-  analogWrite(ENA,255);
-  analogWrite(ENB,255);
+  i=0;
 }
 
 void serialOut_Motoresl() {
@@ -286,14 +286,25 @@ void serialOut_Motoresl() {
 
 void loop(){
   // ********************* Adquisicion de Sensor y Filtrado *******************
-  digitalWrite(IN1, HIGH);     //Amarillo  MOT1                      
-  digitalWrite(IN2, HIGH);     //Rojo      MOT1
-  digitalWrite(IN3, HIGH);     //Amarillo  MOT2          
-  digitalWrite(IN4, LOW);     //Rojo      MOT2
-  while(1){
-    
-  }
+  i=i+5;
+  analogWrite(ENA,i);
+  analogWrite(ENB,i);  
+  backward
+  ();
+  delay(500);
+  if(i>=240)  i=0;
+  Serial.println(i);
   /*
+  backward();
+  delay(500);
+  left();
+  delay(500);
+  right();
+  delay(500); 
+  stoped();
+  delay(500);   
+  /*
+  
   updateSensors();
    ACC_angle = getAccAngle();
    GYRO_rate = getGyroRate();
@@ -314,5 +325,7 @@ void loop(){
    loopStartTime = millis();
    */
 }
+
+
 
 
