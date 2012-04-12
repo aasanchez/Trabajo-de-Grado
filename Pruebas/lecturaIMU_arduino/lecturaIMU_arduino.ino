@@ -24,8 +24,6 @@ void setup(){
   writeTo(GYRO, 0x3D, 0x28);    
 
 }
-
-// Write a value to address register on device
 void writeTo(int device, byte address, byte val) {
   Wire.beginTransmission(device);
   Wire.write(address);           

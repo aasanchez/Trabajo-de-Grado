@@ -2,7 +2,7 @@
  Institucion: UNIVERSIDAD YACAMBU
  Titulo: VEHÍCULO PARA PERSONAS CON COMPROMISOS MOTRICES BAJO EL MODELO DE PÉNDULO INVERTIDO.
  Autor: Alexis Sanchez
-*/
+ */
 #include <math.h>
 #include <Wire.h>
 
@@ -38,6 +38,8 @@ unsigned long loopStartTime = 0;
 
 //Variables Operativas
 int i;               // Variable de iteracion General
+int delta;            //Cuanto falta por corregir
+long cicle;
 
 // --- PID ----------------------------------------------------------------------------
 float K = 0.5;
@@ -53,14 +55,14 @@ float pTerm=0, iTerm=0, dTerm=0, pTerm_Wheel=0, dTerm_Wheel=0;
 int GUARD_GAIN = 10;
 int setPoint = 0;
 int drive = 0;
-
+int PwmTerm = 100;
 // --- Kalman iltro ----------------------------------------------------------------------------
 float Q_angle = 0.001;
 float Q_gyro = 0.003;
 float R_angle = 0.03;
 
 float x_angle = 0;
-float x_bias = 0;
+float x_bias = 0;                //Offset
 float P_00 = 0, P_01 = 0, P_10 = 0, P_11 = 0;
 float dt, y, S;
 float K_0, K_1;
@@ -100,7 +102,7 @@ void setup(){
   Wire.begin(); //Iniciamos la comunicacion I2C
   configIMU(); //Configuramos el IMU3000
   calibrarIMU(); //Calibramos el sensor con los valores actuales
-  for (int i = 7; i <= 13; i++) {
+  for (int i = 5; i <= 13; i++) {
     pinMode(i, OUTPUT);
     digitalWrite(i,LOW);
   }
@@ -111,23 +113,41 @@ void loop(){
   updateSensors();
   ACC_angle = getAccAngle();
   GYRO_rate = getGyroRate();
-  actAngle = kalmanCalculate(ACC_angle, GYRO_rate, lastLoopTime);
+  //actAngle = kalmanCalculate(ACC_angle, GYRO_rate, lastLoopTime);
+  // *********************** PID  y motor *****************
+  drive = ACC_angle;
+  if(abs(drive)<110){
+    if(drive > 0){
+      Drive_Motor(drive + 100);
+    }
+    else{
+      Drive_Motor(drive-100);
+    }  
+  }
+  else{
+    stoped();
+  }
   /*
-   // *********************** PID  y motor *****************
-   
-   drive = updatePid(setPoint, actAngle);                                     // 
-   if(abs(actAngle-setPoint) < 100)                   Drive_Motor(drive); 
-   else                                               Drive_Motor(0);         // 
+  drive = updatePid(setPoint, actAngle);
+   delta = abs(actAngle-setPoint);
+   //  if(delta < 100){
+   Drive_Motor(drive); 
+   //  }
    */
-  serialOut_Motoresl();
-
+  //  serialOut_labView();
   // *********************** loop timing control ******************************
   lastLoopUsefulTime = millis()-loopStartTime;
   if(lastLoopUsefulTime<STD_LOOP_TIME) delay(STD_LOOP_TIME-lastLoopUsefulTime);
   lastLoopTime = millis() - loopStartTime;
   loopStartTime = millis();
-
+  cicle++;
+  SerialAll();
 }
+
+
+
+
+
 
 
 

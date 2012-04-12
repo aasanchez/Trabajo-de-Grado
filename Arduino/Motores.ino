@@ -1,40 +1,34 @@
 /*
  Autor: Alexis Sanchez
  Funciones para el Control de Motores
-*/
+ */
 
-/*
 int Drive_Motor(int torque)  {
-  if (torque >= 0)  {                                  
-    digitalWrite(InA_R, HIGH);                        
-    digitalWrite(InB_R, HIGH);
-    digitalWrite(InA_L, HIGH);                     
-    digitalWrite(InB_L, HIGH);
+  torque = constrain(torque, -255, 255);
+  if (torque > 0)  {       
+    backward();
   }  
   else {                                           
-    digitalWrite(InA_R, LOW);                       
-    digitalWrite(InB_R, LOW);
-    digitalWrite(InA_L, LOW);                      
-    digitalWrite(InB_L, LOW);
-    torque = abs(torque);
+    forward();
   }
-  analogWrite(PWM_R,torque);
-  analogWrite(PWM_L,torque);                      
+  torque = abs(torque);
+  analogWrite(ENA,torque);
+  analogWrite(ENB,torque);
 }
-*/
+
 
 void forward(){
   digitalWrite(IN1, HIGH); //Amarillo  MOT1                      
   digitalWrite(IN2, LOW);  //Rojo      MOT1
   digitalWrite(IN3, HIGH); //Amarillo  MOT2          
-  digitalWrite(IN4, LOW);  //Rojo      MOT2  
+  digitalWrite(IN4, LOW);  //Rojo      MOT2
 }
 
 void backward(){
   digitalWrite(IN1, LOW);  //Amarillo  MOT1                      
-  digitalWrite(IN2, LOW); //Rojo      MOT1
+  digitalWrite(IN2, HIGH); //Rojo      MOT1
   digitalWrite(IN3, LOW);  //Amarillo  MOT2          
-  digitalWrite(IN4, HIGH); //Rojo      MOT2  
+  digitalWrite(IN4, HIGH); //Rojo      MOT2
 }
 
 void left(){
@@ -55,6 +49,12 @@ void stoped(){
   digitalWrite(IN1, HIGH); //Amarillo  MOT1                      
   digitalWrite(IN2, HIGH); //Rojo      MOT1
   digitalWrite(IN3, HIGH); //Amarillo  MOT2          
-  digitalWrite(IN4, HIGH); //Rojo      MOT2  
+  digitalWrite(IN4, HIGH); //Rojo      MOT2 
 }
+
+
+
+
+
+
 
