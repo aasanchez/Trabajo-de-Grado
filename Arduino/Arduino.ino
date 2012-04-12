@@ -1,15 +1,14 @@
 /*
-Institucion: UNIVERSIDAD YACAMBU
+ Institucion: UNIVERSIDAD YACAMBU
  Titulo: VEHÍCULO PARA PERSONAS CON COMPROMISOS MOTRICES BAJO EL MODELO DE PÉNDULO INVERTIDO.
  Autor: Alexis Sanchez
- Creative Commons
- */
+*/
 #include <math.h>
 #include <Wire.h>
 
-#define GYRO 0x68 // Direccion del Giroscopo para I2C
-#define REG_GYRO_X 0x1D // Direccion para GYRO_XOUT_H en el IMU-3000
-#define ACCEL 0x53 // Direccion del Acelerometro para I2C
+#define GYRO 0x68             // Direccion del Giroscopo para I2C
+#define REG_GYRO_X 0x1D       // Direccion para GYRO_XOUT_H en el IMU-3000
+#define ACCEL 0x53            // Direccion del Acelerometro para I2C
 #define ADXL345_POWER_CTL 0x2D
 
 //Alias a Pines
@@ -21,14 +20,12 @@ Institucion: UNIVERSIDAD YACAMBU
 #define IN4 7
 #define ENB 6
 
-//
 // Variables para el Control de IMU
-//
-byte buffer[12]; // Array para almacenar los valdores del I2C
-int IMU[6]; // Valores del IMU 0:GiroX;1:GiroY;2:GiroX;3:AccelX;4:AccelY;5:AccelZ
-int zeroIMU[6]; // Resultado de Calibracion IMU, para puesta a 0; 0:GiroX;1:GiroY;2:GiroX;3:AccelX;4:AccelY;5:AccelZ
-long tempIMU[6]; // valores temporales de Calibracion del IMU 0:GiroX;1:GiroY;2:GiroX;3:AccelX;4:AccelY;5:AccelZ
-int ACC_angle; // Angulo de Retorno de Arctan2
+byte buffer[12];     // Array para almacenar los valdores del I2C
+int IMU[6];          // Valores del IMU 0:GiroX;1:GiroY;2:GiroX;3:AccelX;4:AccelY;5:AccelZ
+int zeroIMU[6];      // Resultado de Calibracion IMU, para puesta a 0; 0:GiroX;1:GiroY;2:GiroX;3:AccelX;4:AccelY;5:AccelZ
+long tempIMU[6];     // valores temporales de Calibracion del IMU 0:GiroX;1:GiroY;2:GiroX;3:AccelX;4:AccelY;5:AccelZ
+int ACC_angle;       // Angulo de Retorno de Arctan2
 int GYRO_rate;
 int actAngle;
 
@@ -40,7 +37,7 @@ int lastLoopUsefulTime = STD_LOOP_TIME;
 unsigned long loopStartTime = 0;
 
 //Variables Operativas
-int i; // Variable de iteracion General
+int i;               // Variable de iteracion General
 
 // --- PID ----------------------------------------------------------------------------
 float K = 0.5;
@@ -107,50 +104,31 @@ void setup(){
     pinMode(i, OUTPUT);
     digitalWrite(i,LOW);
   }
-  i=0;
 }
 
 void loop(){
   // ********************* Adquisicion de Sensor y Filtrado *******************
-  i=i+5;
-  analogWrite(ENA,i);
-  analogWrite(ENB,i);  
-  backward
-  ();
-  delay(500);
-  if(i>=240)  i=0;
-  Serial.println(i);
-  /*
-  backward();
-  delay(500);
-  left();
-  delay(500);
-  right();
-  delay(500); 
-  stoped();
-  delay(500);   
-  /*
-  
   updateSensors();
-   ACC_angle = getAccAngle();
-   GYRO_rate = getGyroRate();
-   actAngle = kalmanCalculate(ACC_angle, GYRO_rate, lastLoopTime);
-   
+  ACC_angle = getAccAngle();
+  GYRO_rate = getGyroRate();
+  actAngle = kalmanCalculate(ACC_angle, GYRO_rate, lastLoopTime);
+  /*
    // *********************** PID  y motor *****************
    
    drive = updatePid(setPoint, actAngle);                                     // 
    if(abs(actAngle-setPoint) < 100)                   Drive_Motor(drive); 
    else                                               Drive_Motor(0);         // 
-   
-   serialOut_Motoresl();
-   
-   // *********************** loop timing control ******************************
-   lastLoopUsefulTime = millis()-loopStartTime;
-   if(lastLoopUsefulTime<STD_LOOP_TIME) delay(STD_LOOP_TIME-lastLoopUsefulTime);
-   lastLoopTime = millis() - loopStartTime;
-   loopStartTime = millis();
    */
+  serialOut_Motoresl();
+
+  // *********************** loop timing control ******************************
+  lastLoopUsefulTime = millis()-loopStartTime;
+  if(lastLoopUsefulTime<STD_LOOP_TIME) delay(STD_LOOP_TIME-lastLoopUsefulTime);
+  lastLoopTime = millis() - loopStartTime;
+  loopStartTime = millis();
+
 }
+
 
 
 

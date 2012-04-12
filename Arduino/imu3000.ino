@@ -1,3 +1,8 @@
+/*
+ Autor: Alexis Sanchez
+ Comunicacion con IMU3000 Combo
+*/
+
 // Funcion para escribir un valor en una direccion en un dispositivo especifico
 void writeTo(int device, byte address, byte val) {
   Wire.beginTransmission(device); // Comienza la transmision

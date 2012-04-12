@@ -1,5 +1,10 @@
+/*
+ Autor: Alexis Sanchez
+ Filtro de Kalman
+*/
+
 float kalmanCalculate(float newAngle, float newRate,int looptime) {
-  dt = float(looptime)/1000;
+  dt = float(looptime)/1000;                       //Diferencial de tiempo en micros
   x_angle += dt * (newRate - x_bias);
   P_00 += - dt * (P_10 + P_01) + Q_angle * dt;
   P_01 += - dt * P_11;

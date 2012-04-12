@@ -1,3 +1,8 @@
+/*
+ Autor: Alexis Sanchez
+ Pid
+*/
+
 int updatePid(int targetPosition, int currentPosition)   {
   int error = targetPosition - currentPosition; 
   pTerm = Kp * error;

@@ -1,4 +1,9 @@
 /*
+ Autor: Alexis Sanchez
+ Funciones para el Control de Motores
+*/
+
+/*
 int Drive_Motor(int torque)  {
   if (torque >= 0)  {                                  
     digitalWrite(InA_R, HIGH);                        
