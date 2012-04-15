@@ -58,7 +58,7 @@ class Metodos(QtGui.QMainWindow):
     #----------------------------------------------------------------------
     def conectarPinguino(self):
         #intenta conectarse con el primero que pueda de los primeros 20 puertos
-        for port in range(3):
+        for port in range(20):
             try:
                 self.pinguino = serial.Serial('/dev/ttyUSB%s' %port, timeout=1)
                 return True
@@ -117,6 +117,7 @@ class Metodos(QtGui.QMainWindow):
         #retorna una lista con los valores leidos
 
         data = self.pinguino.readline() 
+        print data
         data_string_list = data.split(",")
         
         data_int_list = map(lambda i : int (i), [i for i in data_string_list if i != ""])

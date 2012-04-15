@@ -30,5 +30,7 @@ void SerialAll(){
   Serial.print("\t");  
   Serial.print(GYRO_rate);
   Serial.print("\t");
+  Serial.print(actAngle);
+  Serial.print("\t");
   Serial.println("");  
 }

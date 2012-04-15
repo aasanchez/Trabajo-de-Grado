@@ -31,7 +31,7 @@ int actAngle;
 
 
 // Variables de Tiempo
-int STD_LOOP_TIME = 5;
+int STD_LOOP_TIME = 9;
 int lastLoopTime = STD_LOOP_TIME;
 int lastLoopUsefulTime = STD_LOOP_TIME;
 unsigned long loopStartTime = 0;
@@ -73,7 +73,7 @@ int getAccAngle() {
 }
 
 int getGyroRate() {
-  return int(IMU[1] / 4.583333333);
+  return int(IMU[1] / 64);
 }
 
 int arctan2(int y, int x) {     //http://dspguru.com/dsp/tricks/fixed-point-atan2-with-self-normalization

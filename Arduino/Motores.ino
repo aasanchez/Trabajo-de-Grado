@@ -13,7 +13,7 @@ int Drive_Motor(int torque)  {
   }
   torque = abs(torque);
   analogWrite(ENA,torque);
-  analogWrite(ENB,torque);
+  analogWrite(ENB,torque*1.19);
 }
 
 
