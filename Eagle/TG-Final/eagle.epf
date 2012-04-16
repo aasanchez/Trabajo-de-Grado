@@ -16,6 +16,7 @@ UsedLibrary="/home/alexis/Dropbox/Eagle/lbr/jack.lbr"
 UsedLibrary="/home/alexis/Dropbox/Eagle/lbr/keypad4x4_ece.lbr"
 UsedLibrary="/home/alexis/Dropbox/Eagle/lbr/lm35.lbr"
 UsedLibrary="/home/alexis/Dropbox/Eagle/lbr/matrix.lbr"
+UsedLibrary="/home/alexis/Dropbox/Eagle/lbr/ohw-logo.lbr"
 UsedLibrary="/home/alexis/Programas/eagle-6.1.0/lbr/19inch.lbr"
 UsedLibrary="/home/alexis/Programas/eagle-6.1.0/lbr/40xx.lbr"
 UsedLibrary="/home/alexis/Programas/eagle-6.1.0/lbr/41xx.lbr"
@@ -362,12 +363,11 @@ UsedLibrary="/home/alexis/Programas/eagle-6.1.0/lbr/elektro/e-steckverbinder.lbr
 UsedLibrary="/home/alexis/Programas/eagle-6.1.0/lbr/elektro/e-stromversorgungselemente.lbr"
 UsedLibrary="/home/alexis/Programas/eagle-6.1.0/lbr/elektro/e-symbole.lbr"
 UsedLibrary="/home/alexis/Programas/eagle-6.1.0/lbr/elektro/eib-busch-jaeger.lbr"
-UsedLibrary="/home/alexis/Dropbox/Eagle/lbr/ohw-logo.lbr"
 
 [Win_1]
 Type="Control Panel"
-Loc="2023 364 2622 763"
-State=1
+Loc="1755 339 2354 738"
+State=2
 Number=0
 
 [Desktop]
