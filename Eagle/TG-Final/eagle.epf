@@ -367,7 +367,7 @@ UsedLibrary="/home/alexis/Programas/eagle-6.1.0/lbr/elektro/eib-busch-jaeger.lbr
 [Win_1]
 Type="Control Panel"
 Loc="1755 339 2354 738"
-State=2
+State=1
 Number=0
 
 [Desktop]
