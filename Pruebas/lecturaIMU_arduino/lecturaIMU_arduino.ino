@@ -52,16 +52,17 @@ void loop(){
   accel_z = buffer[11] << 8 | buffer[10];
 
   Serial.print(gyro_x);
-  Serial.print("\t");
+  Serial.print(",");
   Serial.print(gyro_y);
-  Serial.print("\t");   
+  Serial.print(",");   
   Serial.print(gyro_z);
-  Serial.print("\t");
+  Serial.print(",");
   Serial.print(accel_x);
-  Serial.print("\t");
+  Serial.print(",");
   Serial.print(accel_y);
-  Serial.print("\t");   
+  Serial.print(",");   
   Serial.println(accel_z);
+  delay(10);
 }
 
 

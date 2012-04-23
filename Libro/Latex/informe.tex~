@@ -1,0 +1,43 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8x]{inputenc}
+\usepackage[spanish] {babel}
+\usepackage{graphicx} 
+\usepackage{array,multirow,tabulary} %Usados para las tablas
+\usepackage[left=4cm,top=3cm,right=3cm,bottom=3cm]{geometry} %Definimos los Margenes
+\pagestyle{empty}
+% Define datos del Trabajo
+\newcommand{\Titulo}{Ejemplo de Portada APA}
+\newcommand{\Autor}{Alexis A. Sánchez O.}
+\newcommand{\Fecha}{Junio 2011}
+\renewcommand{\sfdefault}{phv}
+\title{\Titulo}
+\author{\Autor}
+
+
+\begin{document}
+\begin{tabular*}{0.8\textwidth}{@{\extracolsep{\fill}} cc }
+  \multirow{6}{*}{\includegraphics[width=0.2\textwidth]{img/logouny.png}} 
+  & \\
+  & UNIVERSIDAD YACAMBÚ \\
+  & VICERECTORADO ACADEMICO \\
+  & FACULTAD DE INGIENERIA \\
+  & \\
+\end{tabular*}
+\vspace{9cm}
+% Imprimimos el Titulo
+\begin{center}
+\Titulo\\
+\end{center}
+\vspace{9cm}
+%Mostramos el Autor
+\raggedleft
+\begin{tabular}{l}
+\textbf{Autor:} \Autor \\
+\textbf{Tutor:} Ing. Saul E. Moreno S. \\
+\end{tabular}
+\vspace{1cm}
+\begin{center}
+Cabudare, Junio 2011\\
+\end{center}
+
+\end{document}

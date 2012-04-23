@@ -106,6 +106,7 @@ void setup(){
     pinMode(i, OUTPUT);
     digitalWrite(i,LOW);
   }
+  digitalWrite(11, HIGH);
 }
 
 void loop(){
@@ -113,36 +114,18 @@ void loop(){
   updateSensors();
   ACC_angle = getAccAngle();
   GYRO_rate = getGyroRate();
-  //actAngle = kalmanCalculate(ACC_angle, GYRO_rate, lastLoopTime);
+  actAngle = kalmanCalculate(ACC_angle, GYRO_rate, lastLoopTime);
   // *********************** PID  y motor *****************
-  drive = ACC_angle;
-  if(abs(drive)<110){
-    if(drive > 0){
-      Drive_Motor(drive + 100);
-    }
-    else{
-      Drive_Motor(drive-100);
-    }  
-  }
-  else{
-    stoped();
-  }
-  /*
   drive = updatePid(setPoint, actAngle);
-   delta = abs(actAngle-setPoint);
-   //  if(delta < 100){
-   Drive_Motor(drive); 
-   //  }
-   */
-  //  serialOut_labView();
+  //serialOut_labView();
   // *********************** loop timing control ******************************
   lastLoopUsefulTime = millis()-loopStartTime;
   if(lastLoopUsefulTime<STD_LOOP_TIME) delay(STD_LOOP_TIME-lastLoopUsefulTime);
   lastLoopTime = millis() - loopStartTime;
   loopStartTime = millis();
   cicle++;
-  SerialAll();
 }
+
 
 
 

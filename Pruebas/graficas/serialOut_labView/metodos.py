@@ -19,7 +19,7 @@ class Metodos(QtGui.QMainWindow):
         self.ventana.qwtPlot.setCanvasBackground(Qt.white)
         
         #leyendas
-        self.ventana.qwtPlot.setTitle("IMU Fusion Board - ADXL345 / IMU3000")
+        self.ventana.qwtPlot.setTitle("PID vs Motores")
         self.ventana.qwtPlot.setAxisTitle(Qwt.QwtPlot.yLeft, "Lectura")
         self.ventana.qwtPlot.setAxisTitle(Qwt.QwtPlot.xBottom, "Tiempo")
         
@@ -71,36 +71,20 @@ class Metodos(QtGui.QMainWindow):
         self.cantidad_valores=arange(0, self.maximo, 1)
         valores_1=zeros(len(self.cantidad_valores))#,Float)
         valores_2=zeros(len(self.cantidad_valores))
-        valores_3=zeros(len(self.cantidad_valores))
-        valores_4=zeros(len(self.cantidad_valores))
-        valores_5=zeros(len(self.cantidad_valores))
-        valores_6=zeros(len(self.cantidad_valores))
-        self.all_valores=[valores_1, valores_2, valores_3, valores_4, valores_5, valores_6]
+        self.all_valores=[valores_1, valores_2]
         
     #----------------------------------------------------------------------
     def crear_lineas(self):
         #se crean cada linea que se va a graficar y se le asigna un color,
         #al final se agregan todas en una lista y se activan (attach)
         
-        valor1=Qwt.QwtPlotCurve("Giroscopo X")
+        valor1=Qwt.QwtPlotCurve("PID")
         valor1.setPen(QPen(Qt.cyan)) 
         
-        valor2=Qwt.QwtPlotCurve("Giroscopo Y")
+        valor2=Qwt.QwtPlotCurve("PWM")
         valor2.setPen(QPen(Qt.magenta))
         
-        valor3=Qwt.QwtPlotCurve("Giroscopo Z")
-        valor3.setPen(QPen(Qt.green))
-        
-        valor4=Qwt.QwtPlotCurve("Acelerometro X")
-        valor4.setPen(QPen(Qt.red))
-        
-        valor5=Qwt.QwtPlotCurve("Acelerometro Y")
-        valor5.setPen(QPen(Qt.blue))
-        
-        valor6=Qwt.QwtPlotCurve("Acelerometro Z")
-        valor6.setPen(QPen(Qt.yellow))
-        
-        self.all_lineas=[valor1, valor2, valor3, valor4, valor5, valor6]
+        self.all_lineas=[valor1, valor2]
         for linea in self.all_lineas:  linea.attach(self.ventana.qwtPlot) 
         
     #----------------------------------------------------------------------
@@ -133,11 +117,11 @@ class Metodos(QtGui.QMainWindow):
         
         data_int_list = map(lambda i : int (i), [i for i in data_string_list if i != ""])
 
-        if len(data_int_list) == 6:
+        if len(data_int_list) == 2:
             #depronto sea útil ver los valores en la statusbar :)
             self.ventana.statusBar.showMessage(str(data_int_list))
             return data_int_list
-        else: return [0, 0, 0, 0, 0, 0]  #por si ha ocurrido un error
+        else: return [0, 0]  #por si ha ocurrido un error
         
             
     #----------------------------------------------------------------------
@@ -152,7 +136,7 @@ class Metodos(QtGui.QMainWindow):
     
         if not self.pause:
             data = self.getData()
-            for i in range(6):
+            for i in range(2):
                 value = data[i]
                 
                 if self.valor<self.maximo: self.all_valores[i][self.valor]=value

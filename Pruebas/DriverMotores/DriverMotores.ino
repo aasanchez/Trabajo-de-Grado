@@ -6,23 +6,22 @@
 #define IN4 7
 #define ENB 6
 
-int a=2000;
-int pwm = 100;
+int a=0;
+int pwm = 255;
 void setup() {
   Serial.begin(9600);
   for (int i = 7; i <= 13; i++) {
     pinMode(i, OUTPUT);
     digitalWrite(i,LOW);
   }
-  analogWrite(ENA,pwm*0.80); //Derecha
-  analogWrite(ENB,pwm); //Izquierda
+  analogWrite(ENA,255); //Derecha
+  analogWrite(ENB,255); //Izquierda
+  digitalWrite(11, HIGH);
+  avance();
 }
 
 void loop() {
-  avance();
-  delay(a);
-  retroceso();
-  delay(a);
+
 }
 
 void avance(){
@@ -45,6 +44,7 @@ void stoped(){
   digitalWrite(IN3, LOW);
   digitalWrite(IN4, LOW);  
 }
+
 
 
 
